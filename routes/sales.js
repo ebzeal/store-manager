@@ -5,52 +5,76 @@ import Joi from 'joi';
 
 const sales = [
   {
-    id: '', productCategory: '', productName: '', productImage: '', productDetails: '', productSpec: '', productPrice: '', dateAdded: '', dateModified: '',
+    id: '', attendant: '', productName: '', quantity: '', amount: '', salesTime: '', salesDate: '',
   },
 ];
 
-function validateProduct(product) {
+function validatesale(sale) {
   const schema = {
-    productCategory: Joi.string().min(3).required(),
-    productName: Joi.string().min(3).required(),
-    productImage: Joi.string().min(3),
-    productDetails: Joi.string(),
-    productSpec: Joi.string(),
-    productPrice: Joi.number().required(),
+    attendant: Joi.string().required(),
+    productName: Joi.string().required(),
+    quantity: Joi.string().required(),
+    amount: Joi.string().required(),
   };
 
-  return Joi.validate(product, schema);
+  return Joi.validate(sale, schema);
+}
+
+function checkIfExist(saleid, res) {
+  const sale = sales.find(prod => prod.id === saleid);
+  if (!sale) return res.status(404).send('sale with the given ID does not exist');
+  return sale;
 }
 
 const router = express.Router();
 
+// @route GET api/sales
+// @desc View/Read All sales
+// @access public
 router.get('/', (req, res) => {
-  res.send(sales);
+  res.json(sales);
 });
 
+// @route POST api/sales
+// @desc Create New sale
+// @access admin
 router.post('/', (req, res) => {
-  const { error } = validateProduct(req.body);
+  const { error } = validatesale(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  const product = {
+  const sale = {
     id: uuid.v4(),
-    productCategory: req.body.productCategory,
+    attendant: req.body.attendant,
     productName: req.body.productName,
-    productImage: req.body.productImage,
-    productDetails: req.body.productDetails,
-    productSpec: req.body.productSpec,
-    productPrice: req.body.productPrice,
-    dateAdded: moment.now(),
-    dateModified: moment.now(),
+    quantity: req.body.quantity,
+    amount: req.body.amount,
+    salesTime: moment.now('HH:mm:ss'),
+    salesDate: moment.now('MMMM Do YYYY'),
   };
 
-  sales.push(product);
-  return res.send(sales);
+  sales.push(sale);
+  return res.json(sales);
 });
 
+// @route GET api/sales/:id
+// @desc View/Read a sale
+// @access public
 router.get('/:id', (req, res) => {
-  const product = sales.find(prod => prod.id === req.params.id);
-  if (!product) return res.status(404).send('Product with the given ID does not exist');
-  return res.send(product);
+  // const sale = sales.find(prod => prod.id === req.params.id);
+  // if (!sale) return res.status(404).send('sale with the given ID does not exist');
+  // return res.send(sale);
+  const sale = checkIfExist(req.params.id, res);
+  res.send(sale);
+});
+
+
+// @route DELETE api/sales/:id
+// @desc delete a sale
+// @access admin
+router.delete('/:id', (req, res) => {
+  const sale = checkIfExist(req.params.id, res);
+  const saleIndex = sales.indexOf(sale);
+  sales.splice(saleIndex, 1);
+  return res.send(sales);
 });
 
 export default router;

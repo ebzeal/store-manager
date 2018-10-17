@@ -9,7 +9,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 app.use(_express2.default.json());
 app.get('/', function (req, res) {
-  return res.status(200).send({ message: 'YAY! Congratulations! Your first endpoint is working' });
+  return res.status(200).send({ message: 'Welcome' });
 });
 
 app.listen(3000);

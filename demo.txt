@@ -26,3 +26,13 @@
         "productDetails": "fgffhjuutfc",
         "productSpec": "80g per pack",
         "productPrice": 250}
+
+
+SALES
+
+    {
+        "attendant": "John Doe",
+        "productName": "Bread",
+        "quantity": "10",
+        "amount": "4500"
+    }
