@@ -1,0 +1,28 @@
+{
+    "productCategory": "Beverages",
+    "productName": "The Mlik Milk",
+    "productImage": "hjashkdidys",
+    "productDetails": "fgffhjuutfc",
+    "productSpec": "80g per pack",
+    "productPrice": 250
+}
+{
+    "productCategory": "Groceries",
+        "productName": "Bread",
+        "productImage": "hjashkdidys",
+        "productDetails": "fgffhjuutfc",
+        "productSpec": "250g per pack",
+        "productPrice": 400
+}
+{    "productCategory": "Laundry",
+        "productName": "Life Soap",
+        "productImage": "hjashkdidys",
+        "productDetails": "fgffhjuutfc",
+        "productSpec": "75g per pack",
+        "productPrice": 650}
+{"productCategory": "Beverages",
+        "productName": "The Milik Milk",
+        "productImage": "hjashkdidys",
+        "productDetails": "fgffhjuutfc",
+        "productSpec": "80g per pack",
+        "productPrice": 250}
