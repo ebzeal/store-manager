@@ -4,7 +4,7 @@
   "description": "A retail store app for inventory and sales management",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha || true",
     "build": "babel app.js --out-dir build",
     "dev-start": "babel-watch app.js"
   },
@@ -20,8 +20,11 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-watch": "^2.0.7",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0"
   }
 }
