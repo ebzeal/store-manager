@@ -8,8 +8,8 @@ const app = express();
 
 // load routes
 app.use(express.json());
-app.use('/api/products', products);
-app.use('/api/sales/', sales);
+app.use('/api/v1/products', products);
+app.use('/api/v1/sales/', sales);
 app.get('/', (req, res) => res.status(200).send('Welcome'));
 
 const port = process.env.PORT || 3000;

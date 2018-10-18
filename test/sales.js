@@ -21,10 +21,10 @@ describe('Task API Routes', () => {
   /*
     * Test the GET api/products route
     */
-  describe('/GET products', () => {
-    it('it should GET all the products', (done) => {
+  describe('/GET sales', () => {
+    it('it should GET all the sales', (done) => {
       chai.request(app)
-        .get('/api/v1/products')
+        .get('/api/v1/sales')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
@@ -35,22 +35,20 @@ describe('Task API Routes', () => {
   });
 
   // Test the / GET /: id route
-  describe('/GET/:id product', () => {
-    it('it should GET a product by the given id', (done) => {
-      const product = {
+  describe('/GET/:id sale', () => {
+    it('it should GET a sale by the given id', (done) => {
+      const sale = {
         id: uuid.v4(),
-        productCategory: 'Men Clothing',
+        attendant: 'John Doe',
         productName: 'socks',
-        productImage: 'abdmdkssi',
-        productDetails: 'for the feet',
-        productSpec: 'packs',
-        productPrice: 300,
-        dateAdded: moment.now(),
-        dateModified: moment.now(),
+        quantity: 45,
+        amount: 400,
+        salesTime: moment.now(),
+        salesDate: moment.now(),
       };
       chai.request(app)
-        .get('/api/v1/products/:id' + product.id)
-        .send({ product })
+        .get('/api/v1/products/:id' + sale.id)
+        .send({ sale })
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.be.a('object');
@@ -61,29 +59,23 @@ describe('Task API Routes', () => {
   });
 
 
-  // Test the POST api/products
+  // Test the POST api/v1/products
   describe('/POST products', () => {
     it('it should save a new product', (done) => {
       chai.request(app)
         .post('/api/v1/products')
         .send({
           id: uuid.v4(),
-          productCategory: 'Men Clothing',
+          attendant: 'John Doe',
           productName: 'socks',
-          productImage: 'abdmdkssi',
-          productDetails: 'for the feet',
-          productSpec: 'packs',
-          productPrice: 300,
-          dateAdded: moment.now(),
-          dateModified: moment.now(),
+          quantity: 45,
+          amount: 400,
+          salesTime: moment.now(),
+          salesDate: moment.now(),
         })
         .end((err, res) => {
           res.should.have.status(400);
-          // res.should.have.status(200);
           res.body.should.be.a('object');
-          // res.body.should.have.property('productCategory');
-          // res.body.should.have.property('productName');
-          // res.body.should.have.property('productPrice');
           done();
         });
     });
@@ -96,22 +88,15 @@ describe('Task API Routes', () => {
         .put('/api/v1/products/:id')
         .send({
           id: uuid.v4(),
-          productCategory: 'Men Clothing',
+          attendant: 'John Doe',
           productName: 'socks',
-          productImage: 'abdmdkssi',
-          productDetails: 'for the feet',
-          productSpec: 'packs',
-          productPrice: 300,
-          dateAdded: moment.now(),
-          dateModified: moment.now(),
+          quantity: 45,
+          amount: 400,
+          salesTime: moment.now(),
+          salesDate: moment.now(),
         })
         .end((err, res) => {
           res.should.have.status(404);
-          // res.should.have.status(200);
-          // res.body.should.be.a('array');
-          // res.body.should.have.property('productCategory');
-          // res.body.should.have.property('productName');
-          // res.body.should.have.property('productPrice');
           done();
         });
     });
