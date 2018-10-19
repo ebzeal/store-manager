@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register ./test/**/*.js",
     "build": "babel app.js --out-dir build",
-    "dev-start": "babel-watch app.js"
+    "dev-start": "babel-watch app.js",
+    "start": "node app.js"
   },
   "author": "Olusola Ajayi",
   "license": "ISC",
