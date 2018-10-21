@@ -79,11 +79,7 @@ describe('Task API Routes', () => {
         })
         .end((err, res) => {
           res.should.have.status(400);
-          // res.should.have.status(200);
           res.body.should.be.a('object');
-          // res.body.should.have.property('productCategory');
-          // res.body.should.have.property('productName');
-          // res.body.should.have.property('productPrice');
           done();
         });
     });
@@ -92,8 +88,19 @@ describe('Task API Routes', () => {
   // Test the PUT api/products
   describe('/PUT products', () => {
     it('it should update a product', (done) => {
+      const product = {
+        id: uuid.v4(),
+        productCategory: 'Men Clothing',
+        productName: 'socks',
+        productImage: 'abdmdkssi',
+        productDetails: 'for the feet',
+        productSpec: 'packs',
+        productPrice: 300,
+        dateAdded: moment.now(),
+        dateModified: moment.now(),
+      };
       chai.request(app)
-        .put('/api/v1/products/:id')
+        .put('/api/v1/products/:id' + product.id)
         .send({
           id: uuid.v4(),
           productCategory: 'Men Clothing',
@@ -107,11 +114,6 @@ describe('Task API Routes', () => {
         })
         .end((err, res) => {
           res.should.have.status(404);
-          // res.should.have.status(200);
-          // res.body.should.be.a('array');
-          // res.body.should.have.property('productCategory');
-          // res.body.should.have.property('productName');
-          // res.body.should.have.property('productPrice');
           done();
         });
     });

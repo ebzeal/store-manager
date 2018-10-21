@@ -19,7 +19,7 @@ describe('Task API Routes', () => {
   });
 
   /*
-    * Test the GET api/products route
+    * Test the GET api/sales route
     */
   describe('/GET sales', () => {
     it('it should GET all the sales', (done) => {
@@ -40,14 +40,14 @@ describe('Task API Routes', () => {
       const sale = {
         id: uuid.v4(),
         attendant: 'John Doe',
-        productName: 'socks',
+        saleName: 'socks',
         quantity: 45,
         amount: 400,
         salesTime: moment.now(),
         salesDate: moment.now(),
       };
       chai.request(app)
-        .get('/api/v1/products/:id' + sale.id)
+        .get('/api/v1/sales/:id', sale.id)
         .send({ sale })
         .end((err, res) => {
           res.should.have.status(404);
@@ -59,15 +59,15 @@ describe('Task API Routes', () => {
   });
 
 
-  // Test the POST api/v1/products
-  describe('/POST products', () => {
-    it('it should save a new product', (done) => {
+  // Test the POST api/v1/sales
+  describe('/POST sales', () => {
+    it('it should save a new sale', (done) => {
       chai.request(app)
-        .post('/api/v1/products')
+        .post('/api/v1/sales')
         .send({
           id: uuid.v4(),
           attendant: 'John Doe',
-          productName: 'socks',
+          saleName: 'socks',
           quantity: 45,
           amount: 400,
           salesTime: moment.now(),
@@ -81,24 +81,4 @@ describe('Task API Routes', () => {
     });
   });
 
-  // Test the PUT api/products
-  describe('/PUT products', () => {
-    it('it should update a product', (done) => {
-      chai.request(app)
-        .put('/api/v1/products/:id')
-        .send({
-          id: uuid.v4(),
-          attendant: 'John Doe',
-          productName: 'socks',
-          quantity: 45,
-          amount: 400,
-          salesTime: moment.now(),
-          salesDate: moment.now(),
-        })
-        .end((err, res) => {
-          res.should.have.status(404);
-          done();
-        });
-    });
-  });
 });

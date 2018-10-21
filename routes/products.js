@@ -84,7 +84,7 @@ router.put('/:id', (req, res) => {
   product.productSpec = req.body.productSpec;
   product.productPrice = req.body.productPrice;
   product.dateModified = moment.now();
-  return res.send(product);
+  return res.json(product);
 });
 
 // @route DELETE api/products/:id
