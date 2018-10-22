@@ -5,9 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register ./test/**/*.js --timeout 10000",
-    "build": "babel app.js --out-dir build",
+    "clear": "rm -rf build && mkdir build",
+    "build": "npm run clear && babel app.js --out-dir build",
     "dev-start": "babel-watch app.js",
-    "start": "npm run build"
+    "start": "npm run dev-start"
   },
   "author": "Olusola Ajayi",
   "license": "ISC",
