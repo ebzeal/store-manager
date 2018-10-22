@@ -35,28 +35,28 @@ describe('Task API Routes', () => {
   });
 
   // Test the / GET /: id route
-  describe('/GET/:id sale', () => {
-    it('it should GET a sale by the given id', (done) => {
-      const sale = {
-        id: uuid.v4(),
-        attendant: 'John Doe',
-        saleName: 'socks',
-        quantity: 45,
-        amount: 400,
-        salesTime: moment.now(),
-        salesDate: moment.now(),
-      };
-      chai.request(app)
-        .get('/api/v1/sales/:id', sale.id)
-        .send({ sale })
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.be.a('object');
-          done();
-        });
+  // describe('/GET/:id sale', () => {
+  //   it('it should GET a sale by the given id', (done) => {
+  //     const sale = {
+  //       id: uuid.v4(),
+  //       attendant: 'John Doe',
+  //       saleName: 'socks',
+  //       quantity: 45,
+  //       amount: 400,
+  //       salesTime: moment.now(),
+  //       salesDate: moment.now(),
+  //     };
+  //     chai.request(app)
+  //       .get('/api/v1/sales/:id', sale.id)
+  //       .send({ sale })
+  //       .end((err, res) => {
+  //         res.should.have.status(404);
+  //         res.body.should.be.a('object');
+  //         done();
+  //       });
 
-    });
-  });
+  //   });
+  // });
 
 
   // Test the POST api/v1/sales

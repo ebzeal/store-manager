@@ -35,30 +35,30 @@ describe('Task API Routes', () => {
   });
 
   // Test the / GET /: id route
-  describe('/GET/:id product', () => {
-    it('it should GET a product by the given id', (done) => {
-      const product = {
-        id: uuid.v4(),
-        productCategory: 'Men Clothing',
-        productName: 'socks',
-        productImage: 'abdmdkssi',
-        productDetails: 'for the feet',
-        productSpec: 'packs',
-        productPrice: 300,
-        dateAdded: moment.now(),
-        dateModified: moment.now(),
-      };
-      chai.request(app)
-        .get('/api/v1/products/:id' + product.id)
-        .send({ product })
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.be.a('object');
-          done();
-        });
+  // describe('/GET/:id product', () => {
+  //   it('it should GET a product by the given id', (done) => {
+  //     const product = {
+  //       id: uuid.v4(),
+  //       productCategory: 'Men Clothing',
+  //       productName: 'socks',
+  //       productImage: 'abdmdkssi',
+  //       productDetails: 'for the feet',
+  //       productSpec: 'packs',
+  //       productPrice: 300,
+  //       dateAdded: moment.now(),
+  //       dateModified: moment.now(),
+  //     };
+  //     chai.request(app)
+  //       .get('/api/v1/products/:id' + product.id)
+  //       .send({ product })
+  //       .end((err, res) => {
+  //         res.should.have.status(404);
+  //         res.body.should.be.a('object');
+  //         done();
+  //       });
 
-    });
-  });
+  //   });
+  // });
 
 
   // Test the POST api/products
@@ -86,36 +86,36 @@ describe('Task API Routes', () => {
   });
 
   // Test the PUT api/products
-  describe('/PUT products', () => {
-    it('it should update a product', (done) => {
-      const product = {
-        id: uuid.v4(),
-        productCategory: 'Men Clothing',
-        productName: 'socks',
-        productImage: 'abdmdkssi',
-        productDetails: 'for the feet',
-        productSpec: 'packs',
-        productPrice: 300,
-        dateAdded: moment.now(),
-        dateModified: moment.now(),
-      };
-      chai.request(app)
-        .put('/api/v1/products/:id' + product.id)
-        .send({
-          id: uuid.v4(),
-          productCategory: 'Men Clothing',
-          productName: 'socks',
-          productImage: 'abdmdkssi',
-          productDetails: 'for the feet',
-          productSpec: 'packs',
-          productPrice: 300,
-          dateAdded: moment.now(),
-          dateModified: moment.now(),
-        })
-        .end((err, res) => {
-          res.should.have.status(404);
-          done();
-        });
-    });
-  });
+  // describe('/PUT products', () => {
+  //   it('it should update a product', (done) => {
+  //     const product = {
+  //       id: uuid.v4(),
+  //       productCategory: 'Men Clothing',
+  //       productName: 'socks',
+  //       productImage: 'abdmdkssi',
+  //       productDetails: 'for the feet',
+  //       productSpec: 'packs',
+  //       productPrice: 300,
+  //       dateAdded: moment.now(),
+  //       dateModified: moment.now(),
+  //     };
+  //     chai.request(app)
+  //       .put('/api/v1/products/:id' + product.id)
+  //       .send({
+  //         id: uuid.v4(),
+  //         productCategory: 'Men Clothing',
+  //         productName: 'socks',
+  //         productImage: 'abdmdkssi',
+  //         productDetails: 'for the feet',
+  //         productSpec: 'packs',
+  //         productPrice: 300,
+  //         dateAdded: moment.now(),
+  //         dateModified: moment.now(),
+  //       })
+  //       .end((err, res) => {
+  //         res.should.have.status(404);
+  //         done();
+  //       });
+  //   });
+  // });
 });
