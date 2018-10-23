@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/styles.css">
+  <title>Ilupeju Stores - Store Manager App</title>
+</head>
+
+<body>
+  <header class="top">
+    <div class="container">
+      <div class="logo-top">
+        <a href="../index.html"> <img src="../images/logo.png" alt="Ilupeju Stores logo" srcset="../images/logo.png 240w, ../images/logo.png 320w, ../images/logo.png 480w, ../images/logo.png 3200w"
+            aria-setsize="">
+        </a>
+      </div>
+      <div id="menubar" class="allmenu">
+        <div class="menu" id="menubar">
+          <ul>
+            <li><a href="../dashboard.html">Dashboard</a></li>
+            <li><a href="../products.html">Products</a></li>
+            <li class="active"><a href="../audit/john-doe.html">Sales Audit</a></li>
+            <li><a href="../report-incidence.html">Incidence</a></li>
+          </ul>
+
+        </div>
+        <div class="profile">
+          <ul>
+            <li><a href="../users/john-doe.html">Hi John!</a></li>
+            <li><a href="../cart/index.html">Shopping cart</a></li>
+            <li><a href="../index.html">Log out</a></li>
+
+          </ul>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2>All Sales Record</h2>
+      <h3>As at 11th October 2018 - Total (N3,800,000)</h3>
+      <div class="content">
+        <div class="left">
+          <h3>Filter</h3>
+          <div class="filter">
+            <form action="" method="post">
+              <input type="date" name="search" id="" class="search" placeholder="Search by Date">
+              <button type="submit">Filter By Date</button>
+            </form>
+
+            <form action="">
+              <select>
+                <option value="" disabled selected>Filter by Attendant</option>
+                <option value="groceries">Ade Kola</option>
+                <option value="mshoes">John Doe</option>
+                <option value="wshoes">Jane Doe</option>
+                <option value="electronics">Billy Jean</option>
+              </select>
+              <button type="submit">Filter</button>
+            </form>
+
+            <form action="">
+              <select>
+                <option value="" disabled selected>Filter by Product</option>
+                <option value="groceries">Vegetables</option>
+                <option value="mshoes">Bread</option>
+                <option value="wshoes">Phone Case</option>
+                <option value="electronics">Head Phones</option>
+              </select>
+              <button type="submit">Filter</button>
+            </form>
+          </div>
+        </div>
+        <div class="right">
+
+          <table>
+            <tr>
+              <th>Attendant</th>
+              <th>Product</th>
+              <th>Picture</th>
+              <th>Quantity</th>
+              <th>Amount (N)</th>
+              <th>Time</th>
+              <th>Date</th>
+            </tr>
+            <tr>
+              <td><a href="../users/john-doe.html">John Doe</a> </td>
+              <td><a href="../products/vegetables.html">Vegetables</a></td>
+              <td> <img src="../images/vegetables.jpg" alt=""> </td>
+              <td>3</td>
+              <td>600</td>
+              <td>7:12pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+
+            <tr>
+              <td><a href="../users/ade-kola.html">Ade Kola</a> </td>
+              <td><a href="../products/bread.html">Bread</a></td>
+              <td> <img src="../images/bread.jpg" alt=""> </td>
+              <td>10</td>
+              <td>4000</td>
+              <td>5:13pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+            <tr>
+              <td><a href="../users/john-doe.html">John Doe</a> </td>
+              <td><a href="../products/vegetables.html">Vegetables</a></td>
+              <td> <img src="../images/vegetables.jpg" alt=""> </td>
+              <td>3</td>
+              <td>600</td>
+              <td>7:12pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+
+            <tr>
+              <td><a href="../users/ade-kola.html">Ade Kola</a> </td>
+              <td><a href="../products/bread.html">Bread</a></td>
+              <td> <img src="../images/bread.jpg" alt=""> </td>
+              <td>10</td>
+              <td>4000</td>
+              <td>5:13pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+            <tr>
+              <td><a href="../users/john-doe.html">John Doe</a> </td>
+              <td><a href="../products/vegetables.html">Vegetables</a></td>
+              <td> <img src="../images/vegetables.jpg" alt=""> </td>
+              <td>3</td>
+              <td>600</td>
+              <td>7:12pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+
+            <tr>
+              <td><a href="../users/ade-kola.html">Ade Kola</a> </td>
+              <td><a href="../products/bread.html">Bread</a></td>
+              <td> <img src="../images/bread.jpg" alt=""> </td>
+              <td>10</td>
+              <td>4000</td>
+              <td>5:13pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+            <tr>
+              <td><a href="../users/john-doe.html">John Doe</a> </td>
+              <td><a href="../products/vegetables.html">Vegetables</a></td>
+              <td> <img src="../images/vegetables.jpg" alt=""> </td>
+              <td>3</td>
+              <td>600</td>
+              <td>7:12pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+
+            <tr>
+              <td><a href="../users/ade-kola.html">Ade Kola</a> </td>
+              <td><a href="../products/bread.html">Bread</a></td>
+              <td> <img src="../images/bread.jpg" alt=""> </td>
+              <td>10</td>
+              <td>4000</td>
+              <td>5:13pm</td>
+              <td>Oct 7th 2018</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/menu.js"></script>
+</body>
+
+</html>

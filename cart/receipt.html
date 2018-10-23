@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/styles.css">
+  <title>Receipt -Ilupeju Stores Manager App</title>
+</head>
+
+<body>
+
+
+  <section>
+    <div class="container receipt">
+      <div class="receipttop">
+        <div class="left">
+          <h2 class="textleft">Sales Receipts</h2>
+          <p>Date</p>
+          <p>Cutomer Name</p>
+          <p>Customer Phone Number</p>
+        </div>
+        <div class="logo-top topright"> <br>
+          <a href="index.html"> <img src="../images/logo.png" alt="Ilupeju Stores logo" srcset="../images/logo.png 240w, ../images/logo.png 320w, ../images/logo.png 480w, ../images/logo.png 3200w"
+              aria-setsize="">
+          </a>
+        </div>
+      </div>
+      <div class="content">
+        <br><br><br><br>
+        <table class="noborder">
+          <tr>
+            <th>Description</th>
+            <th>Price (N)</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+          <tr>
+            <td>
+              <div class="productdetails">
+                <p>Vegetables</p>
+                <p>Lorem ipsum dolor sit amet </p>
+              </div>
+            </td>
+            <td>200</td>
+            <td>
+              1
+            </td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <h3>Total : N6000</h3>
+            </td>
+            <td>
+            </td>
+          </tr>
+        </table>
+
+        <p>Payment received as </p>
+        <form action="" class="paytype">
+          <input type="checkbox" name="cash" id="" class="left"> <p>Cash</p>
+          <input type="checkbox" name="cheque" id="" class="left"> <p> Cheque</p>
+          <input type="checkbox" name="POS" id="" class="left"> <p> POS</p>
+        </form>
+
+        <div>
+          <button onclick="window.print() ">Print</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/menu.js "></script>
+</body>
+
+</html>

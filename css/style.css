@@ -1,0 +1,213 @@
+@font-face {
+  font-family: afont;
+  src: url('../fonts/Poppins-Regular.ttf');
+}
+@font-face {
+  font-family: bfont;
+  src: url('../fonts/OpenSans-Regular.ttf');
+}
+
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url(../images/shop-bg.jpg) no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+#left {
+  width: 50%;
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.logo {
+  margin-top: 100px;
+}
+
+#right {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  right: 0;
+  padding: 10px;
+  top: 0;
+}
+
+h2 {
+  font-family: aFont;
+  color: #fff;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+p {
+  font-family: bFont;
+  color: #fff;
+  font-size: 18px;
+}
+
+.form {
+  border: #fff thin solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 100px 20px 0px 20px;
+  width: 70%;
+  font-family: bFont;
+  background: rgba(26, 26, 26, 0.64)
+}
+.form > h2 {
+  text-align: center;
+  font-family: aFont;
+}
+.input {
+  width: 100%;
+  border: none;
+  border-bottom: solid #ccc 1px;
+  background-color: rgba(0, 0, 0, 0.45);
+  height: 40px;
+  margin-bottom: 35px;
+  color: #fff;
+  font-size: 18px;
+  font-family: bFont;
+}
+input:active {
+  border: none;
+  border-bottom: solid #ccc 1px;
+}
+
+.btn {
+  width: 100%;
+  font-family: bFont;
+  font-size: 18px;
+  background-color:rgba(255,211,211, .46);
+  border: none;
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: rgba(70, 99, 94, 0.56);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 768px) and (max-width: 990.98px) {
+  .logo {
+    margin-top: 70px;
+  }
+  #left {
+    width: 100%;
+  }
+  #right {
+    width: 100%;
+    right: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 990px) {
+  .logo {
+    margin-top: 20px;
+  }
+
+  #left {
+    width: 100%;
+  }
+  #right {
+    width: 100%;
+    left: 10%;
+    top: 250px;
+  }
+  .form {
+    margin: 10px 20px 0px 20px;
+  }
+  h2 {
+    font-family: aFont;
+    color: #fff;
+    font-weight: bold;
+    font-size: 28px;
+  }
+
+  p {
+    font-family: bFont;
+    color: #fff;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 548px) and (max-width: 768px) {
+  .logo {
+    margin-top: 50px;
+  }
+  #left {
+    width: 100%;
+  }
+  #right {
+    width: 100%;
+    left: 10%;
+    top: 250px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 548px) {
+  .logo {
+    margin-top: 20px;
+  }
+
+  #left {
+    width: 100%;
+  }
+  #right {
+    width: 100%;
+    left: 10%;
+    top: 250px;
+  }
+  .form {
+    margin: 10px 20px 0px 20px;
+  }
+  h2 {
+    font-family: aFont;
+    color: #fff;
+    font-weight: bold;
+    font-size: 28px;
+  }
+
+  p {
+    font-family: bFont;
+    color: #fff;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    margin-top: 20px;
+  }
+
+  #left {
+    width: 100%;
+  }
+  #right {
+    width: 100%;
+    left: 5%;
+    top: 250px;
+  }
+  .form {
+    margin: 10px 20px 0px 20px;
+  }
+  h2 {
+    font-family: aFont;
+    color: #fff;
+    font-weight: bold;
+    font-size: 26px;
+  }
+
+  p {
+    font-family: bFont;
+    color: #fff;
+    font-size: 14px;
+  }
+}
