@@ -14,9 +14,11 @@ body {
 
 section {
   margin-top: 30px;
+  margin-bottom: 100px;
 }
 .container {
-  padding: 0px 50px;
+  padding: 0px 30px;
+  padding-top: 0px
 }
 
 .row,
@@ -26,7 +28,7 @@ section {
 
 h2 {
   font-family: aFont;
-  color: #000;
+  color: rgba(255, 255, 255, 0.70);
   font-weight: bold;
   font-size: 25px;
   text-align: center;
@@ -34,7 +36,7 @@ h2 {
 
 h3 {
   font-family: aFont;
-  color: #000;
+  color: rgba(255, 255, 255, 0.70);
   font-weight: bold;
   font-size: 18px;
   text-align: center;
@@ -281,6 +283,11 @@ table {
   font-family: bFont;
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 100px;
+  background-color: rgba(238, 235, 235, 0.45);
+  padding: 5%;
+  border: rgb(51, 50, 50) 2px solid;
+  border-radius: 5px;
 }
 
 tr {
@@ -321,8 +328,14 @@ tr:nth-child(even) {
 .noborder * td {
   background: none;
   border: none;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #474747;
   cursor: auto;
+  margin-bottom: 100px;
+  background-color: rgba(238, 235, 235, 0.45);
+}
+
+.noborder * h3 {
+  color: #000
 }
 
 .halfborder * tr:hover {
@@ -342,15 +355,20 @@ td > i:hover {
 }
 
 .filter {
-  border: 1px solid #dddddd;
   padding: 10px;
   text-align: center;
+  background-color: rgba(238, 235, 235, 0.45);
+  border: rgb(51, 50, 50) 2px solid;
+  border-radius: 5px;
 }
 
 form {
   font-family: bFont;
-  margin: 50px 0;
+  margin: 0px 0;
   text-align: center;
+  background-color: rgba(238, 235, 235, 0.45);
+  border-radius: 5px;
+  padding: 20px
 }
 
 select,

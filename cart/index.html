@@ -17,46 +17,36 @@
   <header class="top">
     <div class="container">
       <div class="logo-top">
-        <a href="../index.html">
-          <img src="../images/logo.png" alt="Ilupeju Stores logo" srcset="../images/logo.png 240w, ../images/logo.png 320w, ../images/logo.png 480w, ../images/logo.png 3200w"
+        <a href="index.html"> <img src="../images/logo.png" alt="Ilupeju Stores logo" srcset="../images/logo.png 240w, ../images/logo.png 320w, ../images/logo.png 480w, ../images/logo.png 3200w"
             aria-setsize="">
         </a>
       </div>
       <div id="menubar" class="allmenu">
         <div class="menu" id="menubar">
           <ul>
-            <li>
-              <a href="../dashboard.html">Dashboard</a>
-            </li>
-            <li>
-              <a href="../products.html">Products</a>
-            </li>
-            <li class="active">
-              <a href="../audit/john-doe.html">Sales Audit</a>
-            </li>
+            <li><a href="../dashboard.html">Dashboard</a></li>
+            <li><a href="../products.html">Products</a></li>
+            <li><a href="john-doe.html">Sales Audit</a></li>
             <li><a href="../report-incidence.html">Incidence</a></li>
+            <li class="active"><a href="../cart/index.html">Shopping cart</a></li>
           </ul>
 
         </div>
         <div class="profile">
-          <ul>
-            <li>
-              <a href="../users/john-doe.html">Hi John!</a>
-            </li>
-            <li>
-              <a href="../cart/index.html">Shopping cart</a>
-            </li>
-            <li>
-              <a href="../index.html">Log out</a>
-            </li>
-
-          </ul>
+          <div class="dropdown">
+            <button onclick="myProfileFunction()" class="dropbtn"> &nbsp;&nbsp;&nbsp;</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">Hi John!</a>
+              <a href="#home">Profile</a>
+              <a href="#about">Sales orders</a>
+              <a href="#contact">Logout</a>
+            </div>
+          </div>
         </div>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
       </div>
-
     </div>
   </header>
 
@@ -101,7 +91,8 @@
                 <img src="../images/vegetables.jpg" alt="" class="productimage">
                 <div class="productdetails">
                   <h3>Vegetables</h3>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni odio dignissimos quod, veniam officiis</p>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni odio dignissimos quod, veniam
+                    officiis</p>
                 </div>
               </td>
               <td>200</td>
