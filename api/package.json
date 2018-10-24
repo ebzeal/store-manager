@@ -1,0 +1,30 @@
+{
+  "name": "store-manager",
+  "version": "1.0.0",
+  "description": "A retail store app for inventory and sales management",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clear": "rm -rf build && mkdir build",
+    "build": "npm run clear && babel server.js --out-dir build",
+    "dev-start": "babel-watch server.js",
+    "start": "npm run build"
+  },
+  "author": "Olusola Ajayi",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "babel-watch": "^2.0.7",
+    "express": "^4.16.4",
+    "moment": "^2.22.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
