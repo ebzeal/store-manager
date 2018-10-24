@@ -27,5 +27,5 @@ A retail store app for inventory and sales management.
 # License
 Store manager is published under the liberal terms of ICS license. View License
 
-[![Build Status](https://travis-ci.com/ebzeal/store-manager.svg?branch=api)](https://travis-ci.com/ebzeal/store-manager)
-[![Coverage Status](https://coveralls.io/repos/github/ebzeal/store-manager/badge.svg?branch=api)](https://coveralls.io/github/ebzeal/store-manager?branch=api)
+[![Build Status](https://travis-ci.com/ebzeal/store-manager.svg?branch=develop)](https://travis-ci.com/ebzeal/store-manager)
+[![Coverage Status](https://coveralls.io/repos/github/ebzeal/store-manager/badge.svg?branch=develop)](https://coveralls.io/github/ebzeal/store-manager?branch=develop)
