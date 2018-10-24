@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/ebzeal/store-manager.svg?branch=develop)](https://travis-ci.com/ebzeal/store-manager)
+[![Coverage Status](https://coveralls.io/repos/github/ebzeal/store-manager/badge.svg?branch=develop)](https://coveralls.io/github/ebzeal/store-manager?branch=develop)
+
 # Store Manager
 A retail store app for inventory and sales management. 
 
@@ -15,6 +18,9 @@ A retail store app for inventory and sales management.
 * More features will be added
 
 # Usage
+* Clone or download the repository
+* npm init
+* To run npm run start
 
 
 # Contributing
@@ -24,8 +30,3 @@ A retail store app for inventory and sales management.
 4. Push to the branch: git push origin my-new-feature
 5. Submit a pull request :D
 
-# License
-Store manager is published under the liberal terms of ICS license. View License
-
-[![Build Status](https://travis-ci.com/ebzeal/store-manager.svg?branch=develop)](https://travis-ci.com/ebzeal/store-manager)
-[![Coverage Status](https://coveralls.io/repos/github/ebzeal/store-manager/badge.svg?branch=develop)](https://coveralls.io/github/ebzeal/store-manager?branch=develop)
