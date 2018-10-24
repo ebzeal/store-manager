@@ -5,7 +5,9 @@
 A retail store app for inventory and sales management. 
 
 # Installation
- use ```git clone https://github.com/ebzeal/store-manager ``` to copy the codes into your repository/local computer to acccess the codes
+ * use ```git clone https://github.com/ebzeal/store-manager ``` to copy the codes into your repository/local computer to acccess the codes
+* npm init
+* To run npm run start
 
 # Features
 * There are two access priviledges 
@@ -18,9 +20,12 @@ A retail store app for inventory and sales management.
 * More features will be added
 
 # Usage
-* Clone or download the repository
-* npm init
-* To run npm run start
+* Create an admin profile
+* Add users (Store Attendant) profiles
+
+# Demo
+* https://ebzeal.github.io/store-manager/index.html
+* https://boiling-hamlet-69825.herokuapp.com/
 
 
 # Contributing
