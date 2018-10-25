@@ -56,7 +56,19 @@ const Product = {
       return res.status(404).send({ message: 'product not found' });
     }
     return res.status(200).send(product);
-  }
+  },
+
+  // Delete Single product
+
+  delete(req, res) {
+    const product = ProductModel.findOne(req.params.id);
+    if (!product) {
+      return res.status(404).send({ message: 'product not found' });
+    }
+    const ref = ProductModel.delete(req.params.id);
+    return res.status(204).send(ref);
+  },
+
 };
 
 export default Product;
