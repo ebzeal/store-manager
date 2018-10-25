@@ -88,12 +88,22 @@ button:hover {
   float: left;
   left: 30%;
   margin-left: 5%;
+  margin-bottom: 120px;
 }
 
 
 #container {
   margin: 80px 70px 200px 70px;
   align-content: center
+}
+
+.white-bg {
+  background-color: rgba(188, 192, 188, 0.7);
+  height: inherit;
+}
+
+.white-bg * h3 {
+  color: #000 ;
 }
 
 p { text-align: center; }
@@ -647,6 +657,21 @@ td {
 #incidents {
   margin-bottom:100px;
 }
+
+.left {
+  width: 100%;
+  float: left;
+  margin: 0 0 30px 0;
+}
+.right {
+  width: 100%;
+  margin: 0 0 30px 0;
+}
+
+.right * img {
+  max-width: 80%;
+  padding: 0px 10%
+}
 }
 
 @media all and (max-width : 330px) {
@@ -719,5 +744,14 @@ td {
 
 #incidents {
   margin-bottom:100px;
+}
+
+.left {
+  width: 100%;
+  float: left;
+}
+.right {
+  width: 100%;
+  float: left;
 }
 }
