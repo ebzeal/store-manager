@@ -448,13 +448,11 @@ input,
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  border:2px solid #fff;
   background-image: url(../images/john-doe.jpg);
   background-size:     cover;                     
   background-repeat:   no-repeat;
   background-position: center center;
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 100px;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -474,7 +472,6 @@ input,
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  text-align: left;
 }
 
 .dropdown-content a {
