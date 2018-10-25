@@ -22,7 +22,7 @@ class Product {
       dateAdded: moment.now(),
       dateModified: moment.now(),
     };
-    this.product.push(newProduct);
+    this.products.push(newProduct);
     return newProduct;
   }
 
