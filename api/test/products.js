@@ -1,8 +1,8 @@
 // Require the dev-dependencies
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import uuid from 'uuid';
-// import moment from 'moment';
+import uuid from 'uuid';
+import moment from 'moment';
 import app from '../server';
 let should = chai.should();
 
@@ -29,6 +29,30 @@ describe('Task API Routes', () => {
           res.should.have.status(200);
           res.body.should.be.a('array');
           res.body.length.should.be.eql(0);
+          done();
+        });
+    });
+  });
+
+  // Test the POST api/products
+  describe('/POST products', () => {
+    it('it should save a new product', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .send({
+          id: uuid.v4(),
+          productCategory: 'Men Clothing',
+          productName: 'socks',
+          productImage: 'abdmdkssi',
+          productDetails: 'for the feet',
+          productSpec: 'packs',
+          productPrice: 300,
+          dateAdded: moment.now(),
+          dateModified: moment.now(),
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.should.be.a('object');
           done();
         });
     });
