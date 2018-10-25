@@ -4,6 +4,7 @@ import chaiHttp from 'chai-http';
 import uuid from 'uuid';
 import moment from 'moment';
 import app from '../server';
+import Product from '../models/product';
 let should = chai.should();
 
 // During the test the env variable is set to test
@@ -18,9 +19,9 @@ describe('Task API Routes', () => {
   //   done();
   // });
 
-  /*
-    * Test the GET api/products route
-    */
+
+  // * Test the GET api/products route
+
   describe('/GET products', () => {
     it('it should GET all the products', (done) => {
       chai.request(app)
@@ -60,7 +61,7 @@ describe('Task API Routes', () => {
   // Test the PUT api / products
   describe('/PUT products', () => {
     it('it should update a product', (done) => {
-      const product = {
+      const product = new Product({
         id: uuid.v4(),
         productCategory: 'Men Clothing',
         productName: 'socks',
@@ -70,24 +71,26 @@ describe('Task API Routes', () => {
         productPrice: 300,
         dateAdded: moment.now(),
         dateModified: moment.now(),
-      };
-      chai.request(app)
-        .put(`/api/v1/products/:id${product.id}`)
-        .send({
-          id: uuid.v4(),
-          productCategory: 'Men Clothing',
-          productName: 'socks',
-          productImage: 'abdmdkssi',
-          productDetails: 'for the feet',
-          productSpec: 'packs',
-          productPrice: 300,
-          dateAdded: moment.now(),
-          dateModified: moment.now(),
-        })
-        .end((err, res) => {
-          res.should.have.status(404);
-          done();
-        });
+      });
+      product.save((err) => {
+        chai.request(app)
+          .put('/api/v1/products/' + product.id)
+          .send({
+            id: uuid.v4(),
+            productCategory: 'Men Clothing',
+            productName: 'socks',
+            productImage: 'abdmdkssi',
+            productDetails: 'for the feet',
+            productSpec: 'packs',
+            productPrice: 300,
+            dateAdded: moment.now(),
+            dateModified: moment.now(),
+          })
+          .end((err, res) => {
+            res.should.have.status(200);
+            done();
+          });
+      });
     });
   });
 });

@@ -39,6 +39,7 @@ const Product = {
     const product = ProductModel.create(req.body);
     return res.status(201).send(product);
   },
+  // update single product
   update(req, res) {
     const product = ProductModel.findOne(req.params.id);
     if (!product) {
@@ -47,6 +48,15 @@ const Product = {
     const updatedProduct = ProductModel.update(req.params.id, req.body);
     return res.status(200).send(updatedProduct);
   },
+
+  // Find one product
+  getOne(req, res) {
+    const product = ProductModel.findOne(req.params.id);
+    if (!product) {
+      return res.status(404).send({ message: 'product not found' });
+    }
+    return res.status(200).send(product);
+  }
 };
 
 export default Product;

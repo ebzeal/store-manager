@@ -7,7 +7,9 @@ app.get('/', (req, res) => res.status(200).send('<h1>Welcome to the Store Manage
 
 // Load Routes
 app.get('/api/v1/products', Product.getAll);
+app.get('/api/v1/products/:id', Product.getOne);
 app.post('/api/v1/products', Product.create);
+app.put('/api/v1/products/:id', Product.update);
 app.put('/api/v1/products/:id', Product.update);
 const port = process.env.port || 3000;
 app.listen(port, () => console.log(`Listening on Port ${port}`));
