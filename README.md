@@ -25,7 +25,7 @@ A retail store app for inventory and sales management.
 
 # Demo
 * https://ebzeal.github.io/store-manager/index.html
-* https://boiling-hamlet-69825.herokuapp.com/
+* https://app-store-manager.herokuapp.com/
 
 
 # Contributing
