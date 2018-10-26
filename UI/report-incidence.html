@@ -5,78 +5,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css">
   <title>Ilupeju Stores - Store Manager App</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-  <header class="top">
-    <div class="container">
+  <nav>
+    <div id="logo"><a href="dashboard.html"> <img src="images/logo.png" alt="Ilupeju Stores logo">
+      </a></div>
+    <label for="drop" class="toggle">Menu</label>
+    <input type="checkbox" id="drop" />
+    <ul class="menu">
+      <li><a href="dashboard.html">Dashboard</a></li>
 
-      <div class="logo-top">
-        <a href="index.html"> <img src="images/logo.png" alt="Ilupeju Stores logo" srcset="images/logo.png 240w, images/logo.png 320w, images/logo.png 480w, images/logo.png 3200w"
-            aria-setsize="">
-        </a>
-      </div>
-      <div id="menubar" class="allmenu">
-        <div class="menu" id="menubar">
-          <ul>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="audit/john-doe.html">Sales Audit</a></li>
-            <li class="active"><a href="report-incidence.html">Incidence</a></li>
-            <li><a href="cart/index.html">Shopping cart</a></li>
-          </ul>
+      <li>
 
-        </div>
-        <div class="profile">
-          <div class="dropdown">
-            <button onclick="myProfileFunction()" class="dropbtn"> &nbsp;&nbsp;&nbsp;</button>
-            <div id="myDropdown" class="dropdown-content">
-              <a href="#">Hi John!</a>
-              <a href="#home">Profile</a>
-              <a href="#about">Sales orders</a>
-              <a href="#contact">Logout</a>
-            </div>
-          </div>
-        </div>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
-      </div>
+        <!-- First Tier Drop Down -->
+        <label for="drop-2" class="toggle">Portfolio +</label>
+        <a href="#">Products</a>
+        <input type="checkbox" id="drop-2" />
+        <ul>
+          <li><a href="products.html">View All Products</a></li>
+          <li><a href="admin/products/new.html">Add Product</a></li>
+          <!-- <li>
+
+            <!-- Second Tier Drop Down --
+            <label for="drop-3" class="toggle">Works +</label>
+            <a href="#">Works</a>
+            <input type="checkbox" id="drop-3" />
+            <ul>
+              <li><a href="#">HTML/CSS</a></li>
+              <li><a href="#">jQuery</a></li>
+              <li><a href="#">Python</a></li>
+            </ul>
+          </li> -->
+        </ul>
+      </li>
+      <li><a href="report-incidence.html">Incidence</a></li>
+      <li><a href="cart/index.html">Shopping Cart</a></li>
+
+      <li class="profile">
+        <!-- First Tier Drop Down -->
+        <label for="drop-1" class="toggle"> <img src="images/john-doe.jpg" alt=""> +</label>
+        <a href="#" class="dropbtn"><img src="images/john-doe.jpg" alt=""></a>
+        <input type="checkbox" id="drop-1" />
+        <ul>
+          <li><a href="#">Hi John</a></li>
+          <li><a href="users/john-doe.html">Profile</a></li>
+          <li><a href="audit/john-doe.html">Sales Orders</a></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
 
-    </div>
-  </header>
-  <section>
-    <div class="container">
-      <h2>Report Incidence</h2>
-      <div class="content">
-        <div class="left">
-          <button onclick="window.location='dashboard.html'">Back to Dashboard</button>
-        </div>
+  <div class="container" id="container">
+    <h2>Report Incidence</h2>
+    <div class="content">
+      <div class="left">
+        <button onclick="window.location='dashboard.html'">Back to Dashboard</button>
       </div>
       <div class="right">
         <form action="">
-          <p>Time of Incidence</p>
-          <input type="datetime" name="incidencetime" id="">
+          <input type="datetime" name="incidencetime" id="" placeholder="Time of incidence">
 
           <p>Upload Available Image</p>
           <input type="file" name="incidenceimage" id="">
-          <p>Details of Incidence</p>
-          <textarea name="incidencedetails" id="" cols="30" rows="5"></textarea>
+          <textarea name="incidencedetails" id="" cols="30" rows="5">Details of Incidence</textarea>
 
           <button type="submit">Add Incidence</button>
         </form>
       </div>
     </div>
-    </div>
-  </section>
-  <script src="js/menu.js"></script>
+  </div>
 </body>
 
 </html>
