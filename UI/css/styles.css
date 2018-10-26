@@ -211,6 +211,8 @@ li > a:only-child:after { content: ''; }
   margin-left: 250px;
 }
 
+
+
 .dropbtn >img {
   margin-top: 10px;
   color: white;
@@ -257,7 +259,7 @@ li > a:only-child:after { content: ''; }
 
 #products {
   width: 15%;
-  background: rgba(202, 5, 21, 0.2);
+  background: rgba(146, 43, 59, 0.6);
   left: 25%;
   margin: 0 1% 10px 5%;
   float: left;
@@ -266,7 +268,7 @@ li > a:only-child:after { content: ''; }
 
 #noproducts {
   width: 15%;
-  background: rgba(224, 4, 4, 0.6);
+  background: rgba(138, 243, 135, 0.6);
   left: 50%;
   margin: 0 1% 10px 1%;
   float: left;
@@ -284,7 +286,7 @@ li > a:only-child:after { content: ''; }
 
 #audit {
   width: 15%;
-  background: rgba(107, 4, 224, 0.6);
+  background: rgba(169, 153, 187, 0.6);
   left: 25%;
   margin: 40px 1% 10px 5%;
   float: left;
@@ -293,7 +295,7 @@ li > a:only-child:after { content: ''; }
 
 #attendants {
   width: 15%;
-  background: rgba(74, 224, 4, 0.4);
+  background: rgba(91, 110, 82, 0.8);
   left: 50%;
   margin: 40px 1% 10px 1%;
   float: left;
@@ -302,7 +304,7 @@ li > a:only-child:after { content: ''; }
 
 #incidents {
   width: 15%;
-  background: rgba(224, 66, 4, 0.6);
+  background: rgba(224, 66, 4, 0.4);
   left: 73%;
   margin: 40px 1% 100px 1%;
   float: left;
@@ -487,6 +489,12 @@ input,
 .paytype {
   max-width: 30%;
   text-align: left
+}
+
+.profile * a {
+  font-size: 14px;
+  line-height: 16px;
+  padding:5px
 }
 
 /* Media Queries
