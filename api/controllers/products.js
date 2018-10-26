@@ -22,7 +22,7 @@ const Product = {
 
   getAll(req, res) {
     const products = ProductModel.findAll();
-    return res.status(200).send(products);
+    return res.status(200).json(products);
   },
   //  * @param {object} req
   //  * @param {object} res
@@ -31,31 +31,31 @@ const Product = {
   create(req, res) {
     // const { error } = this.validateProduct(req.body);
     // if (error) {
-    //   return res.status(400).send(error.details[0].message);
+    //   return res.status(400).json(error.details[0].message);
     // }
     if (!req.body.productCategory || !req.body.productName || !req.body.productPrice) {
-      return res.status(400).send({ message: 'Category, Name and Price fields are required' });
+      return res.status(400).json({ message: 'Category, Name and Price fields are required' });
     }
     const product = ProductModel.create(req.body);
-    return res.status(201).send(product);
+    return res.status(201).json(product);
   },
   // update single product
   update(req, res) {
     const product = ProductModel.findOne(req.params.id);
     if (!product) {
-      return res.status(404).send({ message: 'product not found' });
+      return res.status(404).json({ message: 'product not found' });
     }
     const updatedProduct = ProductModel.update(req.params.id, req.body);
-    return res.status(200).send(updatedProduct);
+    return res.status(200).json(updatedProduct);
   },
 
   // Find one product
   getOne(req, res) {
     const product = ProductModel.findOne(req.params.id);
     if (!product) {
-      return res.status(404).send({ message: 'product not found' });
+      return res.status(404).json({ message: 'product not found' });
     }
-    return res.status(200).send(product);
+    return res.status(200).json(product);
   },
 
   // Delete Single product
@@ -63,10 +63,11 @@ const Product = {
   delete(req, res) {
     const product = ProductModel.findOne(req.params.id);
     if (!product) {
-      return res.status(404).send({ message: 'product not found' });
+      return res.status(404).json({ message: 'product not found' });
     }
-    const ref = ProductModel.delete(req.params.id);
-    return res.status(204).send(ref);
+
+    const del = ProductModel.delete(req.params.id);
+    return res.status(204).json(del);
   },
 
 };

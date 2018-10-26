@@ -13,7 +13,7 @@ process.env.NODE_ENV = 'test';
 chai.use(chaiHttp);
 
 
-describe('Task API Routes', () => {
+describe('Test API Routes', () => {
   // This function will run before every test to clear database
   // beforeEach((done) => {
   //   done();
