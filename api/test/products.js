@@ -2,11 +2,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import uuid from 'uuid';
-import moment from 'moment';
-import app from '../server';
+import app from '../../server';
 import Product from '../models/product';
-let should = chai.should();
 
+const should = chai.should();
+
+this.theDate = () => new Date();
 // During the test the env variable is set to test
 process.env.NODE_ENV = 'test';
 
@@ -14,10 +15,6 @@ chai.use(chaiHttp);
 
 
 describe('Test API Routes', () => {
-  // This function will run before every test to clear database
-  // beforeEach((done) => {
-  //   done();
-  // });
 
 
   // * Test the GET api/products route
@@ -30,6 +27,7 @@ describe('Test API Routes', () => {
           res.should.have.status(200);
           res.body.should.be.a('array');
           res.body.length.should.be.eql(0);
+          res.body.should.have.property('req.body.productName');
           done();
         });
     });
@@ -48,12 +46,14 @@ describe('Test API Routes', () => {
           productDetails: 'for the feet',
           productSpec: 'packs',
           productPrice: 300,
-          dateAdded: moment.now(),
-          dateModified: moment.now(),
+          userPriviledge: 'Admin',
+          dateAdded: this.theDate(),
+          dateModified: this.theDate(),
         })
         .end((err, res) => {
           res.should.have.status(201);
           res.body.should.be.a('object');
+          res.body.should.have.property('userPriviledge').eql('Admin');
           done();
         });
     });

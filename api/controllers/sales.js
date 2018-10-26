@@ -1,19 +1,27 @@
-import Joi from 'joi';
 import SaleModel from '../models/sale';
 
 const Sale = {
 
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {object} sales array
+  /**
+* Gets All Product.
+* @param {object} req
+* @param {object} res
+* @returns {object} sales array
+*/
+
 
   getAll(req, res) {
     const sales = SaleModel.findAll();
     return res.status(200).send(sales);
   },
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {object} sale object
+
+  /**
+* Create New Product.
+* @param {object} req
+* @param {object} res
+* @returns {object} sale object
+*/
+
 
   create(req, res) {
     if (!req.body.attendant || !req.body.productName || !req.body.quantity || !req.body.amount) {
@@ -24,7 +32,12 @@ const Sale = {
   },
 
 
-  // Find one sale
+  /**
+* Gets a Sale.
+* @param {object} req
+* @param {object} res
+* @returns {object} sales object
+*/
   getOne(req, res) {
     const sale = SaleModel.findOne(req.params.id);
     if (!sale) {

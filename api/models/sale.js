@@ -1,4 +1,3 @@
-import moment from 'moment';
 import uuid from 'uuid';
 
 class Sale {
@@ -8,6 +7,7 @@ class Sale {
    */
   constructor() {
     this.sales = [];
+    this.Date = () => new Date();
   }
 
   create(data) {
@@ -17,8 +17,8 @@ class Sale {
       productName: data.productName,
       quantity: data.quantity,
       amount: data.amount,
-      salesTime: moment.now('HH:mm:ss'),
-      salesDate: moment.now('MMMM Do YYYY'),
+      salesTime: this.Date(),
+      salesDate: this.Date(),
     };
     this.sales.push(newSale);
     return newSale;
@@ -36,7 +36,10 @@ class Sale {
   }
 
 
-  // @param {uuid}id delete sale
+  /**
+ *  @param {uuid}id delete sale
+ * @returns object
+ */
 
   delete(id) {
     const sale = this.findOne(id);
