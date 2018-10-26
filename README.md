@@ -24,7 +24,7 @@ A retail store app for inventory and sales management.
 * Add users (Store Attendant) profiles
 
 # Demo
-* https://ebzeal.github.io/store-manager/index.html
+* https://ebzeal.github.io/store-manager/UI/index.html
 * https://app-store-manager.herokuapp.com/
 
 
