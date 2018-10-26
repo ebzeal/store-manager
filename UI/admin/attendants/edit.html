@@ -5,59 +5,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
   <link rel="stylesheet" href="../../css/styles.css">
   <title>Ilupeju Stores - Store Manager App</title>
+  <link rel="stylesheet" href="../../css/styles.css">
 </head>
 
 <body>
-  <header class="top">
-    <div class="container">
-      <div class="logo-top">
-        <a href="index.html"> <img src="../../images/logo.png" alt="Ilupeju Stores logo" srcset="../../images/logo.png 240w, ../../images/logo.png 320w, ../../images/logo.png 480w, ../../images/logo.png 3200w"
-            aria-setsize="">
-        </a>
+  <nav>
+    <div id="logo"><a href="../../dashboard.html"> <img src="../../images/logo.png" alt="Ilupeju Stores logo">
+      </a></div>
+    <label for="drop" class="toggle">Menu</label>
+    <input type="checkbox" id="drop" />
+    <ul class="menu">
+      <li><a href="../../dashboard.html">Dashboard</a></li>
+
+      <li>
+
+        <!-- First Tier Drop Down -->
+        <label for="drop-2" class="toggle">Portfolio +</label>
+        <a href="../../#">Products</a>
+        <input type="checkbox" id="drop-2" />
+        <ul>
+          <li><a href="../../products.html">View All Products</a></li>
+          <li><a href="../../admin/products/new.html">Add Product</a></li>
+        </ul>
+      </li>
+      <li><a href="../../report-incidence.html">Incidence</a></li>
+      <li><a href="../../cart/index.html">Shopping Cart</a></li>
+
+      <li class="profile">
+        <!-- First Tier Drop Down -->
+        <label for="drop-1" class="toggle"> <img src="../../images/john-doe.jpg" alt=""> +</label>
+        <a href="../../#" class="dropbtn"><img src="../../images/john-doe.jpg" alt=""></a>
+        <input type="checkbox" id="drop-1" />
+        <ul>
+          <li><a href="../#">Hi John</a></li>
+          <li><a href="../../users/john-doe.html">Profile</a></li>
+          <li><a href="../../audit/john-doe.html">Sales Orders</a></li>
+          <li><a href="../../index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container" id="container">
+
+    <h2>Add New attendant</h2>
+    <div class="content">
+      <div class="left">
+        <button onclick="window.location='index.html'">Back to All Attendants</button>
+
       </div>
-      <div id="menubar" class="allmenu">
-        <div class="menu" id="menubar">
-          <ul>
-            <li><a href="../../dashboard.html">Dashboard</a></li>
-            <li class="active"><a href="../../incidences.html">incidences</a></li>
-            <li class="active"><a href="../../attendants.html">attendants</a></li>
-            <li><a href="../../audit/john-doe.html">Sales Audit</a></li>
-            <li><a href="../report-incidence.html">Incidence</a></li>
-          </ul>
+      <div class="right white-bg">
 
-        </div>
-        <div class="profile">
-          <ul>
-            <li><a href="../../users/john-doe.html">Hi John!</a></li>
-            <li><a href="../../cart/index.html">Shopping cart</a></li>
-            <li><a href="../../index.html">Log out</a></li>
-
-          </ul>
-        </div>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
-      </div>
-
-    </div>
-  </header>
-
-  <section>
-    <div class="container">
-      <h2>Edit John Doe</h2>
-      <div class="content">
-        <div class="left">
-          <button onclick="window.location='index.html'">Back to All Attendants</button>
-
-        </div>
-      </div>
-      <div class="right">
         <form action="">
           <p>Attendant Name</p>
           <input type="text" name="attendantname" id="" placeholder="Attendant Name" value="John Doe">
@@ -75,10 +80,8 @@
         </form>
       </div>
     </div>
-    </div>
-  </section>
 
-  <script src="js/menu.js"></script>
+  </div>
 </body>
 
 </html>
