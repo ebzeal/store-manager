@@ -10,7 +10,7 @@
     "dev-start": "babel-watch server.js",
     "start": "babel-node server.js"
   },
-  "author": "Olusola Ajayi",
+  "author": "Olu Ajayi",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.26.0",
