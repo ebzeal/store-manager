@@ -8,7 +8,7 @@
     "clear": "rm -rf build && mkdir build",
     "build": "npm run clear && babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
-    "start": "npm run dev-start"
+    "start": "babel-node server.js"
   },
   "author": "Olusola Ajayi",
   "license": "ISC",
