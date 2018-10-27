@@ -4,7 +4,7 @@
   "description": "A retail store app for inventory and sales management",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register ./api/test/**/*.js --timeout 10000",
+    "test": "mocha --require babel-core/register ./api/test/**/*.js --timeout 10000",
     "clear": "rm -rf build && mkdir build",
     "build": "npm run clear && babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
