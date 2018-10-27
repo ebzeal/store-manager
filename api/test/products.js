@@ -7,7 +7,7 @@ import Product from '../models/product';
 
 const should = chai.should();
 
-this.theDate = () => new Date();
+const theDate = () => new Date();
 // During the test the env variable is set to test
 process.env.NODE_ENV = 'test';
 
@@ -15,8 +15,6 @@ chai.use(chaiHttp);
 
 
 describe('Test API Routes', () => {
-
-
   // * Test the GET api/products route
 
   describe('/GET products', () => {
@@ -27,7 +25,6 @@ describe('Test API Routes', () => {
           res.should.have.status(200);
           res.body.should.be.a('array');
           res.body.length.should.be.eql(0);
-          res.body.should.have.property('req.body.productName');
           done();
         });
     });
@@ -47,8 +44,8 @@ describe('Test API Routes', () => {
           productSpec: 'packs',
           productPrice: 300,
           userPriviledge: 'Admin',
-          dateAdded: this.theDate(),
-          dateModified: this.theDate(),
+          dateAdded: theDate(),
+          dateModified: theDate(),
         })
         .end((err, res) => {
           res.should.have.status(201);
