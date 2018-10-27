@@ -5,10 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --require babel-core/register ./api/test/**/*.js --timeout 10000",
-    "clear": "rm -rf build && mkdir build",
+    "clear": "rm -rf build",
     "build": "npm run clear && babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
-    "start": "babel-node server.js"
+    "start": "babel-node server.js",
+    "postinstall": "npm run build"
   },
   "author": "Olu Ajayi",
   "license": "ISC",
