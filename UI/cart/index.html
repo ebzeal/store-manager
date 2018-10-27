@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <title>Ilupeju Stores - Store Manager App</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+  <nav>
+    <div id="logo"><a href="../dashboard.html"> <img src="../images/logo.png" alt="Ilupeju Stores logo">
+      </a></div>
+    <label for="drop" class="toggle">Menu</label>
+    <input type="checkbox" id="drop" />
+    <ul class="menu">
+      <li><a href="../dashboard.html">Dashboard</a></li>
+
+      <li>
+
+        <!-- First Tier Drop Down -->
+        <label for="drop-2" class="toggle">Portfolio +</label>
+        <a href="../#">Products</a>
+        <input type="checkbox" id="drop-2" />
+        <ul>
+          <li><a href="../products.html">View All Products</a></li>
+          <li><a href="../admin/products/new.html">Add Product</a></li>
+          <!-- <li>
+
+            <!-- Second Tier Drop Down --
+            <label for="drop-3" class="toggle">Works +</label>
+            <a href="../#">Works</a>
+            <input type="checkbox" id="drop-3" />
+            <ul>
+              <li><a href="../#">HTML/CSS</a></li>
+              <li><a href="../#">jQuery</a></li>
+              <li><a href="../#">Python</a></li>
+            </ul>
+          </li> -->
+        </ul>
+      </li>
+      <li><a href="../report-incidence.html">Incidence</a></li>
+      <li><a href="../cart/index.html">Shopping Cart</a></li>
+
+      <li class="profile">
+        <!-- First Tier Drop Down -->
+        <label for="drop-1" class="toggle"> <img src="../images/john-doe.jpg" alt=""> +</label>
+        <a href="../#" class="dropbtn"><img src="../images/john-doe.jpg" alt=""></a>
+        <input type="checkbox" id="drop-1" />
+        <ul>
+          <li><a href="../#">Hi John</a></li>
+          <li><a href="../users/john-doe.html">Profile</a></li>
+          <li><a href="../audit/john-doe.html">Sales Orders</a></li>
+          <li><a href="../index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container" id="container">
+
+    <h2>Shopping Cart</h2>
+
+    <div class="content">
+      <div class="left">
+        <h3>Add Products to cart</h3>
+        <div class="filter">
+          <form action="">
+            <select>
+              <option value="" disabled selected>Add Product</option>
+              <option value="groceries">Vegetables</option>
+              <option value="mshoes">Bread</option>
+              <option value="wshoes">Phone Case</option>
+              <option value="electronics">Head Phones</option>
+            </select>
+            <button type="submit">Add</button>
+          </form>
+          <h3>Customer Details</h3>
+          <form action="">
+            <input type="text" name="customername" id="" placeholder="Customer Name">
+
+            <input type="tel" name="cstomerphone" id="" placeholder="Customer Phone Number">
+            <button type="submit">Add</button>
+          </form>
+        </div>
+      </div>
+      <div class="right">
+
+        <table class="noborder">
+          <tr>
+            <th>Product</th>
+            <th>Price (N)</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td>
+              <img src="../../images/vegetables.jpg" alt="" class="productimage">
+              <div class="productdetails">
+                <h3>Vegetables</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni odio dignissimos quod, veniam
+                  officiis</p>
+              </div>
+            </td>
+            <td>200</td>
+            <td>
+              <input type="number" name="" id="" class="input">
+            </td>
+            <td>200</td>
+            <td>
+              <i class="fas fa-trash-alt"></i>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <h3>Total : N6000</h3>
+            </td>
+            <td>
+              <button type="submit" onclick="window.open('receipt.html', '_blank')">Checkout</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

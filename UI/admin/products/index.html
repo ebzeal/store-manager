@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <title>Ilupeju Stores - Store Manager App</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+  <nav>
+    <div id="logo"><a href="../../dashboard.html"> <img src="../../images/logo.png" alt="Ilupeju Stores logo">
+      </a></div>
+    <label for="drop" class="toggle">Menu</label>
+    <input type="checkbox" id="drop" />
+    <ul class="menu">
+      <li><a href="../../dashboard.html">Dashboard</a></li>
+
+      <li>
+
+        <!-- First Tier Drop Down -->
+        <label for="drop-2" class="toggle">Portfolio +</label>
+        <a href="../../#">Products</a>
+        <input type="checkbox" id="drop-2" />
+        <ul>
+          <li><a href="../../products.html">View All Products</a></li>
+          <li><a href="../../admin/products/new.html">Add Product</a></li>
+        </ul>
+      </li>
+      <li><a href="../../report-incidence.html">Incidence</a></li>
+      <li><a href="../../cart/index.html">Shopping Cart</a></li>
+
+      <li class="profile">
+        <!-- First Tier Drop Down -->
+        <label for="drop-1" class="toggle"> <img src="../../images/john-doe.jpg" alt=""> +</label>
+        <a href="../../#" class="dropbtn"><img src="../../images/john-doe.jpg" alt=""></a>
+        <input type="checkbox" id="drop-1" />
+        <ul>
+          <li><a href="../#">Hi John</a></li>
+          <li><a href="../../users/john-doe.html">Profile</a></li>
+          <li><a href="../../audit/john-doe.html">Sales Orders</a></li>
+          <li><a href="../../index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container" id="container">
+
+
+    <h2>All Products</h2>
+    <div class="content">
+      <div class="left">
+        <button onclick="window.location='new.html'">Add New Product</button>
+        <br><br>
+        <div class="label">30</div>
+        <div class="desc">Products out of stock</div>
+        <button onclick="window.location='out-of-stock.html'">View</button>
+        <br>
+        <h3>Filter</h3>
+        <div class="filter">
+          <form action="" method="post">
+            <input type="text" name="search" id="" class="search" placeholder="Search products">
+            <button type="submit">Search</button>
+          </form>
+
+          <form action="">
+            <select>
+              <option value="" disabled selected>Filter by Categories</option>
+              <option value="groceries">Groceries</option>
+              <option value="mshoes">Men Shoes</option>
+              <option value="wshoes">Women Shoes</option>
+              <option value="electronics">Electronics</option>
+            </select>
+            <button type="submit">Filter</button>
+          </form>
+        </div>
+      </div>
+      <div class="right white-bg">
+
+        <table class="halfborder">
+          <tr>
+            <th>Name</th>
+            <th>Picture</th>
+            <th>Category</th>
+            <!-- <th>Specification</th> -->
+            <th>Quantity</th>
+            <th>Price (N)</th>
+            <th>action</th>
+          </tr>
+          <tr>
+            <td>Vegetables</td>
+            <td> <img src="images/vegetables.jpg" alt=""> </td>
+            <td>Groceries</td>
+            <!-- <td>250g Pack</td> -->
+            <td>83</td>
+            <td>200</td>
+            <td>
+              <a href="../../products/bread.html" title="View Product"><i class="fas fa-eye"></i></a>
+              <a href="edit.html" title="Edit Product"><i class="fas fa-edit"></i></a>
+              <a href="stock.html" title="Stock Product"> <i class="fas fa-cart-plus"></i> </a>
+              <a href="#" title="Delete Product"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <tr>
+            <td>Bread</td>
+            <td> <img src="images/bread.jpg" alt=""> </td>
+            <td>Groceries</td>
+            <!-- <td>200g Pack</td> -->
+            <td>100</td>
+            <td>400</td>
+            <td>
+              <a href="../../products/bread.html" title="View Product"><i class="fas fa-eye"></i></a>
+              <a href="edit.html" title="Edit Product"><i class="fas fa-edit"></i></a>
+              <a href="stock.html" title="Stock Product"> <i class="fas fa-cart-plus"></i> </a>
+              <a href="#" title="Delete Product"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

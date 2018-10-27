@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+  <nav>
+    <div id="logo"><a href="../../dashboard.html"> <img src="../../images/logo.png" alt="Ilupeju Stores logo">
+      </a></div>
+    <label for="drop" class="toggle">Menu</label>
+    <input type="checkbox" id="drop" />
+    <ul class="menu">
+      <li><a href="../../dashboard.html">Dashboard</a></li>
+
+      <li>
+
+        <!-- First Tier Drop Down -->
+        <label for="drop-2" class="toggle">Portfolio +</label>
+        <a href="../../#">Products</a>
+        <input type="checkbox" id="drop-2" />
+        <ul>
+          <li><a href="../../products.html">View All Products</a></li>
+          <li><a href="../../admin/products/new.html">Add Product</a></li>
+        </ul>
+      </li>
+      <li><a href="../../report-incidence.html">Incidence</a></li>
+      <li><a href="../../cart/index.html">Shopping Cart</a></li>
+
+      <li class="profile">
+        <!-- First Tier Drop Down -->
+        <label for="drop-1" class="toggle"> <img src="../../images/john-doe.jpg" alt=""> +</label>
+        <a href="../../#" class="dropbtn"><img src="../../images/john-doe.jpg" alt=""></a>
+        <input type="checkbox" id="drop-1" />
+        <ul>
+          <li><a href="../#">Hi John</a></li>
+          <li><a href="../../users/john-doe.html">Profile</a></li>
+          <li><a href="../../audit/john-doe.html">Sales Orders</a></li>
+          <li><a href="../../index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container" id="container">
+
+
+    <h2>Edit Product</h2>
+    <div class="content">
+      <div class="left">
+        <button onclick="window.location='index.html'">Back to All Products</button>
+
+      </div>
+      <div class="right white-bg">
+
+        <form action="">
+          <p>Product Name</p>
+          <input type="text" name="productname" id="" placeholder="Product Name" value="Bread">
+          <p>Product Category</p>
+          <select>
+            <option value="" disabled>Product Category</option>
+            <option value="groceries" selected>Groceries</option>
+            <option value="mshoes">Men Shoes</option>
+            <option value="wshoes">Women Shoes</option>
+            <option value="electronics">Electronics</option>
+          </select>
+          <p>Product Image</p>
+          <img src="../../images/bread.jpg" alt="">
+          <p>Upload Product Image</p>
+          <input type="file" name="productimage" id="">
+          <p>Product Details</p>
+          <textarea name="productdetails" id="" cols="30" rows="5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi earum optio molestias amet architecto culpa officiis perspiciatis velit cumque exercitationem? Aliquam assumenda dignissimos hic corporis officia temporibus maxime ullam mollitia! </textarea>
+          <p>Product Specification</p>
+          <input type="text" name="productspecification" id="" placeholder="product specification" value="200g pack">
+          <p>Price</p>
+          <input type="number" name="productprice" id="" placeholder="Price(N)" value="400">
+          <button type="submit">Edit Product</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

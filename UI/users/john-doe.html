@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+  <nav>
+    <div id="logo"><a href="../dashboard.html"> <img src="../images/logo.png" alt="Ilupeju Stores logo">
+      </a></div>
+    <label for="drop" class="toggle">Menu</label>
+    <input type="checkbox" id="drop" />
+    <ul class="menu">
+      <li><a href="../dashboard.html">Dashboard</a></li>
+
+      <li>
+
+        <!-- First Tier Drop Down -->
+        <label for="drop-2" class="toggle">Portfolio +</label>
+        <a href="../#">Products</a>
+        <input type="checkbox" id="drop-2" />
+        <ul>
+          <li><a href="../products.html">View All Products</a></li>
+          <li><a href="../admin/products/new.html">Add Product</a></li>
+        </ul>
+      </li>
+      <li><a href="../report-incidence.html">Incidence</a></li>
+      <li><a href="../cart/index.html">Shopping Cart</a></li>
+
+      <li class="profile">
+        <!-- First Tier Drop Down -->
+        <label for="drop-1" class="toggle"> <img src="../images/john-doe.jpg" alt=""> +</label>
+        <a href="../#" class="dropbtn"><img src="../images/john-doe.jpg" alt=""></a>
+        <input type="checkbox" id="drop-1" />
+        <ul>
+          <li><a href="#">Hi John</a></li>
+          <li><a href="../users/john-doe.html">Profile</a></li>
+          <li><a href="../audit/john-doe.html">Sales Orders</a></li>
+          <li><a href="../index.html">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container" id="container">
+
+
+    <h2>Attendant - John Doe</h2>
+    <div class="content">
+      <div class="left">
+        <h3>Details</h3>
+        <div class="filter">
+          <div>
+            <p>&nbsp; Number of Sales by John Doe - 45</p>
+          </div>
+          <br>
+          <div>
+            <p>&nbsp; Products sold by John Doe -150</p>
+          </div>
+          <br>
+          <div>
+            <p>&nbsp; Total worth of goods sold by John Doe - N380,000</p>
+          </div>
+          <button type="submit" onclick="window.location = '../audit/john-doe.html'"> View Sales Record</button>
+        </div>
+      </div>
+      <div class="right white-bg">
+        <div class="productimage">
+          <img src="../images/john-doe.jpg" alt="John Doe" jprcset="../images/john-doe.jpg 240w, images/john-doe.jpg 320w, images/john-doe.jpg 480w, images/john-doe.jpg 800w"
+            aria-setsize="">
+        </div>
+        <div class="productdetails white-bg">
+          <p> Gender
+          </p>
+          <h3>Male</h3>
+
+          <p> Age </p>
+          <h3>28</h3>
+          <p> Phone Number</p>
+          <h3>08057657684</h3>
+          <p>Email</p>
+          <h3>jdoe@gmail.com</h3>
+          <p>House Address</p>
+          <h3>234, Ibadan Road</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
