@@ -18,7 +18,7 @@ app.get('/api/v1/sales', Sales.getAll);
 app.get('/api/v1/sales/:id', Sales.getOne);
 app.post('/api/v1/sales', Sales.create);
 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on Port ${port}`));
 
 export default app;
