@@ -101,7 +101,7 @@ const User = {
   async delete(req, res) {
     const deleteQuery = `DELETE FROM users WHERE id=${req.params.id} returning *`;
     try {
-      const { rows } = await db.query(deleteQuery, [req.params.id]);
+      const { rows } = await db.query(deleteQuery);
       if (!rows[0]) {
         return res.status(404).json({ message: 'user not found' });
       }

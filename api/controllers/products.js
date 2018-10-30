@@ -12,13 +12,16 @@ const Product = {
   },
   async create(req, res) {
     const text = `INSERT INTO
-      products(productName, productPriviledge, password)
-      VALUES($1, $2, $3)
+      products(productCategory,productName,productImage,productDetails,productSpec,productPrice)
+      VALUES($1, $2, $3, $4, $5, $6)
       returning *`;
     const values = [
+      req.body.productCategory,
       req.body.productName,
-      req.body.productPriviledge,
-      req.body.password,
+      req.body.productImage,
+      req.body.productDetails,
+      req.body.productSpec,
+      req.body.productPrice,
     ];
 
     try {
@@ -72,23 +75,26 @@ const Product = {
   async update(req, res) {
     const findOneQuery = 'SELECT * FROM products WHERE id=$1';
     const updateOneQuery = `UPDATE products
-      SET productName=$1,productPriviledge=$2,password=$3,dateModified=$4
-      WHERE id=$5 returning *`;
+      SET productCategory=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6
+      WHERE id=$7 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
         return res.status(404).json({ message: 'product not found' });
       }
       const values = [
+        req.body.productCategory || rows[0].productCategory,
         req.body.productName || rows[0].productName,
-        req.body.productPriviledge || rows[0].productPriviledge,
-        req.body.password || rows[0].password,
-        new Date(),
+        req.body.productImage || rows[0].productImage,
+        req.body.productDetails || rows[0].productDetails,
+        req.body.productSpec || rows[0].productSpec,
+        req.body.productPrice || rows[0].productPrice,
         req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);
       return res.status(200).json(response.rows[0]);
     } catch (err) {
+      console.log(err);
       return res.status(400).json(err);
     }
   },
@@ -101,12 +107,13 @@ const Product = {
   async delete(req, res) {
     const deleteQuery = `DELETE FROM products WHERE id=${req.params.id} returning *`;
     try {
-      const { rows } = await db.query(deleteQuery, [req.params.id]);
+      const { rows } = await db.query(deleteQuery);
       if (!rows[0]) {
         return res.status(404).json({ message: 'product not found' });
       }
       return res.status(204).json({ message: 'deleted' });
     } catch (error) {
+      console.log(error);
       return res.status(400).json(error);
     }
   },
