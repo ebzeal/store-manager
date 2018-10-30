@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import 'babel-polyfill';
 import User from './api/controllers/users';
+import Product from './api/controllers/products';
 // import Sales from './api/controllers/sales';
 
 dotenv.config();
@@ -17,12 +18,12 @@ app.post('/api/v1/users', User.create);
 app.put('/api/v1/users/:id', User.update);
 app.delete('/api/v1/users/:id', User.delete);
 
-// // Load Product Routes
-// app.get('/api/v1/products', Product.getAll);
-// app.get('/api/v1/products/:id', Product.getOne);
-// app.post('/api/v1/products', Product.create);
-// app.put('/api/v1/products/:id', Product.update);
-// app.delete('/api/v1/products/:id', Product.delete);
+// Load Product Routes
+app.get('/api/v1/products', Product.getAll);
+app.get('/api/v1/products/:id', Product.getOne);
+app.post('/api/v1/products', Product.create);
+app.put('/api/v1/products/:id', Product.update);
+app.delete('/api/v1/products/:id', Product.delete);
 
 //  // Load Sales Routes
 // app.get('/api/v1/sales', Sales.getAll);

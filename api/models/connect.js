@@ -4,7 +4,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL || 'postgres://postgres:ebzeal86@localhost:5432/store-manager',
+});
+
+pool.on('connect', () => {
+  console.log('Connected to DB');
 });
 
 
