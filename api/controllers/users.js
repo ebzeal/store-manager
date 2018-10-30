@@ -7,9 +7,7 @@ const User = {
    * @param {object} res
    * @returns {object} user object
    */
-  constructor() {
-    this.theDate = () => new Date();
-  },
+
   async create(req, res) {
     const text = `INSERT INTO
       users(userName, userPriviledge, password)

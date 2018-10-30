@@ -7,9 +7,7 @@ const Product = {
    * @param {object} res
    * @returns {object} product object
    */
-  constructor() {
-    this.theDate = () => new Date();
-  },
+
   async create(req, res) {
     const text = `INSERT INTO
       products(productCategory,productName,productImage,productDetails,productSpec,productPrice)
