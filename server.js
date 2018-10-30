@@ -4,6 +4,7 @@ import 'babel-polyfill';
 import User from './api/controllers/users';
 import Product from './api/controllers/products';
 import Sales from './api/controllers/sales';
+import Category from './api/controllers/categories';
 
 dotenv.config();
 
@@ -17,6 +18,13 @@ app.get('/api/v1/users/:id', User.getOne);
 app.post('/api/v1/users', User.create);
 app.put('/api/v1/users/:id', User.update);
 app.delete('/api/v1/users/:id', User.delete);
+
+// Load Category Routes
+app.get('/api/v1/categories', Category.getAll);
+app.get('/api/v1/categories/:id', Category.getOne);
+app.post('/api/v1/categories', Category.create);
+app.put('/api/v1/categories/:id', Category.update);
+app.delete('/api/v1/categories/:id', Category.delete);
 
 // Load Product Routes
 app.get('/api/v1/products', Product.getAll);
