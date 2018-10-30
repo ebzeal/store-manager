@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+// import uuidv4 from 'uuid/v4';
 import db from '../connect';
 
 const User = {
@@ -13,23 +13,20 @@ const User = {
   },
   async create(req, res) {
     const text = `INSERT INTO
-      users(id, userName, userPriviledge, password, dateCreated, dateModified)
-      VALUES($1, $2, $3, $4, $5, $6)
+      users(userName, userPriviledge, password)
+      VALUES($1, $2, $3)
       returning *`;
     const values = [
-      uuidv4(),
       req.body.userName,
       req.body.userPriviledge,
       req.body.password,
-      this.theDate,
-      this.theDate,
     ];
 
     try {
       const { rows } = await db.query(text, values);
-      return res.status(201).send(rows[0]);
+      return res.status(201).json(rows[0]);
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).json(error);
     }
   },
   /**
@@ -41,34 +38,36 @@ const User = {
   async getAll(req, res) {
     const findAllQuery = 'SELECT * FROM users';
     try {
-      const { rows, rowCount } = await db.query(findAllQuery);
-      return res.status(200).send({ rows, rowCount });
+      const { rows } = await db.query(findAllQuery);
+      return res.status(200).json({ rows });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).json(error);
     }
   },
   /**
    * Get A user
-   * @param {object} req 
+   * @param {object} req
    * @param {object} res
    * @returns {object} user object
    */
   async getOne(req, res) {
-    const text = 'SELECT * FROM users WHERE id = $1';
+    const userId = req.params.id;
+    const text = `SELECT * FROM users WHERE id = ${userId}`;
     try {
-      const { rows } = await db.query(text, [req.params.id]);
+      const { rows } = await db.query(text);
       if (!rows[0]) {
-        return res.status(404).send({ 'message': 'user not found' });
+        return res.status(404).json({ message: 'user not found' });
       }
-      return res.status(200).send(rows[0]);
+      return res.status(200).json(rows[0]);
     } catch (error) {
-      return res.status(400).send(error)
+      console.log(error);
+      return res.status(400).json(error);
     }
   },
   /**
    * Update A user
-   * @param {object} req 
-   * @param {object} res 
+   * @param {object} req
+   * @param {object} res
    * @returns {object} updated user
    */
   async update(req, res) {
@@ -79,39 +78,39 @@ const User = {
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({ 'message': 'user not found' });
+        return res.status(404).json({ message: 'user not found' });
       }
       const values = [
         req.body.userName || rows[0].userName,
         req.body.userPriviledge || rows[0].userPriviledge,
         req.body.password || rows[0].password,
-        this.theDate(),
-        req.params.id
+        new Date(),
+        req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);
-      return res.status(200).send(response.rows[0]);
+      return res.status(200).json(response.rows[0]);
     } catch (err) {
-      return res.status(400).send(err);
+      return res.status(400).json(err);
     }
   },
   /**
    * Delete A user
-   * @param {object} req 
-   * @param {object} res 
-   * @returns {void} return statuc code 204 
+   * @param {object} req
+   * @param {object} res
+   * @returns {void} return statuc code 204
    */
   async delete(req, res) {
-    const deleteQuery = 'DELETE FROM users WHERE id=$1 returning *';
+    const deleteQuery = `DELETE FROM users WHERE id=${req.params.id} returning *`;
     try {
       const { rows } = await db.query(deleteQuery, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({ 'message': 'user not found' });
+        return res.status(404).json({ message: 'user not found' });
       }
-      return res.status(204).send({ 'message': 'deleted' });
+      return res.status(204).json({ message: 'deleted' });
     } catch (error) {
-      return res.status(400).send(error);
+      return res.status(400).json(error);
     }
-  }
-}
+  },
+};
 
 export default User;

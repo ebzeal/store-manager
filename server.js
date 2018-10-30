@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import 'babel-polyfill';
 import User from './api/controllers/users';
 // import Sales from './api/controllers/sales';
 
@@ -11,7 +12,7 @@ app.get('/api/v1/', (req, res) => res.status(200).json('Welcome'));
 
 // Load User Routes
 app.get('/api/v1/users', User.getAll);
-app.get('/api/v1/user/:id', User.getOne);
+app.get('/api/v1/users/:id', User.getOne);
 app.post('/api/v1/users', User.create);
 app.put('/api/v1/users/:id', User.update);
 app.delete('/api/v1/users/:id', User.delete);
