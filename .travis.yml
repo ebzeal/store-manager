@@ -10,5 +10,3 @@ script:
   - "npm run lint"
 notifications:
   email: "false"
-script:	script:
-- 
