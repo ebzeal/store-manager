@@ -1,4 +1,5 @@
 import db from '../models/connect';
+import validateCategories from '../validation/categories';
 
 const Sales = {
   /**
@@ -9,6 +10,12 @@ const Sales = {
    */
 
   async create(req, res) {
+    const { errors, isValid } = validateCategories(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const text = `INSERT INTO
       sales(attendant,productName,quantity,amount,productSpec)
       VALUES($1, $2, $3, $4, $5)

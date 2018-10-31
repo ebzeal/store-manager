@@ -1,4 +1,5 @@
 import db from '../models/connect';
+import validateIncidents from '../validation/incidents';
 
 const Incident = {
   /**
@@ -9,6 +10,12 @@ const Incident = {
    */
 
   async create(req, res) {
+    const { errors, isValid } = validateIncidents(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const text = `INSERT INTO
       incidents(incidentTime,incidentImage,incidentDetails)
       VALUES($1, $2, $3)
@@ -70,6 +77,12 @@ const Incident = {
    * @returns {object} updated incident
    */
   async update(req, res) {
+    const { errors, isValid } = validateIncidents(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const findOneQuery = 'SELECT * FROM incidents WHERE id=$1';
     const updateOneQuery = `UPDATE incidents
       SET incidentTime=$1,incidentImage=$2,incidentDetails=$3
