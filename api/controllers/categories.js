@@ -1,70 +1,66 @@
 import db from '../models/connect';
-import validateProduct from '../validation/products';
+import validateCategories from '../validation/categories';
 
-const Product = {
+const Category = {
   /**
-   * Create A product
+   * Create A category
    * @param {object} req
    * @param {object} res
-   * @returns {object} product object
+   * @returns {object} category object
    */
 
   async create(req, res) {
-    const { errors, isValid } = validateProduct(req.body);
+    const { errors, isValid } = validateCategories(req.body);
 
     // Check Validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
     const text = `INSERT INTO
-      products(productCategory,productName,productImage,productDetails,productSpec,productPrice)
-      VALUES($1, $2, $3, $4, $5, $6)
+      categories(categoryName,categoryDetails)
+      VALUES($1, $2)
       returning *`;
     const values = [
-      req.body.productCategory,
-      req.body.productName,
-      req.body.productImage,
-      req.body.productDetails,
-      req.body.productSpec,
-      req.body.productPrice,
+      req.body.categoryName,
+      req.body.categoryDetails,
     ];
 
     try {
       const { rows } = await db.query(text, values);
       return res.status(201).json(rows[0]);
     } catch (error) {
-      return res.status(400).json(error);
-    }
-  },
-  /**
-   * Get All products
-   * @param {object} req
-   * @param {object} res
-   * @returns {object} products array
-   */
-  async getAll(req, res) {
-    const findAllQuery = 'SELECT * FROM products';
-    try {
-      const { rows } = await db.query(findAllQuery);
-      return res.status(200).json({ rows });
-    } catch (error) {
       console.log(error);
       return res.status(400).json(error);
     }
   },
   /**
-   * Get A product
+   * Get All categories
    * @param {object} req
    * @param {object} res
-   * @returns {object} product object
+   * @returns {object} categories array
+   */
+  async getAll(req, res) {
+    const findAllQuery = 'SELECT * FROM categories';
+    try {
+      const { rows } = await db.query(findAllQuery);
+      return res.status(200).json({ rows });
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  },
+  /**
+   * Get A category
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} category object
    */
   async getOne(req, res) {
-    const productId = req.params.id;
-    const text = `SELECT * FROM products WHERE id = ${productId}`;
+    const categoryId = req.params.id;
+    const text = `SELECT * FROM categories WHERE id = ${categoryId}`;
     try {
       const { rows } = await db.query(text);
       if (!rows[0]) {
-        return res.status(404).json({ message: 'product not found' });
+        return res.status(404).json({ message: 'category not found' });
       }
       return res.status(200).json(rows[0]);
     } catch (error) {
@@ -73,34 +69,30 @@ const Product = {
     }
   },
   /**
-   * Update A product
+   * Update A category
    * @param {object} req
    * @param {object} res
-   * @returns {object} updated product
+   * @returns {object} updated category
    */
   async update(req, res) {
-    const { errors, isValid } = validateProduct(req.body);
+    const { errors, isValid } = validateCategories(req.body);
 
     // Check Validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    const findOneQuery = 'SELECT * FROM products WHERE id=$1';
-    const updateOneQuery = `UPDATE products
-      SET productCategory=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6
-      WHERE id=$7 returning *`;
+    const findOneQuery = 'SELECT * FROM categories WHERE id=$1';
+    const updateOneQuery = `UPDATE categories
+      SET categoryName=$1,categoryDetails=$2
+      WHERE id=$3 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).json({ message: 'product not found' });
+        return res.status(404).json({ message: 'category not found' });
       }
       const values = [
-        req.body.productCategory || rows[0].productCategory,
-        req.body.productName || rows[0].productName,
-        req.body.productImage || rows[0].productImage,
-        req.body.productDetails || rows[0].productDetails,
-        req.body.productSpec || rows[0].productSpec,
-        req.body.productPrice || rows[0].productPrice,
+        req.body.categoryName || rows[0].categoryName,
+        req.body.categoryDetails || rows[0].categoryDetails,
         req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);
@@ -111,17 +103,17 @@ const Product = {
     }
   },
   /**
-   * Delete A product
+   * Delete A category
    * @param {object} req
    * @param {object} res
    * @returns {void} return statuc code 204
    */
   async delete(req, res) {
-    const deleteQuery = `DELETE FROM products WHERE id=${req.params.id} returning *`;
+    const deleteQuery = `DELETE FROM categories WHERE id=${req.params.id} returning *`;
     try {
       const { rows } = await db.query(deleteQuery);
       if (!rows[0]) {
-        return res.status(404).json({ message: 'product not found' });
+        return res.status(404).json({ message: 'category not found' });
       }
       return res.status(204).json({ message: 'deleted' });
     } catch (error) {
@@ -131,4 +123,4 @@ const Product = {
   },
 };
 
-export default Product;
+export default Category;

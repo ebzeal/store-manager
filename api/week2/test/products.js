@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import uuid from 'uuid';
 import app from '../../server';
-import Product from '../models/product';
+import Product from '../controllers/products';
 
 const should = chai.should();
 
@@ -51,14 +51,53 @@ describe('Test API Routes', () => {
           res.should.have.status(201);
           res.body.should.be.a('object');
           res.body.should.have.property('userPriviledge').eql('Admin');
+          res.body.should.have.property('productName');
+          res.body.should.have.property('productCategory');
+          res.body.should.have.property('productPrice');
           done();
         });
     });
   });
+
   // Test the PUT api / products
+  describe('/PUT products', () => {
+    it('it should update a product', (done) => {
+      let product = Product.create({
+        id: uuid.v4(),
+        productCategory: 'Men Clothing',
+        productName: 'socks',
+        productImage: 'abdmdkssi',
+        productDetails: 'for the feet',
+        productSpec: 'packs',
+        productPrice: 300,
+        userPriviledge: 'Admin',
+        dateModified: theDate(),
+      });
+
+      chai.request(app)
+
+        .put('/api/v1/products/' + product.id)
+        .send({
+          id: uuid.v4(),
+          productCategory: 'Men Clothing',
+          productName: 'Shoes',
+          productImage: 'abdmdkssi',
+          productDetails: 'for the feet',
+          productSpec: 'packs',
+          productPrice: 300,
+          dateModified: theDate(),
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+  });
+
+
   // describe('/PUT products', () => {
   //   it('it should update a product', (done) => {
-  //     const product = new Product({
+  //     let product = Product.create({
   //       id: uuid.v4(),
   //       productCategory: 'Men Clothing',
   //       productName: 'socks',
@@ -66,22 +105,21 @@ describe('Test API Routes', () => {
   //       productDetails: 'for the feet',
   //       productSpec: 'packs',
   //       productPrice: 300,
-  //       dateAdded: moment.now(),
-  //       dateModified: moment.now(),
+  //       userPriviledge: 'Admin',
+  //       dateModified: theDate(),
   //     });
-  //     product.save((err) => {
+  //     product.create((err, product) => {
   //       chai.request(app)
   //         .put('/api/v1/products/' + product.id)
   //         .send({
   //           id: uuid.v4(),
   //           productCategory: 'Men Clothing',
-  //           productName: 'socks',
+  //           productName: 'Shoes',
   //           productImage: 'abdmdkssi',
   //           productDetails: 'for the feet',
   //           productSpec: 'packs',
   //           productPrice: 300,
-  //           dateAdded: moment.now(),
-  //           dateModified: moment.now(),
+  //           dateModified: theDate(),
   //         })
   //         .end((err, res) => {
   //           res.should.have.status(200);
