@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.com/ebzeal/store-manager.svg?branch=develop)](https://travis-ci.com/ebzeal/store-manager)
-[![Coverage Status](https://coveralls.io/repos/github/ebzeal/store-manager/badge.svg?branch=develop)](https://coveralls.io/github/ebzeal/store-manager?branch=develop)
-
 # Store Manager
 A retail store app for inventory and sales management. 
 
