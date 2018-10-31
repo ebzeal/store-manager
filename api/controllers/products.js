@@ -1,4 +1,5 @@
 import db from '../models/connect';
+import validateProduct from '../validation/products';
 
 const Product = {
   /**
@@ -9,6 +10,12 @@ const Product = {
    */
 
   async create(req, res) {
+    const { errors, isValid } = validateProduct(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const text = `INSERT INTO
       products(productCategory,productName,productImage,productDetails,productSpec,productPrice)
       VALUES($1, $2, $3, $4, $5, $6)
@@ -41,6 +48,7 @@ const Product = {
       const { rows } = await db.query(findAllQuery);
       return res.status(200).json({ rows });
     } catch (error) {
+      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -71,6 +79,12 @@ const Product = {
    * @returns {object} updated product
    */
   async update(req, res) {
+    const { errors, isValid } = validateProduct(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const findOneQuery = 'SELECT * FROM products WHERE id=$1';
     const updateOneQuery = `UPDATE products
       SET productCategory=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6

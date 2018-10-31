@@ -1,28 +1,22 @@
 import db from '../models/connect';
-import validateCategories from '../validation/categories';
 
-const Category = {
+const Incident = {
   /**
-   * Create A category
+   * Create A incident
    * @param {object} req
    * @param {object} res
-   * @returns {object} category object
+   * @returns {object} incident object
    */
 
   async create(req, res) {
-    const { errors, isValid } = validateCategories(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
     const text = `INSERT INTO
-      categories(categoryName,categoryDetails)
-      VALUES($1, $2)
+      incidents(incidentTime,incidentImage,incidentDetails)
+      VALUES($1, $2, $3)
       returning *`;
     const values = [
-      req.body.categoryName,
-      req.body.categoryDetails,
+      req.body.incidentTime,
+      req.body.incidentImage,
+      req.body.incidentDetails,
     ];
 
     try {
@@ -34,33 +28,34 @@ const Category = {
     }
   },
   /**
-   * Get All categories
+   * Get All incidents
    * @param {object} req
    * @param {object} res
-   * @returns {object} categories array
+   * @returns {object} incidents array
    */
   async getAll(req, res) {
-    const findAllQuery = 'SELECT * FROM categories';
+    const findAllQuery = 'SELECT * FROM incidents';
     try {
       const { rows } = await db.query(findAllQuery);
       return res.status(200).json({ rows });
     } catch (error) {
+      console.log(error);
       return res.status(400).json(error);
     }
   },
   /**
-   * Get A category
+   * Get A incident
    * @param {object} req
    * @param {object} res
-   * @returns {object} category object
+   * @returns {object} incident object
    */
   async getOne(req, res) {
-    const categoryId = req.params.id;
-    const text = `SELECT * FROM categories WHERE id = ${categoryId}`;
+    const incidentId = req.params.id;
+    const text = `SELECT * FROM incidents WHERE id = ${incidentId}`;
     try {
       const { rows } = await db.query(text);
       if (!rows[0]) {
-        return res.status(404).json({ message: 'category not found' });
+        return res.status(404).json({ message: 'incident not found' });
       }
       return res.status(200).json(rows[0]);
     } catch (error) {
@@ -69,30 +64,25 @@ const Category = {
     }
   },
   /**
-   * Update A category
+   * Update A incident
    * @param {object} req
    * @param {object} res
-   * @returns {object} updated category
+   * @returns {object} updated incident
    */
   async update(req, res) {
-    const { errors, isValid } = validateCategories(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-    const findOneQuery = 'SELECT * FROM categories WHERE id=$1';
-    const updateOneQuery = `UPDATE categories
-      SET categoryName=$1,categoryDetails=$2
-      WHERE id=$3 returning *`;
+    const findOneQuery = 'SELECT * FROM incidents WHERE id=$1';
+    const updateOneQuery = `UPDATE incidents
+      SET incidentTime=$1,incidentImage=$2,incidentDetails=$3
+      WHERE id=$4 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).json({ message: 'category not found' });
+        return res.status(404).json({ message: 'incident not found' });
       }
       const values = [
-        req.body.categoryName || rows[0].categoryName,
-        req.body.categoryDetails || rows[0].categoryDetails,
+        req.body.incidentTime || rows[0].incidentTime,
+        req.body.incidentImage || rows[0].incidentImage,
+        req.body.incidentDetails || rows[0].incidentDetails,
         req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);
@@ -103,17 +93,17 @@ const Category = {
     }
   },
   /**
-   * Delete A category
+   * Delete A incident
    * @param {object} req
    * @param {object} res
    * @returns {void} return statuc code 204
    */
   async delete(req, res) {
-    const deleteQuery = `DELETE FROM categories WHERE id=${req.params.id} returning *`;
+    const deleteQuery = `DELETE FROM incidents WHERE id=${req.params.id} returning *`;
     try {
       const { rows } = await db.query(deleteQuery);
       if (!rows[0]) {
-        return res.status(404).json({ message: 'category not found' });
+        return res.status(404).json({ message: 'incident not found' });
       }
       return res.status(204).json({ message: 'deleted' });
     } catch (error) {
@@ -123,4 +113,4 @@ const Category = {
   },
 };
 
-export default Category;
+export default Incident;
