@@ -1,6 +1,7 @@
 import express from 'express';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import 'babel-polyfill';
+import bodyParser from 'body-parser';
 import User from './api/controllers/users';
 import Product from './api/controllers/products';
 import Sales from './api/controllers/sales';
@@ -8,10 +9,13 @@ import Category from './api/controllers/categories';
 import Incident from './api/controllers/incidents';
 
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
 app.get('/api/v1/', (req, res) => res.status(200).json('Welcome'));
 
 // Load auth Routes
@@ -21,6 +25,7 @@ app.post('/api/v1/auth/signup', User.signUp);
 // Load User Routes
 app.get('/api/v1/users', User.getAll);
 app.get('/api/v1/users/:id', User.getOne);
+app.get('/api/v1/users/profile/:id', User.getOwn);
 app.put('/api/v1/users/:id', User.update);
 app.delete('/api/v1/users/:id', User.delete);
 

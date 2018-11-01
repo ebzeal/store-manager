@@ -1,9 +1,10 @@
-// import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../models/connect';
 import validateRegister from '../validation/register';
 import validateLogin from '../validation/login';
 import keys from '../config/keys';
+import { checkToken, adminAccess, userAccess } from '../validation/auth';
 
 
 const User = {
@@ -13,39 +14,38 @@ const User = {
    * @param {object} res
    * @returns {object} user object
    */
+  // constructor() {
+  //   const hashed = bcrypt.hashSync(req.body.password, 8);
+  // },
 
   async signUp(req, res) {
     const { errors, isValid } = validateRegister(req.body);
-
     // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-    const text = `INSERT INTO
-      users(userName, userEmail, password)
-      VALUES($1, $2, $3)
+    if (!isValid) return res.json(errors);
+
+    let noAccess = false;
+    checkToken(req, res);
+    noAccess = true;
+    adminAccess(req, res);
+    if (!noAccess) {
+      const hashed = bcrypt.hashSync(req.body.password, 8);
+      const text = `INSERT INTO
+      users(userName, userEmail, userPriviledge, password)
+      VALUES($1, $2, $3, $4)
       returning *`;
-    const values = [
-      req.body.userName,
-      req.body.userEmail,
-      req.body.password,
-    ];
+      const values = [
+        req.body.userName,
+        req.body.userEmail,
+        req.body.userPriviledge,
+        hashed,
+      ];
 
-    try {
-      // bcrypt.genSalt(10, (err, salt) => {
-      //   bcrypt.hash(values[2], salt, (err, hash) => {
-      //     if (err) throw err;
-      //     values[2].password = hash;
-      //     values
-      //       .then()
-      //       .catch(err => console.log(err));
-      //   });
-      // });
-
-      const { rows } = await db.query(text, values);
-      return res.status(201).json(rows[0]);
-    } catch (error) {
-      return res.status(400).json(error);
+      try {
+        const { rows } = await db.query(text, values);
+        return res.status(201).json(rows[0]);
+      } catch (error) {
+        return res.status(400).json(error);
+      }
     }
   },
 
@@ -64,15 +64,18 @@ const User = {
     }
     const values = [
       req.body.userEmail,
-      req.body.password,
     ];
-    const findUser = 'SELECT * FROM users WHERE userEmail=$1 AND password=$2';
+    const findUser = 'SELECT * FROM users WHERE userEmail=$1';
     try {
       const { rows } = await db.query(findUser, values);
 
       if (!rows[0]) {
         return res.status(404).json({ message: 'user not found' });
       }
+
+      const passwordTrue = bcrypt.compareSync(req.body.password, rows[0].password);
+      if (!passwordTrue) return res.status(401).json({ auth: false, token: null, message: 'Password is wrong' });
+
       const payload = {
         id: rows[0].id,
         userName: rows[0].username,
@@ -83,11 +86,12 @@ const User = {
       jwt.sign(
         payload,
         keys.JWT_SECRET,
-        { expiresIn: 3600 },
+        { expiresIn: 10800 },
         (err, token) => {
           res.json({
             success: true,
             token: `Bearer  + ${token}`,
+            message: `${rows[0].username} Logged in as ${rows[0].userpriviledge}`,
           });
         },
       );
@@ -104,18 +108,18 @@ const User = {
    * @returns {object} users array
    */
   async getAll(req, res) {
-    const { errors, isValid } = validateRegister(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-    const findAllQuery = 'SELECT * FROM users';
-    try {
-      const { rows } = await db.query(findAllQuery);
-      return res.status(200).json({ rows });
-    } catch (error) {
-      return res.status(400).json(error);
+    let noAccess = false;
+    checkToken(req, res);
+    noAccess = true;
+    adminAccess(req, res);
+    if (!noAccess) {
+      const findAllQuery = 'SELECT * FROM users';
+      try {
+        const { rows } = await db.query(findAllQuery);
+        return res.status(200).json({ rows });
+      } catch (error) {
+        return res.status(400).json(error);
+      }
     }
   },
   /**
@@ -125,19 +129,63 @@ const User = {
    * @returns {object} user object
    */
   async getOne(req, res) {
-    const userId = req.params.id;
-    const text = `SELECT * FROM users WHERE id = ${userId}`;
-    try {
-      const { rows } = await db.query(text);
-      if (!rows[0]) {
-        return res.status(404).json({ message: 'user not found' });
+    let noAccess = false;
+    checkToken(req, res);
+    noAccess = true;
+    adminAccess(req, res);
+    if (!noAccess) {
+      const userId = req.params.id;
+      const text = `SELECT * FROM users WHERE id = ${userId}`;
+      try {
+        const { rows } = await db.query(text);
+        if (!rows[0]) {
+          return res.status(404).json({ message: 'user not found' });
+        }
+        return res.status(200).json(rows[0]);
+      } catch (error) {
+        console.log(error);
+        return res.status(400).json(error);
       }
-      return res.status(200).json(rows[0]);
-    } catch (error) {
-      console.log(error);
-      return res.status(400).json(error);
     }
   },
+
+
+  /**
+     * Get Own profile
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} user object
+     */
+  async getOwn(req, res) {
+    checkToken();
+    userAccess();
+
+    const tokenId = decoded.id;
+    const userId = req.params.id;
+    console.log(typeof (tokenId), typeof parseInt(req.params.id, 10));
+    console.log(tokenId, parseInt(req.params.id, 10));
+
+    if (userId == tokenId) {
+      const values = [
+        userId,
+      ];
+      const text = 'SELECT * FROM users WHERE id = $1';
+      try {
+        const { rows } = db.query(text, values);
+        if (!rows[0]) {
+          return res.status(404).json({ message: 'user not found' });
+        }
+        return res.status(200).json(rows[0]);
+      } catch (error) {
+        console.log(error);
+        return res.status(400).json(error);
+      }
+    } else {
+      return res.status(404).json({ message: 'You can only access your profile' });
+    }
+  },
+
+
   /**
    * Update A user
    * @param {object} req
@@ -145,27 +193,41 @@ const User = {
    * @returns {object} updated user
    */
   async update(req, res) {
-    const findOneQuery = 'SELECT * FROM users WHERE id=$1';
-    const updateOneQuery = `UPDATE users
+    const { errors, isValid } = validateLogin(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    let noAccess = false;
+    checkToken(req, res);
+    noAccess = true;
+    adminAccess(req, res);
+    if (!noAccess) {
+      const findOneQuery = 'SELECT * FROM users WHERE id=$1';
+      const updateOneQuery = `UPDATE users
       SET userName=$1,userEmail=$2,userPriviledge=$3,password=$4,dateModified=$5
       WHERE id=$6 returning *`;
-    try {
-      const { rows } = await db.query(findOneQuery, [req.params.id]);
-      if (!rows[0]) {
-        return res.status(404).json({ message: 'user not found' });
+      try {
+        const { rows } = await db.query(findOneQuery, [req.params.id]);
+        if (!rows[0]) {
+          return res.status(404).json({ message: 'user not found' });
+        }
+        const hashed = bcrypt.hashSync(req.body.password, 8);
+        const values = [
+          req.body.userName || rows[0].userName,
+          req.body.userEmail || rows[0].userEmail,
+          req.body.userPriviledge || rows[0].userPriviledge,
+          hashed || rows[0].password,
+          new Date(),
+          req.params.id,
+        ];
+        const response = await db.query(updateOneQuery, values);
+        return res.status(200).json(response.rows[0]);
+      } catch (err) {
+        return res.status(400).json(err);
       }
-      const values = [
-        req.body.userName || rows[0].userName,
-        req.body.userEmail || rows[0].userEmail,
-        req.body.userPriviledge || rows[0].userPriviledge,
-        req.body.password || rows[0].password,
-        new Date(),
-        req.params.id,
-      ];
-      const response = await db.query(updateOneQuery, values);
-      return res.status(200).json(response.rows[0]);
-    } catch (err) {
-      return res.status(400).json(err);
     }
   },
   /**
@@ -175,17 +237,31 @@ const User = {
    * @returns {void} return statuc code 204
    */
   async delete(req, res) {
-    const deleteQuery = `DELETE FROM users WHERE id=${req.params.id} returning *`;
-    try {
-      const { rows } = await db.query(deleteQuery);
-      if (!rows[0]) {
-        return res.status(404).json({ message: 'user not found' });
+    let noAccess = false;
+    checkToken(req, res);
+    noAccess = true;
+    adminAccess(req, res);
+    if (!noAccess) {
+      const deleteQuery = `DELETE FROM users WHERE id=${req.params.id} returning *`;
+      try {
+        const { rows } = await db.query(deleteQuery);
+        if (!rows[0]) {
+          return res.status(404).json({ message: 'user not found' });
+        }
+        return res.status(204).json({ message: 'User deleted Succefully' });
+      } catch (error) {
+        return res.status(400).json(error);
       }
-      return res.status(204).json({ message: 'deleted' });
-    } catch (error) {
-      return res.status(400).json(error);
     }
   },
+
+  // a function for tests
+  async remove() {
+    const deleteQuery = 'DELETE FROM users';
+
+    await db.query(deleteQuery);
+  },
+
 };
 
 export default User;

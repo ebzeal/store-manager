@@ -1,5 +1,6 @@
 import db from '../models/connect';
-import validateCategories from '../validation/categories';
+import validateSales from '../validation/categories';
+import { checkToken, adminAccess, userAccess } from '../validation/auth';
 
 const Sales = {
   /**
@@ -10,12 +11,14 @@ const Sales = {
    */
 
   async create(req, res) {
-    const { errors, isValid } = validateCategories(req.body);
+    const { errors, isValid } = validateSales(req.body);
 
     // Check Validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
+    checkToken();
+    userAccess();
     const text = `INSERT INTO
       sales(attendant,productName,quantity,amount,productSpec)
       VALUES($1, $2, $3, $4, $5)
@@ -43,12 +46,18 @@ const Sales = {
    * @returns {object} sales array
    */
   async getAll(req, res) {
-    const findAllQuery = 'SELECT * FROM sales';
-    try {
-      const { rows } = await db.query(findAllQuery);
-      return res.status(200).json({ rows });
-    } catch (error) {
-      return res.status(400).json(error);
+    let noAccess = false;
+    checkToken(req, res);
+    noAccess = true;
+    adminAccess(req, res);
+    if (!noAccess) {
+      const findAllQuery = 'SELECT * FROM sales';
+      try {
+        const { rows } = await db.query(findAllQuery);
+        return res.status(200).json({ rows });
+      } catch (error) {
+        return res.status(400).json(error);
+      }
     }
   },
   /**
@@ -58,17 +67,23 @@ const Sales = {
    * @returns {object} sale object
    */
   async getOne(req, res) {
-    const saleId = req.params.id;
-    const text = `SELECT * FROM sales WHERE id = ${saleId}`;
-    try {
-      const { rows } = await db.query(text);
-      if (!rows[0]) {
-        return res.status(404).json({ message: 'sale not found' });
+    let noAccess = false;
+    checkToken(req, res);
+    noAccess = true;
+    adminAccess(req, res);
+    if (!noAccess) {
+      const saleId = req.params.id;
+      const text = `SELECT * FROM sales WHERE id = ${saleId}`;
+      try {
+        const { rows } = await db.query(text);
+        if (!rows[0]) {
+          return res.status(404).json({ message: 'sale not found' });
+        }
+        return res.status(200).json(rows[0]);
+      } catch (error) {
+        console.log(error);
+        return res.status(400).json(error);
       }
-      return res.status(200).json(rows[0]);
-    } catch (error) {
-      console.log(error);
-      return res.status(400).json(error);
     }
   },
 };
