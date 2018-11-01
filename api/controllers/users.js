@@ -4,7 +4,6 @@ import db from '../models/connect';
 import validateRegister from '../validation/register';
 import validateLogin from '../validation/login';
 import keys from '../config/keys';
-import { checkToken, adminAccess, userAccess } from '../validation/auth';
 
 
 const User = {
@@ -23,29 +22,23 @@ const User = {
     // Check Validation
     if (!isValid) return res.json(errors);
 
-    let noAccess = false;
-    checkToken(req, res);
-    noAccess = true;
-    adminAccess(req, res);
-    if (!noAccess) {
-      const hashed = bcrypt.hashSync(req.body.password, 8);
-      const text = `INSERT INTO
+    const hashed = bcrypt.hashSync(req.body.password, 8);
+    const text = `INSERT INTO
       users(userName, userEmail, userPriviledge, password)
       VALUES($1, $2, $3, $4)
       returning *`;
-      const values = [
-        req.body.userName,
-        req.body.userEmail,
-        req.body.userPriviledge,
-        hashed,
-      ];
+    const values = [
+      req.body.userName,
+      req.body.userEmail,
+      req.body.userPriviledge,
+      hashed,
+    ];
 
-      try {
-        const { rows } = await db.query(text, values);
-        return res.status(201).json(rows[0]);
-      } catch (error) {
-        return res.status(400).json(error);
-      }
+    try {
+      const { rows } = await db.query(text, values);
+      return res.status(201).json(rows[0]);
+    } catch (error) {
+      return res.status(400).json(error);
     }
   },
 
@@ -90,13 +83,12 @@ const User = {
         (err, token) => {
           res.json({
             success: true,
-            token: `Bearer  + ${token}`,
+            token: `${token}`,
             message: `${rows[0].username} Logged in as ${rows[0].userpriviledge}`,
           });
         },
       );
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -108,18 +100,12 @@ const User = {
    * @returns {object} users array
    */
   async getAll(req, res) {
-    let noAccess = false;
-    checkToken(req, res);
-    noAccess = true;
-    adminAccess(req, res);
-    if (!noAccess) {
-      const findAllQuery = 'SELECT * FROM users';
-      try {
-        const { rows } = await db.query(findAllQuery);
-        return res.status(200).json({ rows });
-      } catch (error) {
-        return res.status(400).json(error);
-      }
+    const findAllQuery = 'SELECT * FROM users';
+    try {
+      const { rows } = await db.query(findAllQuery);
+      return res.status(200).json({ rows });
+    } catch (error) {
+      return res.status(400).json(error);
     }
   },
   /**
@@ -129,23 +115,16 @@ const User = {
    * @returns {object} user object
    */
   async getOne(req, res) {
-    let noAccess = false;
-    checkToken(req, res);
-    noAccess = true;
-    adminAccess(req, res);
-    if (!noAccess) {
-      const userId = req.params.id;
-      const text = `SELECT * FROM users WHERE id = ${userId}`;
-      try {
-        const { rows } = await db.query(text);
-        if (!rows[0]) {
-          return res.status(404).json({ message: 'user not found' });
-        }
-        return res.status(200).json(rows[0]);
-      } catch (error) {
-        console.log(error);
-        return res.status(400).json(error);
+    const userId = req.params.id;
+    const text = `SELECT * FROM users WHERE id = ${userId}`;
+    try {
+      const { rows } = await db.query(text);
+      if (!rows[0]) {
+        return res.status(404).json({ message: 'user not found' });
       }
+      return res.status(200).json(rows[0]);
+    } catch (error) {
+      return res.status(400).json(error);
     }
   },
 
@@ -157,13 +136,9 @@ const User = {
      * @returns {object} user object
      */
   async getOwn(req, res) {
-    checkToken();
-    userAccess();
 
     const tokenId = decoded.id;
     const userId = req.params.id;
-    console.log(typeof (tokenId), typeof parseInt(req.params.id, 10));
-    console.log(tokenId, parseInt(req.params.id, 10));
 
     if (userId == tokenId) {
       const values = [
@@ -177,7 +152,6 @@ const User = {
         }
         return res.status(200).json(rows[0]);
       } catch (error) {
-        console.log(error);
         return res.status(400).json(error);
       }
     } else {
@@ -199,35 +173,28 @@ const User = {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
-    let noAccess = false;
-    checkToken(req, res);
-    noAccess = true;
-    adminAccess(req, res);
-    if (!noAccess) {
-      const findOneQuery = 'SELECT * FROM users WHERE id=$1';
-      const updateOneQuery = `UPDATE users
+    const findOneQuery = 'SELECT * FROM users WHERE id=$1';
+    const updateOneQuery = `UPDATE users
       SET userName=$1,userEmail=$2,userPriviledge=$3,password=$4,dateModified=$5
       WHERE id=$6 returning *`;
-      try {
-        const { rows } = await db.query(findOneQuery, [req.params.id]);
-        if (!rows[0]) {
-          return res.status(404).json({ message: 'user not found' });
-        }
-        const hashed = bcrypt.hashSync(req.body.password, 8);
-        const values = [
-          req.body.userName || rows[0].userName,
-          req.body.userEmail || rows[0].userEmail,
-          req.body.userPriviledge || rows[0].userPriviledge,
-          hashed || rows[0].password,
-          new Date(),
-          req.params.id,
-        ];
-        const response = await db.query(updateOneQuery, values);
-        return res.status(200).json(response.rows[0]);
-      } catch (err) {
-        return res.status(400).json(err);
+    try {
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if (!rows[0]) {
+        return res.status(404).json({ message: 'user not found' });
       }
+      const hashed = bcrypt.hashSync(req.body.password, 8);
+      const values = [
+        req.body.userName || rows[0].userName,
+        req.body.userEmail || rows[0].userEmail,
+        req.body.userPriviledge || rows[0].userPriviledge,
+        hashed || rows[0].password,
+        new Date(),
+        req.params.id,
+      ];
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).json(response.rows[0]);
+    } catch (err) {
+      return res.status(400).json(err);
     }
   },
   /**
@@ -237,30 +204,24 @@ const User = {
    * @returns {void} return statuc code 204
    */
   async delete(req, res) {
-    let noAccess = false;
-    checkToken(req, res);
-    noAccess = true;
-    adminAccess(req, res);
-    if (!noAccess) {
-      const deleteQuery = `DELETE FROM users WHERE id=${req.params.id} returning *`;
-      try {
-        const { rows } = await db.query(deleteQuery);
-        if (!rows[0]) {
-          return res.status(404).json({ message: 'user not found' });
-        }
-        return res.status(204).json({ message: 'User deleted Succefully' });
-      } catch (error) {
-        return res.status(400).json(error);
+    const deleteQuery = `DELETE FROM users WHERE id=${req.params.id} returning *`;
+    try {
+      const { rows } = await db.query(deleteQuery);
+      if (!rows[0]) {
+        return res.status(404).json({ message: 'user not found' });
       }
+      return res.status(204).json({ message: 'User deleted Succefully' });
+    } catch (error) {
+      return res.status(400).json(error);
     }
   },
 
   // a function for tests
-  async remove() {
-    const deleteQuery = 'DELETE FROM users';
+  // async remove() {
+  //   const deleteQuery = 'DELETE FROM users';
 
-    await db.query(deleteQuery);
-  },
+  //   await db.query(deleteQuery);
+  // },
 
 };
 
