@@ -10,7 +10,8 @@
     "dev-start": "babel-watch server.js",
     "start": "babel-node server.js",
     "postinstall": "npm run build",
-    "dbinstall": "psql -U postgres -f ./api/models/db.sql"
+    "postdeploy": "psql -U postgres -f ./api/models/db.sql",
+    "tables-setup-heroku": "heroku pg:psql -f ./api/models/db.sql"
   },
   "author": "Olu Ajayi",
   "license": "ISC",

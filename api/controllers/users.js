@@ -136,7 +136,6 @@ const User = {
      * @returns {object} user object
      */
   async getOwn(req, res) {
-
     const tokenId = decoded.id;
     const userId = req.params.id;
 
