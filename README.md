@@ -22,7 +22,7 @@ A retail store app for inventory and sales management.
 
 # Demo
 * https://ebzeal.github.io/store-manager/UI/index.html
-* https://app-store-manager.herokuapp.com/
+* https://v2-store-manager.herokuapp.com/api/v1/
 
 
 # Contributing
