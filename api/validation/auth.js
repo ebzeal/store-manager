@@ -13,9 +13,9 @@ export function adminAccess(req, res, next) {
     if (!decoded.userPriviledge || decoded.userPriviledge !== 'Admin' || decoded.userPriviledge == null) {
       // noAccess = true;
       return res.status(500).send({ auth: false, message: 'Not authorized to access this page. For Admin only' });
+    } else {
+      return next();
     }
-  } else {
-    return next();
   }
 }
 
@@ -33,7 +33,5 @@ export function userAccess(req, res, next) {
         return next();
       }
     });
-  } else {
-    return next();
   }
 }

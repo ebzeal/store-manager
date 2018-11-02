@@ -209,18 +209,24 @@ const User = {
       if (!rows[0]) {
         return res.status(404).json({ message: 'user not found' });
       }
-      return res.status(204).json({ message: 'User deleted Succefully' });
+      res.json({ message: 'Deleted Successfully' });
+      return res.status(204);
     } catch (error) {
       return res.status(400).json(error);
     }
   },
 
-  // a function for tests
-  // async remove() {
-  //   const deleteQuery = 'DELETE FROM users';
-
-  //   await db.query(deleteQuery);
-  // },
+  logout(req, res, next) {
+    if (req.session) {
+      // delete session object
+      req.session.destroy((err) => {
+        if (err) {
+          return next(err);
+        }
+        return res.redirect('/');
+      });
+    }
+  }
 
 };
 

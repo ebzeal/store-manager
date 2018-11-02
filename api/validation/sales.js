@@ -9,17 +9,17 @@ export default function validateSales(input) {
   input.quantity = !checkEmpty(input.quantity) ? input.quantity : errors.quantity = 'Please enter quantity purchased';
   input.amount = !checkEmpty(input.amount) ? input.amount : errors.amount = 'Please enter amount purchased';
 
-  if (!Validator.isLength(input.attendant, { min: 2, max: 30 })) {
+  if (!Validator.isLength(input.attendant, { min: 1, max: 30 })) {
     errors.attendant = 'Attendant Name must be added to record';
   }
 
 
-  if (!Validator.isLength(input.productName, { min: 2, max: 30 })) {
-    errors.attendant = 'Product Name must be between 2 and 30 characters';
+  if (!Validator.isLength(input.productName, { min: 1, max: 30 })) {
+    errors.attendant = 'Enter Valid Product Name';
   }
 
-  if (!Validator.isLength(input.quantity, { min: 2, max: 30 })) {
-    errors.quantity = 'Product Price must be at least 2 characters';
+  if (!Validator.isLength(input.amount, { min: 2, max: 30 })) {
+    errors.amount = 'Product Price must be at least 2 characters';
   }
 
   // if (!Validator.isMimeType(input.productImage)) {

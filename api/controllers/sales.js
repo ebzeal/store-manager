@@ -1,5 +1,5 @@
 import db from '../models/connect';
-import validateSales from '../validation/categories';
+import validateSales from '../validation/sales';
 
 const Sales = {
   /**
@@ -17,7 +17,7 @@ const Sales = {
       return res.status(400).json(errors);
     }
     const text = `INSERT INTO
-      sales(attendant,productName,quantity,amount,productSpec)
+      sales(salesid,attendant,productName,quantity,amount)
       VALUES($1, $2, $3, $4, $5)
       returning *`;
     const values = [

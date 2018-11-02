@@ -112,7 +112,8 @@ const Category = {
       if (!rows[0]) {
         return res.status(404).json({ message: 'category not found' });
       }
-      return res.status(204).json({ message: 'deleted' });
+      res.json({ message: 'Deleted Successfully' });
+      return res.status(204);
     } catch (error) {
       return res.status(400).json(error);
     }
