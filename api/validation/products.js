@@ -8,7 +8,7 @@ export default function validateProduct(input) {
   input.productName = !checkEmpty(input.productName) ? input.productName : errors.productName = 'productName field is required';
   input.productPrice = !checkEmpty(input.productPrice) ? input.productPrice : errors.productPrice = 'productPrice field is required';
 
-  if (!Validator.isLength(input.productCategory, { min: 2, max: 30 })) {
+  if (!Validator.isLength(input.productCategory, { min: 2, max: 50 })) {
     errors.productCategory = 'Product Category must have been created by Admin';
   }
 

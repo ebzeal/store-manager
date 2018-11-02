@@ -1,4 +1,5 @@
 import db from '../models/connect';
+import validateIncidents from '../validation/incidents';
 
 const Incident = {
   /**
@@ -9,6 +10,12 @@ const Incident = {
    */
 
   async create(req, res) {
+    const { errors, isValid } = validateIncidents(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const text = `INSERT INTO
       incidents(incidentTime,incidentImage,incidentDetails)
       VALUES($1, $2, $3)
@@ -23,7 +30,6 @@ const Incident = {
       const { rows } = await db.query(text, values);
       return res.status(201).json(rows[0]);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -39,7 +45,6 @@ const Incident = {
       const { rows } = await db.query(findAllQuery);
       return res.status(200).json({ rows });
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -59,7 +64,6 @@ const Incident = {
       }
       return res.status(200).json(rows[0]);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -70,6 +74,12 @@ const Incident = {
    * @returns {object} updated incident
    */
   async update(req, res) {
+    const { errors, isValid } = validateIncidents(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const findOneQuery = 'SELECT * FROM incidents WHERE id=$1';
     const updateOneQuery = `UPDATE incidents
       SET incidentTime=$1,incidentImage=$2,incidentDetails=$3
@@ -88,7 +98,6 @@ const Incident = {
       const response = await db.query(updateOneQuery, values);
       return res.status(200).json(response.rows[0]);
     } catch (err) {
-      console.log(err);
       return res.status(400).json(err);
     }
   },
@@ -107,7 +116,6 @@ const Incident = {
       }
       return res.status(204).json({ message: 'deleted' });
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },

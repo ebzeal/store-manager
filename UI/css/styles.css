@@ -8,7 +8,7 @@
 }
 
 body {
-  background: rgba(0, 0, 0, 0.79);
+  background: rgba(224, 224, 224, 0.9);
   font-size: 14px;
   line-height: 25px;
   color: #ffffff;
@@ -21,7 +21,7 @@ body {
 
 h2 {
   font-family: aFont;
-  color: rgba(255, 255, 255, 0.70);
+  color: rgba(0, 0, 0, 0.9);
   font-weight: bold;
   font-size: 25px;
   text-align: center;
@@ -29,7 +29,7 @@ h2 {
 
 h3 {
   font-family: aFont;
-  color: rgba(255, 255, 255, 0.70);
+  color: rgba(0, 0, 0, 0.9);
   font-weight: bold;
   font-size: 18px;
   text-align: center;
@@ -59,17 +59,17 @@ button {
   width: 100%;
   font-family: bFont;
   font-size: 18px;
-  background-color: aqua;
+  background-color: rgba(255, 0, 0, 0.7);
   border: none;
   margin-top: 10px;
   padding: 10px;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(0, 0, 0, 0.85);
   font-weight: bold;
 }
 
 button:hover {
-  background-color: cyan;
+  background-color: rgb(255, 255, 255);
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -124,7 +124,7 @@ h3 > span {
 nav {
   margin: 0;
   padding: 0;
-  background: rgba(255,211,211, .46);
+  background: rgba(255, 0, 0, .8);
 }
 
 #logo {
@@ -169,6 +169,7 @@ nav a {
   line-height: 60px;
   text-decoration: none;
   font-family: aFont;
+  font-weight: bold;
 }
 
 nav ul li ul li:hover { color: #363636; }
@@ -179,7 +180,8 @@ nav ul ul {
   display: none;
   position: absolute;
   top: 60px;
-  background-color: rgba(255,211,211, 1)
+  background-color: rgba(201, 15, 15, 0.98);
+  border-radius: 5px;
 }
 
 nav ul li:hover > ul { display: inherit; }
@@ -330,7 +332,7 @@ table {
   width: 100%;
   background-color: rgba(238, 235, 235, 0.45);
   padding: 5%;
-  border: rgb(51, 50, 50) 2px solid;
+  border: rgba(51, 50, 50,.2) 4px solid;
   border-radius: 5px;
   color: #000;
 }
@@ -411,7 +413,7 @@ form {
   font-family: bFont;
   margin: 0px 0;
   text-align: center;
-  background-color: rgba(238, 235, 235, 0.45);
+  background-color: rgba(78, 78, 78, 0.45);
   border-radius: 5px;
   padding: 20px
 }
@@ -456,7 +458,7 @@ input,
 .receipt {
   margin: 0px auto;
   max-width: 60%;
-  background: rgba(235, 233, 233, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   color: rgba(0, 0, 0, 1);
   padding: 5px;
 }

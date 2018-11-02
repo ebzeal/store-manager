@@ -1,4 +1,5 @@
 import db from '../models/connect';
+import validateSales from '../validation/sales';
 
 const Sales = {
   /**
@@ -9,8 +10,14 @@ const Sales = {
    */
 
   async create(req, res) {
+    const { errors, isValid } = validateSales(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     const text = `INSERT INTO
-      sales(attendant,productName,quantity,amount,productSpec)
+      sales(salesid,attendant,productName,quantity,amount)
       VALUES($1, $2, $3, $4, $5)
       returning *`;
     const values = [
@@ -25,7 +32,6 @@ const Sales = {
       const { rows } = await db.query(text, values);
       return res.status(201).json(rows[0]);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -60,7 +66,6 @@ const Sales = {
       }
       return res.status(200).json(rows[0]);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },

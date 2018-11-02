@@ -48,10 +48,10 @@ const Product = {
       const { rows } = await db.query(findAllQuery);
       return res.status(200).json({ rows });
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
+
   /**
    * Get A product
    * @param {object} req
@@ -68,7 +68,6 @@ const Product = {
       }
       return res.status(200).json(rows[0]);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -85,6 +84,7 @@ const Product = {
     if (!isValid) {
       return res.status(400).json(errors);
     }
+
     const findOneQuery = 'SELECT * FROM products WHERE id=$1';
     const updateOneQuery = `UPDATE products
       SET productCategory=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6
@@ -106,7 +106,6 @@ const Product = {
       const response = await db.query(updateOneQuery, values);
       return res.status(200).json(response.rows[0]);
     } catch (err) {
-      console.log(err);
       return res.status(400).json(err);
     }
   },
@@ -123,9 +122,9 @@ const Product = {
       if (!rows[0]) {
         return res.status(404).json({ message: 'product not found' });
       }
-      return res.status(204).json({ message: 'deleted' });
+      res.json({ message: 'Deleted Successfully' });
+      return res.status(204);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },

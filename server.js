@@ -1,54 +1,33 @@
 import express from 'express';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import 'babel-polyfill';
-import User from './api/controllers/users';
-import Product from './api/controllers/products';
-import Sales from './api/controllers/sales';
-import Category from './api/controllers/categories';
-import Incident from './api/controllers/incidents';
+import bodyParser from 'body-parser';
+// add routes
+import users from './api/routes/users';
+import auth from './api/routes/auth';
+import sales from './api/routes/sales';
+import products from './api/routes/products';
+import categories from './api/routes/categories';
+import incidents from './api/routes/incidents';
 
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
 app.get('/api/v1/', (req, res) => res.status(200).json('Welcome'));
 
-// Load auth Routes
-app.post('/api/v1/auth/login', User.logIn);
-app.post('/api/v1/auth/signup', User.signUp);
 
-// Load User Routes
-app.get('/api/v1/users', User.getAll);
-app.get('/api/v1/users/:id', User.getOne);
-app.put('/api/v1/users/:id', User.update);
-app.delete('/api/v1/users/:id', User.delete);
-
-// Load Category Routes
-app.get('/api/v1/categories', Category.getAll);
-app.get('/api/v1/categories/:id', Category.getOne);
-app.post('/api/v1/categories', Category.create);
-app.put('/api/v1/categories/:id', Category.update);
-app.delete('/api/v1/categories/:id', Category.delete);
-
-// Load Product Routes
-app.get('/api/v1/products', Product.getAll);
-app.get('/api/v1/products/:id', Product.getOne);
-app.post('/api/v1/products', Product.create);
-app.put('/api/v1/products/:id', Product.update);
-app.delete('/api/v1/products/:id', Product.delete);
-
-// Load Sales Routes
-app.get('/api/v1/sales', Sales.getAll);
-app.get('/api/v1/sales/:id', Sales.getOne);
-app.post('/api/v1/sales', Sales.create);
-
-// Load Incidents Routes
-app.get('/api/v1/incidents', Incident.getAll);
-app.get('/api/v1/incidents/:id', Incident.getOne);
-app.post('/api/v1/incidents', Incident.create);
-app.put('/api/v1/incidents/:id', Incident.update);
-app.delete('/api/v1/incidents/:id', Incident.delete);
+// use routes
+app.use('/api/v1/sales', sales);
+app.use('/api/v1/products', products);
+app.use('/api/v1/categories', categories);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/users', users);
+app.use('/api/v1/incidents', incidents);
 
 
 const port = process.env.PORT || 3000;

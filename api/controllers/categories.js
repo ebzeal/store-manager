@@ -29,7 +29,6 @@ const Category = {
       const { rows } = await db.query(text, values);
       return res.status(201).json(rows[0]);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -64,7 +63,6 @@ const Category = {
       }
       return res.status(200).json(rows[0]);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
@@ -98,7 +96,6 @@ const Category = {
       const response = await db.query(updateOneQuery, values);
       return res.status(200).json(response.rows[0]);
     } catch (err) {
-      console.log(err);
       return res.status(400).json(err);
     }
   },
@@ -115,9 +112,9 @@ const Category = {
       if (!rows[0]) {
         return res.status(404).json({ message: 'category not found' });
       }
-      return res.status(204).json({ message: 'deleted' });
+      res.json({ message: 'Deleted Successfully' });
+      return res.status(204);
     } catch (error) {
-      console.log(error);
       return res.status(400).json(error);
     }
   },
