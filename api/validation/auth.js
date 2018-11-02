@@ -34,7 +34,6 @@ export function userAccess(req, res, next) {
       }
     });
   } else {
-
     return next();
   }
 }
