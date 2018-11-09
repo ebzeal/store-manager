@@ -10,10 +10,9 @@ services:
  - postgresql
 
 before_script:
- - psql -c 'create database store_manager;' -U postgres
+ - psql -c 'create database store-manager;' -U postgres
  - npm run postdeploy
 script:
-  - "travis_wait 30 npm test"
   - "export NODE_ENV=test"
   - "npm run build"
   - "npm run test"
