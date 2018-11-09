@@ -1,137 +1,149 @@
-// import db from '../connect';
-// import chai from 'chai';
-// import chaiHttp from 'chai-http';
-// import app from '../../server';
-// import users from '../controllers/users';
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import db, { pool } from '../models/connect-test';
+import app from '../../server';
+import users from '../controllers/users';
+
+const should = chai.should();
+const theDate = () => new Date();
+
+chai.use(chaiHttp);
+const admin = {
+  id: 1,
+  userEmail: 'olu@me.com',
+  password: '$2a$08$HM8vn5rE0cnSGbd68Gi7BOacCvnD1tb9fcuhJdR04wrFH3ng8c6NS',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlck5hbWUiOiJzb2xhIiwidXNlclByaXZpbGVkZ2UiOiJBZG1pbiIsImlhdCI6MTU0MTcxNzkyOCwiZXhwIjoxNTQxNzI4NzI4fQ.kb_hZ3r_VLmbKHU2MUZl1L_6tYf-2Kvc70i80uEDriU',
+};
+
+const attendant = {
+  id: 2,
+  userEmail: 'way@ward.com',
+  userName: 'Way Ward',
+  userPriviledge: 'User',
+  password: '$2a$08$HM8vn5rE0cnSGbd68Gi7BOacCvnD1tb9fcuhJdR04wrFH3ng8c6NS',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlck5hbWUiOiJzb2xhIiwidXNlclByaXZpbGVkZ2UiOiJBZG1pbiIsImlhdCI6MTU0MTcxNzkyOCwiZXhwIjoxNTQxNzI4NzI4fQ.kb_hZ3r_VLmbKHU2MUZl1L_6tYf-2Kvc70i80uEDriU',
+};
+
+const newUser = {
+  id: 4,
+  userEmail: 'liz@Mel.com',
+  userName: 'Mel Lisa',
+  userPriviledge: 'User',
+  password: '123456',
+  password2: '123456',
+};
+
+describe('Test all user routes', () => {
+  // before((done) => {
+  //   pool.query('DELETE FROM users');
+  //   done();
+  // });
+
+  // before((done) => {
+  //   pool.query('DELETE FROM users', (err) => {
+  //     pool.end();
+  //     done();
+  //   });
+  // });
+
+  describe('/api/vi/auth/login users', () => {
+    it('should sign in user', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/login')
+        .send(admin)
+        .end((err, res) => {
+          res.body.should.be.a('object');
+          res.body.should.have.property('password');
+        });
+      done();
+    });
+
+    it('should return error for wrong details', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/login')
+        .send()
+        .end((err, res) => {
+          res.should.have.status(400);
+        });
+      done();
+    });
+  });
+
+  describe('signup route', () => {
+    it('should register a user', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('x-access-token', admin.token)
+        .send(newUser)
+        .end((err, res) => {
+          res.should.have.status(201);
+          done();
+        });
+    });
+  });
 
 
-// // process.env.NODE_ENV = 'test';
+  describe('GET /users Routes', () => {
+    // * Test the GET api/users route
 
-// const should = chai.should();
+    it('it should GET all the users', (done) => {
+      chai.request(app)
+        .get('/api/v1/users')
+        .set('x-access-token', admin.token)
+        .end((err, res) => {
+          // should.exist(res.body);
+          res.body.should.be.a('object');
+          res.should.have.status(200);
+          done();
+        });
+    });
+  });
 
-// const theDate = () => new Date();
-// const userCredentials = {
-//   email: 'olu@yahoo.com',
-//   password: '123456',
-// };
-// // now let's login the user before we run any tests
-// const authenticatedUser = request.agent(app);
+  describe('GET users/:id', () => {
+    // * Test the GET api/users route
 
-// before((done) => {
-//   authenticatedUser
-//     .post('/login')
-//     .send(userCredentials)
-//     .end(function (err, response) {
-//       expect(response.statusCode).to.equal(200);
-//       expect('Location', '/home');
-//       done();
-//     });
-// });
+    it('it should GET a single user', (done) => {
+      chai.request(app)
+        .get(`/api/v1/users/${attendant.id}`)
+        .set('x-access-token', admin.token)
+        .end((err, res) => {
+          res.body.should.be.a('object');
+          res.should.have.status(200);
+          // res.body.items.length.should.be.eql(1);
+          res.body.should.have.property('username');
+          res.body.should.have.property('useremail').eql('way@ward.com');
+          res.body.should.have.property('password');
+          res.body.id.should.be.a('number').eql(2);
+          res.body.should.have.property('userpriviledge').eql('User');
+          done();
+        });
+    });
+  });
+
+  // // Test the PUT api / users
+  // describe('/PUT users', () => {
+  //   it.only('it should update a user', (done) => {
+  //     chai.request(app)
+  //       .put(`/api/v1/users/${attendant.id}`)
+  //       .set('x-access-token', admin.token)
+  //       .send({ attendant })
+  //       .end((err, res) => {
+  //         res.should.have.status(200);
+  //         done();
+  //       });
+  //   });
+  // });
 
 
-// describe('Test API Routes', () => {
-
-//   // * Test the GET api/users route
-
-//   describe('/GET users', () => {
-//     it('it should GET all the users', (done) => {
-//       chai.request(app)
-//         .get('/api/v1/users')
-//         .end((err, res) => {
-//           // should.exist(res.body);
-//           chai.should().exist(res.body);
-//           res.body.should.be.a('object');
-//           res.should.have.status(200);
-//           // res.body.should.have.property('userName');
-//           // res.body.should.have.property('userPriviledge').eql('Admin' || 'User');
-//           done();
-//         });
-//     });
-//   });
-
-//   //   // Test the POST api/users
-//   //   describe('/POST users', () => {
-//   //     it('it should save a new user', (done) => {
-//   //       chai.request(app)
-//   //         .post('/api/v1/users')
-//   //         .send({
-//   //           id: 10,
-//   //           userName: 'Karl Heinz',
-//   //           userEmail: 'me@you.com',
-//   //           userPriviledge: 'Admin',
-//   //           pasword: '123456',
-//   //           password2: '123456',
-//   //           dateCreated: theDate(),
-//   //           dateModified: theDate(),
-//   //         })
-//   //         .end((err, res) => {
-//   //           // res.should.have.status(201);
-//   //           res.body.should.be.a('object');
-//   //           // res.body.should.have.property('userPriviledge').eql('Admin');
-//   //           // res.body.should.have.property('userName');
-//   //           // res.body.should.have.property('userEmail');
-//   //           // res.body.should.have.property('userPriviledge');
-//   //           done();
-//   //         });
-//   //     });
-//   //   });
-
-//   //   // // Test the PUT api / users
-//   //   describe('/PUT users', () => {
-//   //     it('it should update a user', (done) => {
-//   //       const user = User.signUp({
-//   //         id: 10,
-//   //         userName: 'Karl Heinz',
-//   //         userEmail: 'me@you.com',
-//   //         userPriviledge: 'Admin',
-//   //         pasword: '123456',
-//   //         password2: '123456',
-//   //         dateCreated: theDate(),
-//   //         dateModified: theDate(),
-//   //       });
-
-//   //       chai.request(app)
-
-//   //         .put('/api/v1/users/' + user.id)
-//   //         .send({
-//   //           id: 10,
-//   //           userName: 'Karl Heinz',
-//   //           userEmail: 'me@you.com',
-//   //           userPriviledge: 'User',
-//   //           pasword: '123456',
-//   //           password2: '123456',
-//   //           dateCreated: theDate(),
-//   //           dateModified: theDate(),
-//   //         })
-//   //         .end((err, res) => {
-//   //           res.should.have.status(200);
-//   //           done();
-//   //         });
-//   //     });
-//   //   });
-
-//   //   describe('/DELETE/:id user', () => {
-//   //     it('it should DELETE a user given the id', (done) => {
-//   //       const user = new User({
-//   //         id: uuid.v4(),
-//   //         userCategory: "Men Clothing",
-//   //         userName: "socks",
-//   //         userImage: "abdmdkssi",
-//   //         userDetails: "for the feet",
-//   //         userSpec: "packs",
-//   //         userPrice: 300,
-//   //         dateAdded: moment.now(),
-//   //         dateModified: moment.now(),
-//   //       })
-//   //       user.save((err, user) => {
-//   //         chai.request(app)
-//   //           .delete('/user/' + user.id)
-//   //           .end((err, res) => {
-//   //             res.should.have.status(204);
-//   //             res.body.should.be.a('object');
-//   //             done();
-//   //           });
-//   //       });
-//   //     });
-//   //   });
-// });
+  describe('/DELETE/:id user', () => {
+    it('it should DELETE a user given the id', (done) => {
+      chai.request(app)
+        .delete(`/api/v1/users/${newUser.id}`)
+        .set('x-access-token', admin.token)
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+  });
+});

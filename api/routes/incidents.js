@@ -1,6 +1,6 @@
 import express from 'express';
 import { adminAccess, userAccess } from '../validation/auth';
-import Incident from '../controllers/categories';
+import Incident from '../controllers/incidents';
 
 const router = express.Router();
 
