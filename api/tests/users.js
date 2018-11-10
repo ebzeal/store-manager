@@ -16,7 +16,6 @@ const admin = {
 };
 
 const attendant = {
-  id: 2,
   userEmail: 'way@ward.com',
   userName: 'Way Ward',
   userPriviledge: 'User',
@@ -25,7 +24,7 @@ const attendant = {
 };
 
 const newUser = {
-  id: 5,
+  id: 3,
   userEmail: 'liz@Mel.com',
   userName: 'Mel Lisa',
   userPriviledge: 'User',
@@ -104,7 +103,7 @@ describe('Test all user routes', () => {
 
     it('it should GET a single user', (done) => {
       chai.request(app)
-        .get(`/api/v1/users/${attendant.id}`)
+        .get('/api/v1/users/2')
         .set('x-access-token', admin.token)
         .end((err, res) => {
           res.body.should.be.a('object');
