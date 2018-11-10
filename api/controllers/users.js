@@ -22,6 +22,17 @@ const User = {
     // Check Validation
     if (!isValid) return res.json(errors);
 
+    // const email = [
+    //   req.body.userEmail,
+    // ];
+    // const findUser = 'SELECT * FROM users WHERE userEmail=$1';
+    // try {
+    //   const { checkRows } = await db.query(findUser, email);
+
+    //   if (checkRows[0]) {
+    //     res.json({ message: 'This user already exists' });
+    //     return res.status(404);
+    //   }
     const hashed = bcrypt.hashSync(req.body.password, 8);
     const text = `INSERT INTO
       users(userName, userEmail, userPriviledge, password)
@@ -40,7 +51,11 @@ const User = {
     } catch (error) {
       return res.status(400).json(error);
     }
+    // } catch (error) {
+    //   res.json(error);
+    //   return res.status(400);
   },
+// },
 
   /**
  * Login a user
@@ -82,8 +97,7 @@ const User = {
         { expiresIn: 10800 },
         (err, token) => {
           res.json({
-            success: true,
-            token: `${token}`,
+            token: `${token}  \n For Postman test`,
             message: `${rows[0].username} Logged in as ${rows[0].userpriviledge}`,
           });
         },
