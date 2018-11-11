@@ -2,7 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import db, { pool } from '../models/connect-test';
 import app from '../../server';
-import products from '../controllers/products';
+import categories from '../controllers/categories';
 
 const should = chai.should();
 const theDate = () => new Date();
@@ -23,35 +23,27 @@ const attendant = {
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlck5hbWUiOiJXYXkgV2FyZCIsInVzZXJQcml2aWxlZGdlIjoiVXNlciIsImlhdCI6MTU0MTkyMjI3MiwiZXhwIjoxNTczMDI2MjcyfQ.SMlk345LLUmwzVu3XfA8g3H07w5niXdltVomhgnakVk',
 };
 
-const product1 = {
+const category1 = {
   id: 1,
-  productCategory: 'Toiletries',
-  productName: 'Bath Soap',
-  productImage: 'pack.jpg',
-  productDetails: 'For Fresh Bath',
-  productSpec: '80mg per pack',
-  productPrice: '300',
+  categoryName: 'Toiletries',
+  categoryDetails: 'For the toilet',
 };
 
-const newProduct = {
-  id: 6,
-  productCategory: 'Toiletries',
-  productName: 'Wash Soap',
-  productImage: 'packs.jpg',
-  productDetails: 'For Fresh Bath',
-  productSpec: '80mg per pack',
-  productPrice: '200',
+const newCategory = {
+  id: 1,
+  categoryName: 'Toiletries',
+  categoryDetails: 'For the toilet',
 };
 
 
-describe('Test all product routes', () => {
+describe('Test all categories routes', () => {
 
-  describe('POST /products ', () => {
+  describe('POST /categories ', () => {
     it('should create a new product', (done) => {
       chai.request(app)
-        .post('/api/v1/products')
+        .post('/api/v1/categories')
         .set('x-access-token', admin.token)
-        .send(newProduct)
+        .send(newCategory)
         .end((err, res) => {
           res.should.have.status(201);
           done();
@@ -59,10 +51,10 @@ describe('Test all product routes', () => {
     });
   });
 
-  describe('GET /products Routes', () => {
-    it('it should GET all the products', (done) => {
+  describe('GET /categories Routes', () => {
+    it('it should GET all the categories', (done) => {
       chai.request(app)
-        .get('/api/v1/products/')
+        .get('/api/v1/categories/')
         .set('x-access-token', attendant.token)
         .end((err, res) => {
           // should.exist(res.body);
@@ -73,30 +65,29 @@ describe('Test all product routes', () => {
     });
   });
 
-  describe('GET products/:id', () => {
-    // * Test the GET api/products route
+  describe('GET categories/:id', () => {
+    // * Test the GET api/categories route
 
     it('it should GET a single product', (done) => {
       chai.request(app)
-        .get('/api/v1/products/2')
+        .get('/api/v1/categories/1')
         .set('x-access-token', attendant.token)
         .end((err, res) => {
           res.body.should.be.a('object');
           res.should.have.status(200);
           // res.body.items.length.should.be.eql(1);
-          res.body.should.have.property('productname');
-          res.body.should.have.property('productcategory');
-          res.body.should.have.property('productprice');
+          res.body.should.have.property('categoryname');
+          res.body.should.have.property('categorydetails');
           done();
         });
     });
   });
 
-  // // Test the PUT api / products
-  // describe('/PUT products', () => {
+  // // Test the PUT api / categories
+  // describe('/PUT categories', () => {
   //   it.only('it should update a user', (done) => {
   //     chai.request(app)
-  //       .put('/api/v1/products/2')
+  //       .put('/api/v1/categories/2')
   //       .set('x-access-token', admin.token)
   //       .send({ attendant })
   //       .end((err, res) => {
@@ -110,10 +101,10 @@ describe('Test all product routes', () => {
   // describe('/DELETE/:id product', () => {
   //   it('it should DELETE a product given the id', (done) => {
   //     chai.request(app)
-  //       .delete('/api/v1/products/5')
+  //       .delete('/api/v1/categories/3')
   //       .set('x-access-token', admin.token)
   //       .end((err, res) => {
-  //         res.should.have.status(200);
+  //         res.should.have.status(204);
   //         done();
   //       });
   //   });

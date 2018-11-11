@@ -135,15 +135,15 @@ describe('Test all user routes', () => {
   // });
 
 
-  describe('/DELETE/:id user', () => {
-    it('it should DELETE a user given the id', (done) => {
-      chai.request(app)
-        .delete(`/api/v1/users/${newUser.id}`)
-        .set('x-access-token', admin.token)
-        .end((err, res) => {
-          res.should.have.status(200);
-          done();
-        });
-    });
-  });
+  // describe('/DELETE/:id user', () => {
+  //   it('it should DELETE a user given the id', (done) => {
+  //     chai.request(app)
+  //       .delete('/api/v1/users/4')
+  //       .set('x-access-token', admin.token)
+  //       .end((err, res) => {
+  //         res.should.have.status(200);
+  //         done();
+  //       });
+  //   });
+  // });
 });

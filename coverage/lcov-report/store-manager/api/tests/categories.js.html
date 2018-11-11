@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for store-manager/api/tests/products.js</title>
+    <title>Code coverage report for store-manager/api/tests/categories.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\..\base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\..\index.html">All files</a> / <a href="index.html">store-manager/api/tests</a> products.js
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">store-manager/api/tests</a> categories.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.06% </span>
+        <span class="strong">96.97% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/34</span>
+        <span class='fraction'>32/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>33/33</span>
+        <span class='fraction'>32/32</span>
       </div>
     </div>
     <p class="quiet">
@@ -158,16 +158,7 @@
 <a name='L110'></a><a href='#L110'>110</a>
 <a name='L111'></a><a href='#L111'>111</a>
 <a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a>
-<a name='L121'></a><a href='#L121'>121</a>
-<a name='L122'></a><a href='#L122'>122</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L113'></a><a href='#L113'>113</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -198,15 +189,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -253,7 +236,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -292,7 +274,7 @@
 import chaiHttp from 'chai-http';
 import db, { pool } from '../models/connect-test';
 import app from '../../server';
-import products from '../controllers/products';
+import categories from '../controllers/categories';
 &nbsp;
 const should = chai.should();
 const <span class="fstat-no" title="function not covered" >theDate = <span class="cstat-no" title="statement not covered" >(</span>) =&gt; new Date();</span>
@@ -313,35 +295,27 @@ const attendant = {
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlck5hbWUiOiJXYXkgV2FyZCIsInVzZXJQcml2aWxlZGdlIjoiVXNlciIsImlhdCI6MTU0MTkyMjI3MiwiZXhwIjoxNTczMDI2MjcyfQ.SMlk345LLUmwzVu3XfA8g3H07w5niXdltVomhgnakVk',
 };
 &nbsp;
-const product1 = {
+const category1 = {
   id: 1,
-  productCategory: 'Toiletries',
-  productName: 'Bath Soap',
-  productImage: 'pack.jpg',
-  productDetails: 'For Fresh Bath',
-  productSpec: '80mg per pack',
-  productPrice: '300',
+  categoryName: 'Toiletries',
+  categoryDetails: 'For the toilet',
 };
 &nbsp;
-const newProduct = {
-  id: 6,
-  productCategory: 'Toiletries',
-  productName: 'Wash Soap',
-  productImage: 'packs.jpg',
-  productDetails: 'For Fresh Bath',
-  productSpec: '80mg per pack',
-  productPrice: '200',
+const newCategory = {
+  id: 1,
+  categoryName: 'Toiletries',
+  categoryDetails: 'For the toilet',
 };
 &nbsp;
 &nbsp;
-describe('Test all product routes', () =&gt; {
+describe('Test all categories routes', () =&gt; {
 &nbsp;
-  describe('POST /products ', () =&gt; {
+  describe('POST /categories ', () =&gt; {
     it('should create a new product', (done) =&gt; {
       chai.request(app)
-        .post('/api/v1/products')
+        .post('/api/v1/categories')
         .set('x-access-token', admin.token)
-        .send(newProduct)
+        .send(newCategory)
         .end((err, res) =&gt; {
           res.should.have.status(201);
           done();
@@ -349,10 +323,10 @@ describe('Test all product routes', () =&gt; {
     });
   });
 &nbsp;
-  describe('GET /products Routes', () =&gt; {
-    it('it should GET all the products', (done) =&gt; {
+  describe('GET /categories Routes', () =&gt; {
+    it('it should GET all the categories', (done) =&gt; {
       chai.request(app)
-        .get('/api/v1/products/')
+        .get('/api/v1/categories/')
         .set('x-access-token', attendant.token)
         .end((err, res) =&gt; {
           // should.exist(res.body);
@@ -363,30 +337,29 @@ describe('Test all product routes', () =&gt; {
     });
   });
 &nbsp;
-  describe('GET products/:id', () =&gt; {
-    // * Test the GET api/products route
+  describe('GET categories/:id', () =&gt; {
+    // * Test the GET api/categories route
 &nbsp;
     it('it should GET a single product', (done) =&gt; {
       chai.request(app)
-        .get('/api/v1/products/2')
+        .get('/api/v1/categories/1')
         .set('x-access-token', attendant.token)
         .end((err, res) =&gt; {
           res.body.should.be.a('object');
           res.should.have.status(200);
           // res.body.items.length.should.be.eql(1);
-          res.body.should.have.property('productname');
-          res.body.should.have.property('productcategory');
-          res.body.should.have.property('productprice');
+          res.body.should.have.property('categoryname');
+          res.body.should.have.property('categorydetails');
           done();
         });
     });
   });
 &nbsp;
-  // // Test the PUT api / products
-  // describe('/PUT products', () =&gt; {
+  // // Test the PUT api / categories
+  // describe('/PUT categories', () =&gt; {
   //   it.only('it should update a user', (done) =&gt; {
   //     chai.request(app)
-  //       .put('/api/v1/products/2')
+  //       .put('/api/v1/categories/2')
   //       .set('x-access-token', admin.token)
   //       .send({ attendant })
   //       .end((err, res) =&gt; {
@@ -400,10 +373,10 @@ describe('Test all product routes', () =&gt; {
   // describe('/DELETE/:id product', () =&gt; {
   //   it('it should DELETE a product given the id', (done) =&gt; {
   //     chai.request(app)
-  //       .delete('/api/v1/products/5')
+  //       .delete('/api/v1/categories/3')
   //       .set('x-access-token', admin.token)
   //       .end((err, res) =&gt; {
-  //         res.should.have.status(200);
+  //         res.should.have.status(204);
   //         done();
   //       });
   //   });

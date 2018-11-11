@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">35% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/20</span>
+        <span class='fraction'>12/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">15.15% </span>
+        <span class="strong">24.24% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/33</span>
+        <span class='fraction'>8/33</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/6</span>
+        <span class='fraction'>4/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">31.58% </span>
+        <span class="strong">57.89% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/19</span>
+        <span class='fraction'>11/19</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -182,7 +182,7 @@
 <a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">61x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -224,11 +224,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -240,10 +238,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -315,7 +315,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import db from '../models/connect';
 import validateProduct from '../validation/products';
 &nbsp;
-const Product = <span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="missing-if-branch" title="else path not taken" >E</span><span class="branch-4 cbranch-no" title="branch not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >{</span></span></span></span></span></span>
+const Product = <span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-3 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ><span class="missing-if-branch" title="else path not taken" >E</span><span class="branch-4 cbranch-no" title="branch not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >{</span></span></span></span></span></span>
   /**
    * Create A product
    * @param {object} req
@@ -357,9 +357,9 @@ const Product = <span class="fstat-no" title="function not covered" ><span class
    * @returns {object} products array
    */
   async getAll(req, res) {
-    const <span class="cstat-no" title="statement not covered" >findAllQuery = 'SELECT * FROM products';</span>
+    const findAllQuery = 'SELECT * FROM products';
     try {
-      const { <span class="cstat-no" title="statement not covered" >rows } = await db.query(findAllQuery);</span>
+      const { rows } = await db.query(findAllQuery);
       return res.status(200).json({ rows });
     } catch (error) {
       return res.status(400).json(error);
@@ -373,10 +373,10 @@ const Product = <span class="fstat-no" title="function not covered" ><span class
    * @returns {object} product object
    */
   async getOne(req, res) {
-    const <span class="cstat-no" title="statement not covered" >productId = req.params.id;</span>
-    const <span class="cstat-no" title="statement not covered" >text = `SELECT * FROM products WHERE id = ${productId}`;</span>
+    const productId = req.params.id;
+    const text = `SELECT * FROM products WHERE id = ${productId}`;
     try {
-      const { <span class="cstat-no" title="statement not covered" >rows } = await db.query(text);</span>
+      const { rows } = await db.query(text);
       if (!rows[0]) {
         return res.status(404).json({ message: 'product not found' });
       }
@@ -451,7 +451,7 @@ export default Product;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 11 2018 09:16:16 GMT+0100 (W. Central Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 11 2018 12:35:11 GMT+0100 (W. Central Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>
