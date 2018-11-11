@@ -7,6 +7,7 @@ directories:
 services:
  - postgresql
 before_script:
+ - psql -c 'create database "store-manager-test";' -U postgres
  - npm run postdeploy
 script:
  - npm test

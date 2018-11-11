@@ -1,5 +1,5 @@
-CREATE DATABASE "store-manager-test";
-\connect "store-manager-test"
+-- CREATE DATABASE "store-manager-test";
+-- \connect "store-manager-test"
 
    CREATE TABLE IF NOT EXISTS
         users(
