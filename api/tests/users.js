@@ -12,20 +12,20 @@ const admin = {
   id: 1,
   userEmail: 'olu@me.com',
   password: '$2a$08$HM8vn5rE0cnSGbd68Gi7BOacCvnD1tb9fcuhJdR04wrFH3ng8c6NS',
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlck5hbWUiOiJzb2xhIiwidXNlclByaXZpbGVkZ2UiOiJBZG1pbiIsImlhdCI6MTU0MTcxNzkyOCwiZXhwIjoxNTQxNzI4NzI4fQ.kb_hZ3r_VLmbKHU2MUZl1L_6tYf-2Kvc70i80uEDriU',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlck5hbWUiOiJvbHUgU29sYSIsInVzZXJQcml2aWxlZGdlIjoiQWRtaW4iLCJpYXQiOjE1NDE5MjIwODQsImV4cCI6MTU3MzAyNjA4NH0.KZgSbncTwpmuY89eyZ_QFu6HhGqI-d5jfKNqAV2DbQY',
 };
 
 const attendant = {
-  id: 2,
   userEmail: 'way@ward.com',
-  userName: 'Way Ward',
+  userName: 'Ways Ward',
   userPriviledge: 'User',
   password: '$2a$08$HM8vn5rE0cnSGbd68Gi7BOacCvnD1tb9fcuhJdR04wrFH3ng8c6NS',
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlck5hbWUiOiJzb2xhIiwidXNlclByaXZpbGVkZ2UiOiJBZG1pbiIsImlhdCI6MTU0MTcxNzkyOCwiZXhwIjoxNTQxNzI4NzI4fQ.kb_hZ3r_VLmbKHU2MUZl1L_6tYf-2Kvc70i80uEDriU',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlck5hbWUiOiJXYXkgV2FyZCIsInVzZXJQcml2aWxlZGdlIjoiVXNlciIsImlhdCI6MTU0MTkyMjI3MiwiZXhwIjoxNTczMDI2MjcyfQ.SMlk345LLUmwzVu3XfA8g3H07w5niXdltVomhgnakVk',
+  datemodified: theDate(),
 };
 
 const newUser = {
-  id: 5,
+  id: 3,
   userEmail: 'liz@Mel.com',
   userName: 'Mel Lisa',
   userPriviledge: 'User',
@@ -104,7 +104,7 @@ describe('Test all user routes', () => {
 
     it('it should GET a single user', (done) => {
       chai.request(app)
-        .get(`/api/v1/users/${attendant.id}`)
+        .get('/api/v1/users/2')
         .set('x-access-token', admin.token)
         .end((err, res) => {
           res.body.should.be.a('object');
@@ -120,11 +120,11 @@ describe('Test all user routes', () => {
     });
   });
 
-  // // Test the PUT api / users
+  // Test the PUT api / users
   // describe('/PUT users', () => {
   //   it.only('it should update a user', (done) => {
   //     chai.request(app)
-  //       .put(`/api/v1/users/${attendant.id}`)
+  //       .put('/api/v1/users/2')
   //       .set('x-access-token', admin.token)
   //       .send({ attendant })
   //       .end((err, res) => {
@@ -135,15 +135,15 @@ describe('Test all user routes', () => {
   // });
 
 
-  describe('/DELETE/:id user', () => {
-    it('it should DELETE a user given the id', (done) => {
-      chai.request(app)
-        .delete(`/api/v1/users/${newUser.id}`)
-        .set('x-access-token', admin.token)
-        .end((err, res) => {
-          res.should.have.status(200);
-          done();
-        });
-    });
-  });
+  // describe('/DELETE/:id user', () => {
+  //   it('it should DELETE a user given the id', (done) => {
+  //     chai.request(app)
+  //       .delete('/api/v1/users/4')
+  //       .set('x-access-token', admin.token)
+  //       .end((err, res) => {
+  //         res.should.have.status(200);
+  //         done();
+  //       });
+  //   });
+  // });
 });

@@ -4,13 +4,14 @@
   "description": "A retail store app for inventory and sales management",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --require babel-core/register ./api/tests/**/*.js --timeout 10000",
+    "test-dev": "SET \"current_env=test\" && nyc --reporter=lcov --reporter=text --cache mocha --require babel-core/register ./api/tests/**/*.js --exit --timeout=20000",
+    "test": "export current_env=test || SET \"current_env=test\" && npm run postdeploy && npm run build && nyc --reporter=lcov --reporter=text mocha --require babel-core/register ./api/tests/**/*.js --sort --exit --timeout 20000",
     "clear": "rm -rf build",
     "build": "npm run clear && babel server.js --out-dir build",
     "dev-start": "babel-watch server.js",
     "start": "babel-node server.js",
     "postinstall": "npm run build",
-    "postdeploy": "psql -U postgres -f ./api/models/db.sql",
+    "postdeploy": "psql -U postgres -f api/models/test-db.sql",
     "tables-setup-heroku": "heroku pg:psql -f ./api/models/db.sql",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -31,6 +32,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.3.0",
     "pg": "^7.6.0",
+    "swagger-ui-express": "^4.0.1",
     "validator": "^10.8.0"
   },
   "devDependencies": {

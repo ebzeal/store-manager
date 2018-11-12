@@ -21,11 +21,11 @@ const Sales = {
       VALUES($1, $2, $3, $4, $5)
       returning *`;
     const values = [
+      req.body.salesid,
       req.body.attendant,
       req.body.productName,
       req.body.quantity,
       req.body.amount,
-      req.body.productSpec,
     ];
 
     try {

@@ -55,7 +55,7 @@ const User = {
     //   res.json(error);
     //   return res.status(400);
   },
-// },
+  // },
 
   /**
  * Login a user
