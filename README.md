@@ -19,6 +19,9 @@ A retail store app for inventory and sales management.
 * Admin can get all sale order records
 * More features will be added
 
+#Documentation
+https://v2-store-manager.herokuapp.com/api-docs/
+
 # Usage
 * Create an admin profile
 * Add users (Store Attendant) profiles
