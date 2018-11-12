@@ -2,6 +2,8 @@ import express from 'express';
 // import dotenv from 'dotenv';
 import 'babel-polyfill';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swaggers.json';
 // add routes
 import users from './api/routes/users';
 import auth from './api/routes/auth';
@@ -20,6 +22,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.get('/api/v1/', (req, res) => res.status(200).json('Welcome'));
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // use routes
 app.use('/api/v1/sales', sales);
