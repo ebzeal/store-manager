@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/ebzeal/store-manager.svg?branch=develop)](https://travis-ci.com/ebzeal/store-manager)
+https://travis-ci.com/ebzeal/store-manager.svg?branch=develop
 [![Coverage Status](https://coveralls.io/repos/github/ebzeal/store-manager/badge.svg)](https://coveralls.io/github/ebzeal/store-manager)
 
 # Store Manager
