@@ -16,7 +16,6 @@ script:
  - "export NODE_ENV=test"
  - "npm run build"
  - "npm run test"
- - "npm run lint"
 after_success:
 - npm run coveralls
 - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
