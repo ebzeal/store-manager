@@ -1,16 +1,19 @@
 language: node_js
 node_js:
- - "8.11.1"
+-"8.11.1"
 cache:
 directories:
- - "node_modules"
+- "node_modules"
 services:
- - postgresql
+- postgresql
 before_script:
- - psql -c 'create database "store-manager-test";' -U postgres
- - npm run postdeploy
+- psql -c 'create database "store-manager-test";' -U postgres
+- npm run postdeploy
 script:
- - npm test
+- npm test
 travis_wait after_success:
-  - npm run coveralls
- - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- npm run coveralls
+- ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+
+ 
