@@ -97,7 +97,7 @@ const User = {
         { expiresIn: 10800 },
         (err, token) => {
           res.json({
-            token: `${token}  \n For Postman test`,
+            token: `${token}`,
             message: `${rows[0].username} Logged in as ${rows[0].userpriviledge}`,
           });
         },
