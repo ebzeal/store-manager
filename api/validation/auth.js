@@ -26,13 +26,15 @@ export function userAccess(req, res, next) {
     if (!token) {
       return res.status(401).send({ auth: false, message: 'No token provided.' });
     }
-    jwt.verify(token, keys.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, keys.JWT_SECRET, (err,
+      decoded) => {
       if (err) {
         return res.status(500).send({
           // auth: false, message: err.message, //Give me a readable message
           auth: false, message: 'Sorry, you do not have access to this page. Contact Admin',
         });
       } else {
+        req.decoded = decoded;
         return next();
       }
     });

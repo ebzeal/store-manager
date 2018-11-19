@@ -50,6 +50,7 @@ describe('Test all product routes', () => {
     it('should create a new product', (done) => {
       chai.request(app)
         .post('/api/v1/products')
+        .set('content-Type', 'application/json')
         .set('authorization', admin.token)
         .send(newProduct)
         .end((err, res) => {
@@ -63,6 +64,7 @@ describe('Test all product routes', () => {
     it('it should GET all the products', (done) => {
       chai.request(app)
         .get('/api/v1/products/')
+        .set('content-Type', 'application/json')
         .set('authorization', attendant.token)
         .end((err, res) => {
           // should.exist(res.body);
@@ -79,6 +81,7 @@ describe('Test all product routes', () => {
     it('it should GET a single product', (done) => {
       chai.request(app)
         .get('/api/v1/products/2')
+        .set('content-Type', 'application/json')
         .set('authorization', attendant.token)
         .end((err, res) => {
           res.body.should.be.a('object');

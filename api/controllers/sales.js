@@ -17,13 +17,12 @@ const Sales = {
       return res.status(400).json(errors);
     }
     const text = `INSERT INTO
-      sales(salesid,attendant,productName,quantity,amount)
+      sales(users_id,products_id,quantity,amount)
       VALUES($1, $2, $3, $4, $5)
       returning *`;
     const values = [
-      req.body.salesid,
-      req.body.attendant,
-      req.body.productName,
+      req.body.users_id,
+      req.body.products_id,
       req.body.quantity,
       req.body.amount,
     ];

@@ -98,6 +98,12 @@ input:active {
   color: rgba(0, 0, 0, 0.6);
 }
 
+.error {
+  background: rgba(240, 240, 240, 0.45);
+  color: red;
+  font-family: aFont;
+  padding: 4px;
+}
 @media (min-width: 768px) and (max-width: 990.98px) {
   .logo {
     margin-top: 70px;

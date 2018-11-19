@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.06% </span>
+        <span class="strong">91.18% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/34</span>
+        <span class='fraction'>31/34</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90.91% </span>
+        <span class="strong">81.82% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>10/11</span>
+        <span class='fraction'>9/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">93.94% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>33/33</span>
+        <span class='fraction'>31/33</span>
       </div>
     </div>
     <p class="quiet">
@@ -167,7 +167,10 @@
 <a name='L119'></a><a href='#L119'>119</a>
 <a name='L120'></a><a href='#L120'>120</a>
 <a name='L121'></a><a href='#L121'>121</a>
-<a name='L122'></a><a href='#L122'>122</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -222,8 +225,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -235,18 +239,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -340,11 +346,12 @@ describe('Test all product routes', () =&gt; {
     it('should create a new product', (done) =&gt; {
       chai.request(app)
         .post('/api/v1/products')
+        .set('content-Type', 'application/json')
         .set('authorization', admin.token)
         .send(newProduct)
-        .end((err, res) =&gt; {
-          res.should.have.status(201);
-          done();
+        .end(<span class="fstat-no" title="function not covered" >(</span>err, res) =&gt; {
+<span class="cstat-no" title="statement not covered" >          res.should.have.status(201);</span>
+<span class="cstat-no" title="statement not covered" >          done();</span>
         });
     });
   });
@@ -353,6 +360,7 @@ describe('Test all product routes', () =&gt; {
     it('it should GET all the products', (done) =&gt; {
       chai.request(app)
         .get('/api/v1/products/')
+        .set('content-Type', 'application/json')
         .set('authorization', attendant.token)
         .end((err, res) =&gt; {
           // should.exist(res.body);
@@ -369,6 +377,7 @@ describe('Test all product routes', () =&gt; {
     it('it should GET a single product', (done) =&gt; {
       chai.request(app)
         .get('/api/v1/products/2')
+        .set('content-Type', 'application/json')
         .set('authorization', attendant.token)
         .end((err, res) =&gt; {
           res.body.should.be.a('object');
@@ -415,7 +424,7 @@ describe('Test all product routes', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 13 2018 13:14:50 GMT+0100 (W. Central Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 14 2018 11:57:29 GMT+0100 (W. Central Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

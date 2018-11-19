@@ -8,6 +8,9 @@ const Product = {
    * @param {object} res
    * @returns {object} product object
    */
+  constructor() {
+
+  },
 
   async create(req, res) {
     const { errors, isValid } = validateProduct(req.body);
@@ -16,20 +19,29 @@ const Product = {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    const text = `INSERT INTO
-      products(productCategory,productName,productImage,productDetails,productSpec,productPrice)
-      VALUES($1, $2, $3, $4, $5, $6)
-      returning *`;
     const values = [
-      req.body.productCategory,
+      req.body.categories_id,
       req.body.productName,
-      req.body.productImage,
+      req.file.path,
       req.body.productDetails,
       req.body.productSpec,
       req.body.productPrice,
     ];
+    const uniqueVal = [
+      values[0].trim(),
+      values[1].trim(),
+    ];
+    const uniqueProduct = 'SELECT categories_id,productName FROM products WHERE categories_id=$1 AND LOWER(productName)=LOWER($2)';
+
+    const text = `INSERT INTO
+      products(categories_id,productName,productImage,productDetails,productSpec,productPrice)
+      VALUES($1, $2, $3, $4, $5, $6)
+      returning *`;
+
 
     try {
+      const unique = await db.query(uniqueProduct, uniqueVal);
+      if (unique.rows[0]) return res.status(401).json({ message: `A product called ${unique.rows[0].productname} of Category ${unique.rows[0].categories_id} already exist` });
       const { rows } = await db.query(text, values);
       return res.status(201).json(rows[0]);
     } catch (error) {
@@ -87,7 +99,7 @@ const Product = {
 
     const findOneQuery = 'SELECT * FROM products WHERE id=$1';
     const updateOneQuery = `UPDATE products
-      SET productCategory=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6
+      SET categories_id=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6
       WHERE id=$7 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
@@ -95,7 +107,7 @@ const Product = {
         return res.status(404).json({ message: 'product not found' });
       }
       const values = [
-        req.body.productCategory || rows[0].productCategory,
+        req.body.categories_id || rows[0].categories_id,
         req.body.productName || rows[0].productName,
         req.body.productImage || rows[0].productImage,
         req.body.productDetails || rows[0].productDetails,

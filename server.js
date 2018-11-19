@@ -1,4 +1,6 @@
+import path from 'path';
 import express from 'express';
+import cors from 'cors';
 // import dotenv from 'dotenv';
 import 'babel-polyfill';
 import bodyParser from 'body-parser';
@@ -17,9 +19,20 @@ import incidents from './api/routes/incidents';
 
 const app = express();
 app.use(express.json());
-app.use(bodyParser.urlencoded({
-  extended: true,
-}));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use(cors());
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader(
+//     'Access-Control-Allow-Methods',
+//     'OPTIONS, GET, POST, PUT, PATCH, DELETE',
+//   );
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
+// });
 app.get('/api/v1/', (req, res) => res.status(200).json('Welcome'));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

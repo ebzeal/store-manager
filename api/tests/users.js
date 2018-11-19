@@ -73,6 +73,7 @@ describe('Test all user routes', () => {
     it('should register a user', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
+        .set('content-Type', 'application/json')
         .set('authorization', admin.token)
         .send(newUser)
         .end((err, res) => {
@@ -89,6 +90,7 @@ describe('Test all user routes', () => {
     it('it should GET all the users', (done) => {
       chai.request(app)
         .get('/api/v1/users')
+        .set('content-Type', 'application/json')
         .set('authorization', admin.token)
         .end((err, res) => {
           // should.exist(res.body);
@@ -105,6 +107,7 @@ describe('Test all user routes', () => {
     it('it should GET a single user', (done) => {
       chai.request(app)
         .get('/api/v1/users/2')
+        .set('content-Type', 'application/json')
         .set('authorization', admin.token)
         .end((err, res) => {
           res.body.should.be.a('object');

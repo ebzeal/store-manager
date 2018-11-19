@@ -42,6 +42,7 @@ describe('Test all categories routes', () => {
     it('should create a new category', (done) => {
       chai.request(app)
         .post('/api/v1/categories')
+        .set('content-Type', 'application/json')
         .set('authorization', admin.token)
         .send(newCategory)
         .end((err, res) => {
@@ -55,6 +56,7 @@ describe('Test all categories routes', () => {
     it('it should GET all the categories', (done) => {
       chai.request(app)
         .get('/api/v1/categories/')
+        .set('content-Type', 'application/json')
         .set('authorization', attendant.token)
         .end((err, res) => {
           // should.exist(res.body);
@@ -71,6 +73,7 @@ describe('Test all categories routes', () => {
     it('it should GET a single category', (done) => {
       chai.request(app)
         .get('/api/v1/categories/1')
+        .set('content-Type', 'application/json')
         .set('authorization', attendant.token)
         .end((err, res) => {
           res.body.should.be.a('object');
