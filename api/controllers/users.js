@@ -233,6 +233,22 @@ const User = {
     }
   },
 
+  userAccess(req, res) {
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(401).send({ auth: false, message: 'No token provided.' });
+    }
+    jwt.verify(token, keys.JWT_SECRET, (err,
+      decoded) => {
+      if (err) {
+        res.status(500).send({
+          // auth: false, message: err.message, //Give me a readable message
+          auth: false, message: 'Sorry, you do not have access to this page. Contact Admin',
+        });
+      }
+      res.json(decoded);
+    });
+  },
 };
 
 export default User;

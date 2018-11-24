@@ -98,8 +98,8 @@ input:active {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.error {
-  background: rgba(240, 240, 240, 0.45);
+#errorDisplay, #errorDisplay2 {
+  background: rgba(48, 48, 48, 0.45);
   color: red;
   font-family: aFont;
   padding: 4px;

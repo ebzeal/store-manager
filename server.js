@@ -13,6 +13,7 @@ import sales from './api/routes/sales';
 import products from './api/routes/products';
 import categories from './api/routes/categories';
 import incidents from './api/routes/incidents';
+import notifications from './api/routes/notifications';
 
 
 // dotenv.config();
@@ -44,6 +45,7 @@ app.use('/api/v1/categories', categories);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
 app.use('/api/v1/incidents', incidents);
+app.use('/api/v1/notifications', notifications);
 
 
 const port = process.env.PORT || 3000;

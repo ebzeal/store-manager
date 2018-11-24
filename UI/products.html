@@ -10,56 +10,19 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
   <title>Ilupeju Stores - Store Manager App</title>
+  <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
   <nav>
-    <div id="logo"><a href="dashboard.html"> <img src="images/logo.png" alt="Ilupeju Stores logo">
+    <div id="logo"><a href="dashboard.html">
+        <p>ILUPEJU <span>STORES </span> </p>
       </a></div>
     <label for="drop" class="toggle">Menu</label>
     <input type="checkbox" id="drop" />
-    <ul class="menu">
-      <li><a href="dashboard.html">Dashboard</a></li>
+    <ul class="menu" id="menu">
 
-      <li>
-
-        <!-- First Tier Drop Down -->
-        <label for="drop-2" class="toggle">Portfolio +</label>
-        <a href="#">Products</a>
-        <input type="checkbox" id="drop-2" />
-        <ul>
-          <li><a href="products.html">View All Products</a></li>
-          <li><a href="admin/products/new.html">Add Product</a></li>
-          <!-- <li>
-
-            <!-- Second Tier Drop Down --
-            <label for="drop-3" class="toggle">Works +</label>
-            <a href="#">Works</a>
-            <input type="checkbox" id="drop-3" />
-            <ul>
-              <li><a href="#">HTML/CSS</a></li>
-              <li><a href="#">jQuery</a></li>
-              <li><a href="#">Python</a></li>
-            </ul>
-          </li> -->
-        </ul>
-      </li>
-      <li><a href="report-incidence.html">Incidence</a></li>
-      <li><a href="cart/index.html">Shopping Cart</a></li>
-
-      <li class="profile">
-        <!-- First Tier Drop Down -->
-        <label for="drop-1" class="toggle"> <img src="images/john-doe.jpg" alt=""> +</label>
-        <a href="#" class="dropbtn"><img src="images/john-doe.jpg" alt=""></a>
-        <input type="checkbox" id="drop-1" />
-        <ul>
-          <li><a href="#">Hi John</a></li>
-          <li><a href="users/john-doe.html">Profile</a></li>
-          <li><a href="audit/john-doe.html">Sales Orders</a></li>
-          <li><a href="index.html">Logout</a></li>
-        </ul>
-      </li>
     </ul>
   </nav>
 
@@ -88,150 +51,24 @@
           </form>
         </div>
       </div>
-      <div class="right">
+      <div class="right" id="showProducts">
 
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Picture</th>
-            <th>Category</th>
-            <th>Specification</th>
-            <th>Quantity</th>
-            <th>Price (N)</th>
-            <th>Buy</th>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/vegetables.html'">Vegetables</td>
-            <td> <img src="images/vegetables.jpg" alt="" onclick="window.location='products/vegetables.html'"> </td>
-            <td>Groceries</td>
-            <td>250g Pack</td>
-            <td>83</td>
-            <td>200</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/bread.html'">Bread</td>
-            <td> <img src="images/bread.jpg" alt="" onclick="window.location='products/bread.html'"> </td>
-            <td>Groceries</td>
-            <td>200g Pack</td>
-            <td>100</td>
-            <td>400</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/vegetables.html'">Vegetables</td>
-            <td> <img src="images/vegetables.jpg" alt="" onclick="window.location='products/vegetables.html'"> </td>
-            <td>Groceries</td>
-            <td>250g Pack</td>
-            <td>83</td>
-            <td>200</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/bread.html'">Bread</td>
-            <td> <img src="images/bread.jpg" alt="" onclick="window.location='products/bread.html'"> </td>
-            <td>Groceries</td>
-            <td>200g Pack</td>
-            <td>100</td>
-            <td>400</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/vegetables.html'">Vegetables</td>
-            <td> <img src="images/vegetables.jpg" alt="" onclick="window.location='products/vegetables.html'"> </td>
-            <td>Groceries</td>
-            <td>250g Pack</td>
-            <td>83</td>
-            <td>200</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/bread.html'">Bread</td>
-            <td> <img src="images/bread.jpg" alt="" onclick="window.location='products/bread.html'"> </td>
-            <td>Groceries</td>
-            <td>200g Pack</td>
-            <td>100</td>
-            <td>400</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/vegetables.html'">Vegetables</td>
-            <td> <img src="images/vegetables.jpg" alt="" onclick="window.location='products/vegetables.html'"> </td>
-            <td>Groceries</td>
-            <td>250g Pack</td>
-            <td>83</td>
-            <td>200</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/bread.html'">Bread</td>
-            <td> <img src="images/bread.jpg" alt="" onclick="window.location='products/bread.html'"> </td>
-            <td>Groceries</td>
-            <td>200g Pack</td>
-            <td>100</td>
-            <td>400</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/vegetables.html'">Vegetables</td>
-            <td> <img src="images/vegetables.jpg" alt="" onclick="window.location='products/vegetables.html'"> </td>
-            <td>Groceries</td>
-            <td>250g Pack</td>
-            <td>83</td>
-            <td>200</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/bread.html'">Bread</td>
-            <td> <img src="images/bread.jpg" alt="" onclick="window.location='products/bread.html'"> </td>
-            <td>Groceries</td>
-            <td>200g Pack</td>
-            <td>100</td>
-            <td>400</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/vegetables.html'">Vegetables</td>
-            <td> <img src="images/vegetables.jpg" alt="" onclick="window.location='products/vegetables.html'"> </td>
-            <td>Groceries</td>
-            <td>250g Pack</td>
-            <td>83</td>
-            <td>200</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/bread.html'">Bread</td>
-            <td> <img src="images/bread.jpg" alt="" onclick="window.location='products/bread.html'"> </td>
-            <td>Groceries</td>
-            <td>200g Pack</td>
-            <td>100</td>
-            <td>400</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/vegetables.html'">Vegetables</td>
-            <td> <img src="images/vegetables.jpg" alt="" onclick="window.location='products/vegetables.html'"> </td>
-            <td>Groceries</td>
-            <td>250g Pack</td>
-            <td>83</td>
-            <td>200</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
-          </tr>
-          <tr>
-            <td onclick="window.location='products/bread.html'">Bread</td>
-            <td> <img src="images/bread.jpg" alt="" onclick="window.location='products/bread.html'"> </td>
-            <td>Groceries</td>
-            <td>200g Pack</td>
-            <td>100</td>
-            <td>400</td>
-            <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add
-                to Cart</button></td>
-          </tr>
+      </div>
 
-        </table>
+      <!-- /***************************** MODAL CODE BY w3Schools**********/ -->
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+        </div>
+
       </div>
     </div>
   </div>
+  <script type="module" src="../frontend/products/products.js"></script>
 </body>
 
 </html>
