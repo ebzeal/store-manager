@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import config from '../config.js';
 import {
-  token, access, userPageAccess, topMenu, clear,
+  token, access, adminPageAccess, topMenu, clear, categoryDropdown
 } from '../functions.js';
 
 const portPath = config.port;
@@ -12,7 +12,7 @@ async function addProduct(event) {
   event.preventDefault();
   clear();
   const formData = new FormData();
-  formData.append('categories_id', document.getElementById('categories_id').value);
+  formData.append('categories_id', document.getElementById('prodCatgSearch').value);
   formData.append('productName', document.getElementById('productName').value);
   formData.append('productImage', fileInput.files[0]);
   formData.append('productDetails', document.getElementById('productDetails').value);
@@ -55,6 +55,8 @@ submitInput.addEventListener('keyup', (e) => {
   }
 });
 
+
 window.addEventListener('DOMContentLoaded', adminPageAccess);
 window.addEventListener('load', topMenu);
+window.addEventListener('load', categoryDropdown);
 document.getElementById('addProduct').addEventListener('submit', addProduct);

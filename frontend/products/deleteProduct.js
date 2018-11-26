@@ -1,10 +1,14 @@
 import config from '../config.js';
 import {
-  token, access, userPageAccess, topMenu, getimage, categoryDropdown, searchCatgProd, deleteItem,
+  token, access, adminPageAccess, topMenu, getimage, categoryDropdown,
 } from '../functions.js';
 // import modalTab from '../modal.js';
 
 const portPath = config.port;
+
+const url = document.URL;
+const urlsplit = url.split('=');
+const urlid = urlsplit[1];
 
 async function allProducts() {
   // let category;
@@ -75,8 +79,31 @@ async function allProducts() {
   }
 }
 
-window.addEventListener('DOMContentLoaded', userPageAccess);
+async function deleteProduct() {
+  const deleteItem = confirm('Are you sure you want to delete this product?');
+  if (deleteItem) {
+    try {
+      const delitem = await fetch(`${portPath}/products/${urlid}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      });
+      const thedelitem = await delitem.json();
+      document.getElementById('successMsg').innerHTML = thedelitem.message;
+      setTimeout(window.location.replace(`/UI/products.html`), 10000);
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    window.location.replace(`/UI/products.html`);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', adminPageAccess);
 window.addEventListener('load', topMenu);
 window.addEventListener('load', allProducts);
+window.addEventListener('load', deleteProduct);
+// window.addEventListener('load', deleteItem('product'));
 window.addEventListener('load', categoryDropdown);
-document.getElementById('prodCatgSearch').addEventListener('submit', searchCatgProd);

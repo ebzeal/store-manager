@@ -63,7 +63,7 @@ const Product = {
    * @returns {object} products array
    */
   async getAll(req, res) {
-    const findAllQuery = 'SELECT * FROM products';
+    const findAllQuery = 'SELECT * FROM products ORDER BY productName ASC';
     // const findCatg = `SELECT categoryName FROM categories WHERE id=$1`;
     try {
       const { rows } = await db.query(findAllQuery);
@@ -99,17 +99,23 @@ const Product = {
    * @returns {object} updated product
    */
   async update(req, res) {
-    const { errors, isValid } = validateProduct(req.body);
+    // const { errors, isValid } = validateProduct(req.body);
 
-    // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
+    // // Check Validation
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
+    let file;
+    if (req.file === undefined || req.file === null) {
+      file = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ImagePlaceholder_icon.svg/2000px-ImagePlaceholder_icon.svg.png';
+    } else {
+      file = req.file.path;
     }
 
     const findOneQuery = 'SELECT * FROM products WHERE id=$1';
     const updateOneQuery = `UPDATE products
-      SET categories_id=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6
-      WHERE id=$7 returning *`;
+      SET categories_id=$1,productName=$2,productImage=$3,productDetails=$4,productSpec=$5,productPrice=$6,productQuantity=$7,productLimit=$8
+      WHERE id=$9 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if (!rows[0]) {
@@ -118,10 +124,12 @@ const Product = {
       const values = [
         req.body.categories_id || rows[0].categories_id,
         req.body.productName || rows[0].productName,
-        req.body.productImage || rows[0].productImage,
+        file,
         req.body.productDetails || rows[0].productDetails,
         req.body.productSpec || rows[0].productSpec,
         req.body.productPrice || rows[0].productPrice,
+        req.body.productQuantity || rows[0].productQuantity,
+        req.body.productLimit || rows[0].productLimit,
         req.params.id,
       ];
       const response = await db.query(updateOneQuery, values);

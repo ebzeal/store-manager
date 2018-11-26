@@ -475,18 +475,31 @@ input,
   border: 1px #dddddd;
 }
 
+.showproduct {
+  min-height: 350px;
+}
+
 .productimage {
   float: left;
   left: 0;
   margin: 10px;
   padding: 5px;
+  max-width: 400px;
+}
+
+.productimage > img {
+  max-width: 400px;
+  max-height: 330px;
 }
 
 .productdetails {
   padding: 10px;
   margin: 10px;
+  color: #000;
 }
-
+.productreviews  {
+  margin-top: 0px;
+}
 .receipt {
   margin: 0px auto;
   max-width: 60%;
