@@ -6,6 +6,7 @@ import {
 const portPath = config.port;
 
 let productCount;
+let categoryCount;
 
 async function notifications() {
   try {
@@ -39,6 +40,21 @@ async function notifications() {
   }
 }());
 
+(async function getCategories() {
+  try {
+    const allCategories = await fetch(`${portPath}/categories`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    const categoriesAll = await allCategories.json();
+    const categoriesArr = Object.values(categoriesAll);
+    categoryCount = categoriesArr[0].length;
+  } catch (err) {
+    console.log(err);
+  }
+}());
+
 function dashboard() {
   document.getElementById('dashboard').innerHTML = `
   <div id="products">
@@ -64,7 +80,7 @@ function dashboard() {
   <div id="categories">
   <h3><i class="fas fa-users"></i> &nbsp; Categories</h3>
   <p class="label">
-    12
+    ${categoryCount}
   </p><br>
   <p class="desc">Product Categories</p>
   <a href="admin/categories/index.html">

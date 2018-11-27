@@ -26,32 +26,27 @@
     </ul>
   </nav>
 
+
   <div class="container" id="container">
 
 
-    <h2>Add New Category</h2>
+    <h2>All Categories</h2>
+
+    <p class="errors" id="errorDisplay"></p>
+    <p class="successmsg" id="successMsg"></p>
     <div class="content">
       <div class="left">
 
+        <button onclick="window.location='new.html'">Add New Category</button>
 
-        <button onclick="window.location='index.html'">Back to All Categories</button>
       </div>
-      <div class="right white-bg">
-        <p class="errors" id="errorDisplay"></p>
-        <p class="successmsg" id="successMsg"></p>
-        <form action="" id="addcategory">
+      <div class="right white-bg" id="showCategories">
 
-          <input type="text" name="categoryName" id="categoryName" placeholder="category Name">
-
-          <textarea name="categoryDetails" id="categoryDetails" cols="30" rows="5">Category Details</textarea>
-
-          <button type="submit">Add category</button>
-        </form>
       </div>
     </div>
 
   </div>
-  <script type="module" src="../../../frontend/categories/addCategory.js"></script>
+  <script type="module" src="../../../frontend/categories/deleteCategory.js"></script>
 </body>
 
 </html>

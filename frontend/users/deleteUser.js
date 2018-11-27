@@ -1,12 +1,14 @@
 import config from '../config.js';
 import {
-  token, access, userPageAccess, topMenu, getimage, categoryDropdown, searchCatgProd, deleteItem,
+  token, access, adminPageAccess, topMenu, getimage, categoryDropdown,
 } from '../functions.js';
 // import modalTab from '../modal.js';
 
 const portPath = config.port;
 
-let cartItem = [];
+const url = document.URL;
+const urlsplit = url.split('=');
+const urlid = urlsplit[1];
 
 async function allProducts() {
   // let category;
@@ -50,7 +52,7 @@ async function allProducts() {
         <td>${val.productspec}</td>
         <td>${val.productquantity}</td>
         <td>${val.productprice}</td>
-        <td><button type="submit" class="btn" onclick="window.location='/UI/cart/addcart.html?cart&id=${val.id}=${val.productname}=${val.productprice}'" id="addCart">Add to Cart</button></td>
+        <td><button type="submit" class="btn" onclick="window.location='cart/index.html'">Add to Cart</button></td>
         `;
       if (access === 'Admin') {
         productsTable += `
@@ -77,19 +79,31 @@ async function allProducts() {
   }
 }
 
-// function addToCart(val) {
-//   const item = {
-//     id: `${val.id}`,
-//     productName: `${val.productName}`,
-//     productPrice: `${val.productPrice}`,
-//   }
-//   cartItem.push(item);
-//   localStorage.setItem('cart', cartItem);
-// }
+async function deleteProduct() {
+  const deleteItem = confirm('Are you sure you want to delete this product?');
+  if (deleteItem) {
+    try {
+      const delitem = await fetch(`${portPath}/products/${urlid}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      });
+      const thedelitem = await delitem.json();
+      document.getElementById('successMsg').innerHTML = thedelitem.message;
+      setTimeout(window.location.replace(`/UI/products.html`), 10000);
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    window.location.replace(`/UI/products.html`);
+  }
+}
 
-window.addEventListener('DOMContentLoaded', userPageAccess);
+window.addEventListener('DOMContentLoaded', adminPageAccess);
 window.addEventListener('load', topMenu);
 window.addEventListener('load', allProducts);
+window.addEventListener('load', deleteProduct);
+// window.addEventListener('load', deleteItem('product'));
 window.addEventListener('load', categoryDropdown);
-document.getElementById('prodCatgSearch').addEventListener('submit', searchCatgProd);
-// document.getElementById('addCart').addEventListener('click', addToCart);

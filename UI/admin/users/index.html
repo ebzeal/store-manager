@@ -28,30 +28,37 @@
 
   <div class="container" id="container">
 
-
-    <h2>Add New Category</h2>
+    <h2>All Users</h2>
     <div class="content">
       <div class="left">
 
-
-        <button onclick="window.location='index.html'">Back to All Categories</button>
+        <button onclick="window.location='new.html'">Add New user</button>
+        <!-- <h3>Filter</h3>
+        <div class="filter">
+          <form action="">
+            <select>
+              <option value="" disabled selected>Filter by Categories</option>
+              <option value="groceries">Groceries</option>
+              <option value="mshoes">Men Shoes</option>
+              <option value="wshoes">Women Shoes</option>
+              <option value="electronics">Electronics</option>
+            </select>
+            <button type="submit">Filter</button>
+          </form>
+        </div> -->
       </div>
       <div class="right white-bg">
         <p class="errors" id="errorDisplay"></p>
         <p class="successmsg" id="successMsg"></p>
-        <form action="" id="addcategory">
 
-          <input type="text" name="categoryName" id="categoryName" placeholder="category Name">
+        <table class="halfborder" id="showusers">
 
-          <textarea name="categoryDetails" id="categoryDetails" cols="30" rows="5">Category Details</textarea>
-
-          <button type="submit">Add category</button>
-        </form>
+        </table>
       </div>
     </div>
 
   </div>
-  <script type="module" src="../../../frontend/categories/addCategory.js"></script>
+  <script type="module" src="../../../frontend/users/users.js"></script>
 </body>
 
 </html>

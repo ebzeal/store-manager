@@ -153,7 +153,7 @@ export function topMenu() {
       <ul>
         <li><a href="/UI/products.html">View All Products</a></li>
         <li><a href="/UI/admin/products/new.html">Add Product</a></li>
-        <li><a href="/UI/admin/categories/index.html">Add Categories</a></li>
+        <li><a href="/UI/admin/categories/index.html">View Categories</a></li>
         
       </ul>
     </li>
@@ -161,26 +161,19 @@ export function topMenu() {
     <li><a href="/UI/admin/audit/index.html">View Sales</a></li>
     <li>
 
-    <!-- First Tier Drop Down -->
-    <label for="drop-2" class="toggle">Products +</label>
-    <a href="/UI/#">Users</a>
-    <input type="checkbox" id="drop-2" />
-    <ul>
-      <li><a href="/UI/products.html">Attendants</a></li>
-      <li><a href="/UI/admin/products/new.html">Admin</a></li>
-      
-    </ul>
+    
+    <li><a href="/UI/admin/users/index.html">Users</a></li>
   </li>
 
     <li class="profile">
       <!-- First Tier Drop Down -->
       <label for="drop-1" class="toggle"> <img src="images/john-doe.jpg" alt=""> +</label>
-      <a href="/UI/#" class="dropbtn"><img src="images/john-doe.jpg" alt=""></a>
+      <a href="/UI/#" class="dropbtn"><img src="/UI/images/john-doe.jpg" alt=""></a>
       <input type="checkbox" id="drop-1" />
       <ul>
         <li><a href="/UI/#">Hi ${userName}</a></li>
         <li><a href="/UI/users/john-doe.html">Profile</a></li>
-        <li><a href="/UI/index.html">Logout</a></li>
+        <li><a href="/UI/logout.html">Logout</a></li>
       </ul>
     </li>
     `;
