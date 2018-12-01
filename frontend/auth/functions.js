@@ -1,6 +1,6 @@
 // import config from '../config';
 const portPath = 'http://localhost:3000/api/v1';
-
+// const cartItems = [];
 function userLogin(e) {
   e.preventDefault();
   const formContent = {
@@ -26,6 +26,7 @@ function userLogin(e) {
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('userPriviledge', data.userPriviledge);
         localStorage.setItem('userName', data.userName);
+        localStorage.setItem('cart', '');
         redirect: window.location.replace('../../UI/dashboard.html');
         console.log(localStorage);
       } else {

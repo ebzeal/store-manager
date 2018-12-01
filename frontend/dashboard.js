@@ -7,6 +7,7 @@ const portPath = config.port;
 
 let productCount;
 let categoryCount;
+let userCount;
 
 async function notifications() {
   try {
@@ -55,6 +56,21 @@ async function notifications() {
   }
 }());
 
+(async function getUsers() {
+  try {
+    const allUsers = await fetch(`${portPath}/users`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    const usersAll = await allUsers.json();
+    const usersArr = Object.values(usersAll);
+    userCount = usersArr[0].length;
+  } catch (err) {
+    console.log(err);
+  }
+}());
+
 function dashboard() {
   document.getElementById('dashboard').innerHTML = `
   <div id="products">
@@ -62,27 +78,24 @@ function dashboard() {
   <p class="label">
     ${productCount}
   </p><br>
-  <p class="desc">in stock</p>
   <a href="products.html"> <button>View all</button></a>
   </div>
 
   <div id="noproducts">
-  <h3><i class="fas fa-list-ul"></i> &nbsp; Restock</h3>
+  <h3><i class="fas fa-list-ul"></i> &nbsp; Out of Stock</h3>
   <p class="label">
     30
   </p><br>
-  <p class="desc">out of stock</p>
   <a href="admin/products/out-of-stock.html">
     <button>View all</button>
   </a>
   </div>
 
   <div id="categories">
-  <h3><i class="fas fa-users"></i> &nbsp; Categories</h3>
+  <h3><i class="fas fa-users"></i> &nbsp; Product Categories</h3>
   <p class="label">
     ${categoryCount}
   </p><br>
-  <p class="desc">Product Categories</p>
   <a href="admin/categories/index.html">
     <button>View all</button>
   </a>
@@ -90,23 +103,22 @@ function dashboard() {
   </div>`;
 
   const layer2 = `<div id="audit">
-  <h3><i class="fas fa-clipboard-list"></i> &nbsp; Audit</h3>
+  <h3><i class="fas fa-clipboard-list"></i> &nbsp; Sales Report</h3>
   <p class="label">
     93
   </p>
-  <p class="desc">sales Reports</p>
   <button onclick="window.location='admin/audit/index.html'">View all</button>
   </a>
   </div >
 
   <div id="attendants">
-    <h3><i class="fas fa-users"></i> &nbsp; Attendants</h3>
+    <h3><i class="fas fa-users"></i> &nbsp; Users</h3>
     <p class="label">
-      7
+      ${userCount}
   </p>
     <p class="desc">Registered Attendants</p>
 
-    <a href="admin/attendants/index.html">
+    <a href="admin/users/index.html">
       <button>View all</button>
     </a>
   </div>

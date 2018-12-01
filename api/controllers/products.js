@@ -99,12 +99,12 @@ const Product = {
    * @returns {object} updated product
    */
   async update(req, res) {
-    // const { errors, isValid } = validateProduct(req.body);
+    const { errors, isValid } = validateProduct(req.body);
 
-    // // Check Validation
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     let file;
     if (req.file === undefined || req.file === null) {
       file = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ImagePlaceholder_icon.svg/2000px-ImagePlaceholder_icon.svg.png';

@@ -21,11 +21,8 @@ async function getCategory() {
     });
     thecategory = await findcategory.json();
     console.log(thecategory);
-    document.getElementById('updateCategory').innerHTML = `
-    <input type="text" name="categoryName" id="categoryName" placeholder="category Name" value="${thecategory.categoryname}">
-
-    <textarea name="categoryDetails" id="categoryDetails" cols="30" rows="5"> ${thecategory.categorydetails}</textarea>
-      `;
+    document.getElementById('categoryName').value = `${thecategory.categoryname}`;
+    document.getElementById('categoryDetails').value = `${thecategory.categorydetails}`;
   } catch (err) {
     console.log(err);
   }
@@ -45,9 +42,10 @@ async function editcategory(event) {
       body: formData,
       headers: {
         Authorization: `${token}`,
+        'Content-Type': 'application/json',
       },
     });
-    const addedcategory = await newcategory.json();
+    const addedcategory = await newcategory.text();
     console.log(addedcategory);
     if (addedcategory.id) {
       document.querySelector('#successMsg').innerHTML += `${addedcategory.categoryname} has been updated <br>Quantity - ${addedcategory.categoryquantity}  <br>`;
@@ -57,15 +55,8 @@ async function editcategory(event) {
     console.log(err);
   }
 }
-// const submitInput = document.getElementById('addcategory');
-// submitInput.addEventListener('keyup', (e) => {
-//   if (e.keyCode === 13) {
-//     document.getElementById('submitForm').click();
-//   }
-// });
 
 window.addEventListener('DOMContentLoaded', adminPageAccess);
 window.addEventListener('load', topMenu);
 window.addEventListener('load', getCategory);
-window.addEventListener('load', categoryDropdown);
-document.getElementById('updatecategory').addEventListener('submit', editcategory);
+document.getElementById('updateCategory').addEventListener('submit', editcategory);

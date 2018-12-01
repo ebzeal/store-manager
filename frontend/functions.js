@@ -166,6 +166,7 @@ export function topMenu() {
   </li>
 
     <li class="profile">
+    <li><a href="/UI/cart/index.html">Cart</a></li>
       <!-- First Tier Drop Down -->
       <label for="drop-1" class="toggle"> <img src="images/john-doe.jpg" alt=""> +</label>
       <a href="/UI/#" class="dropbtn"><img src="/UI/images/john-doe.jpg" alt=""></a>

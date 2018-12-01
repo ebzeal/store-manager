@@ -1,7 +1,21 @@
 import config from '../config.js';
 import {
-  userPageAccess, topMenu,
+  token, access, userPageAccess, topMenu, getimage, categoryDropdown,
 } from '../functions.js';
+// import modalTab from '../modal.js';
+
+const portPath = config.port;
+
+function addQuantity() {
+  const qty = parseInt(document.getElementById('productQty').value);
+  const prc = document.getElementById('price').innerText;
+  const subTotal = qty * prc;
+  document.getElementById('subtotal').innerHTML = subTotal;
+  // document.getElementById('totalPrice').innerHTML = subTotal;
+  console.log(`qty = ${qty}`);
+  console.log(`prc = ${prc}`);
+  console.log(`subtotal = ${subTotal}`);
+}
 
 function viewCart() {
   const items = localStorage.getItem('cart');
@@ -111,6 +125,7 @@ function checkOut() {
 
     window.location.replace('/UI/cart/receipt.html');
   });
+
 }
 window.addEventListener('DOMContentLoaded', userPageAccess);
 window.addEventListener('load', topMenu);

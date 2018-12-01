@@ -32,16 +32,16 @@
     <h2>All Categories</h2>
     <div class="content">
       <div class="left">
-        <button onclick="window.location='/UI/index.html'">Back to All categorys</button>
+        <button onclick="window.location='/UI/index.html'">Back to All categories</button>
 
       </div>
       <div class="right white-bg">
         <p class="errors" id="errorDisplay"></p>
         <p class="successmsg" id="successMsg"></p>
-        <form action="">
-          <div id="updateCategory">
+        <form id="updateCategory">
+          <input type="text" name="categoryName" id="categoryName" placeholder="category Name">
 
-          </div>
+          <textarea name="categoryDetails" id="categoryDetails" cols="30" rows="5"> </textarea>
 
           <button type="submit">Edit category</button>
         </form>

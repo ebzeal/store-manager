@@ -36,37 +36,9 @@ async function getProduct() {
     } catch (err) {
       console.log(err);
     }
-    // document.getElementById('updateProduct').innerHTML = `
-    // <p>${theproduct.productname}</p>
-    // <input type="text" name="productName" id="productName" placeholder="Product Name" value="${theproduct.productname}">
-    // <p>Product Category</p>
-    // <select id="categories_id">
-    //   <option value="${theCategoryId}" disabled>${theCategory}</option>
-    //   <option value="groceries" selected>Groceries</option>
-    //   <option value="mshoes">Men Shoes</option>
-    //   <option value="wshoes">Women Shoes</option>
-    //   <option value="electronics">Electronics</option>
-    // </select>
-    // <p>Product Image</p>
-    // <img src="../../../${theproduct.productimage}" alt="">
-    // <p>Replace Product Image</p>
-    // <input type="file" name="productImage" id="productImage">
-    // <p>Product Details</p>
-    // <textarea name="productDetails" id="productDetails" cols="30" rows="5"> ${theproduct.productdetails} </textarea>
-    // <p>Product Specification</p>
-    // <input type="text" name="productSpec" id="productSpec" placeholder="product specification" value="${theproduct.productspec}">
-    // <p>Price</p>
-    // <input type="number" name="productPrice" id="productPrice" placeholder="Price(N)" value="${theproduct.productprice}">
-    // <p>Stock Limit</p>
-    // <input type="number" name="productLimit" id="productLimit" placeholder="Quantity Limit" value="${theproduct.productlimit}">
-    // <p>Quantity</p>
-    // <input type="number" name="productQuantity" id="productQuantity" placeholder="Price(N)" value="${theproduct.productquantity}">    
-    // <button type="submit">Edit Product</button>
-    //  `;
     document.getElementById('productName').value = `${theproduct.productname}`;
     document.getElementById('prodCatgSearch').value = `${theproduct.categories_id}`;
-    // document.getElementById('productImage').value = `${theproduct.productimage}`;
-    document.getElementById('image').src = `${theproduct.productimage}`;
+    document.getElementById('image').src = `/${theproduct.productimage}`;
     document.getElementById('productDetails').value = `${theproduct.productdetails}`;
     document.getElementById('productSpec').value = `${theproduct.productspec}`;
     document.getElementById('productPrice').value = `${theproduct.productprice}`;
@@ -91,7 +63,7 @@ async function editProduct(event) {
   formData.append('productPrice', 300);
   formData.append('productQuantity', document.getElementById('productQuantity').value);
   formData.append('productLimit', document.getElementById('productLimit').value);
-  console.log(formData);
+  console.log(formData.categories_id);
   try {
     const newProduct = await fetch(`${portPath}/products/${urlid}`, {
       method: 'PUT',

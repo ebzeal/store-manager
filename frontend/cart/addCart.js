@@ -7,26 +7,28 @@ import {
 const portPath = config.port;
 
 let cartItem = [];
+const cart = localStorage.getItem('cart');
 
 const url = document.URL;
 const urlsplit = url.split('=');
-// const urlids = url.searchParams.get('id');
-// const urlname = url.searchParams.get('name');
-// const urlprice = url.searchParams.get('price');
-console.log(urlsplit);
 const urlid = urlsplit[1];
 const urlname = urlsplit[2];
 const urlprice = urlsplit[3];
 
 function addToCart() {
   const item = {
-    id: `${urlid}`,
-    productName: `${urlname}`,
+    productId: `${urlid}`,
+    productName: `${decodeURI(urlname)}`,
     productPrice: `${urlprice}`,
+  };
+  if (cart === '') {
+    cartItem.push(item);
+  } else {
+    cartItem = JSON.parse(cart);
+    cartItem.push(item);
   }
-  cartItem.push(item);
   console.log(cartItem);
-  localStorage.setItem('cart', cartItem);
+  localStorage.setItem('cart', JSON.stringify(cartItem));
   window.location.replace('/UI/products.html');
 }
 
@@ -34,4 +36,4 @@ window.addEventListener('DOMContentLoaded', userPageAccess);
 window.addEventListener('load', topMenu);
 window.addEventListener('load', categoryDropdown);
 window.addEventListener('load', addToCart);
-document.getElementById('prodCatgSearch').addEventListener('submit', searchCatgProd);
+// document.getElementById('prodCatgSearch').addEventListener('submit', searchCatgProd);
