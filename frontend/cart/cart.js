@@ -1,4 +1,3 @@
-import config from '../config.js';
 import {
   userPageAccess, topMenu,
 } from '../functions.js';
@@ -6,8 +5,7 @@ import {
 function viewCart() {
   const items = localStorage.getItem('cart');
   console.log(items);
-  const itemsObject = JSON.parse(items);
-  const cartTable = document.querySelector('#cartTable');
+  const itemsObject = JSON.parse(items || 0);
   const cartDisplay = document.querySelector('#itemsheader');
   // let amount = [];
   // let subTotalVal = 0;
@@ -25,11 +23,11 @@ function viewCart() {
     ${item.productPrice}
     </td>
     <td>
-      <input type="number" name="" class="input" id="productQty" value = '1'>
+      <input type="number" name="" class="input" id="productQty" value = '${item.productQty || 1}'>
     </td>
     <td id="subtotal">
 
-    ${item.productPrice}
+    ${item.prodSubTotal || item.productPrice}
     </td>
     <td>
       <i class="fas fa-trash-alt" id="deleteItem"></i>
@@ -115,5 +113,4 @@ function checkOut() {
 window.addEventListener('DOMContentLoaded', userPageAccess);
 window.addEventListener('load', topMenu);
 window.addEventListener('load', viewCart);
-// document.getElementById('productQty').addEventListener('input', addQuantity);
 document.querySelector('#checkout').addEventListener('click', checkOut);

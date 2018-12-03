@@ -21,63 +21,68 @@
       <div class="receipttop">
         <div class="left">
           <h2 class="textleft">Sales Receipts</h2>
-          <p>Date</p>
+          <p>Invoice # : <span id="salesInvoice"></span></p>
+          <p id="salesDate"></p>
           <p>Cutomer Name</p>
           <p>Customer Phone Number</p>
         </div>
         <div class="logo-top topright"> <br>
           <a href="index.html"> <img src="../images/logo.png" alt="Ilupeju Stores logo" srcset="../images/logo.png 240w, ../images/logo.png 320w, ../images/logo.png 480w, ../images/logo.png 3200w"
               aria-setsize="">
-          </a>
+          </a><br>
+          <button class="btnsmall" onclick="window.location='index.html'">Edit Cart</button><br>
+          <button class="btnsmall" onclick="window.location='../products.html'">Add more items</button>
         </div>
       </div>
       <div class="content">
         <br><br><br><br>
-        <table class="noborder">
-          <tr>
+        <table class="noborder" id="checkoutTable">
+          <tr id="itemsheader">
             <th>Product</th>
             <th>Price (N)</th>
             <th>Quantity</th>
             <th>Subtotal</th>
           </tr>
-          <tr>
-            <td>
-              <div class="productdetails">
-                <p>Vegetables</p>
-                <p>Lorem ipsum dolor sit amet </p>
-              </div>
-            </td>
-            <td>200</td>
-            <td>
-              1
-            </td>
-            <td>200</td>
-          </tr>
+
           <tr>
             <td></td>
             <td></td>
             <td></td>
             <td>
-              <h3>Total : N6000</h3>
+              <h3>Total : <span id="cartTotal"></span> </h3>
             </td>
           </tr>
         </table>
 
-        <p>Payment received as </p>
-        <form action="" class="paytype">
-          <div><input type="checkbox" name="cash" id="" class="left"> <span>Cash</span></div>
-          <div> <input type="checkbox" name="cheque" id="" class="left"> <span>Cheque</span> </div>
-          <div> <input type="checkbox" name="POS" id="" class="left"> <span>POS</span></div>
-        </form>
-
         <div>
-          <button onclick="window.print() ">Print</button>
+          <div class="midleft">
+            <p>Payment received as </p>
+            <form action="" class="paytype">
+              <div><input type="checkbox" name="cash" id="" class="left"> <span>Cash</span></div>
+              <div> <input type="checkbox" name="cheque" id="" class="left"> <span>Cheque</span> </div>
+              <div> <input type="checkbox" name="POS" id="" class="left"> <span>POS</span></div>
+            </form>
+          </div>
+          <div class="midright">
+            <p>Attendant</p>
+            <h4 id="attendant"></h4>
+            <input type="hidden" name="" id="attendantId">
+            <button onclick="window.print() " id="payButton">Pay</button>
+          </div>
+        </div>
+        <div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </div>
       </div>
     </div>
   </section>
-
-  <script src="../js/menu.js "></script>
+  <script type="module" src="../../frontend/cart/receipt.js"></script>
 </body>
 
 </html>

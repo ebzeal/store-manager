@@ -78,7 +78,7 @@ function dashboard() {
   <p class="label">
     ${productCount}
   </p><br>
-  <a href="products.html"> <button>View all</button></a>
+  <a href="products.html"> <button id='viewAll'>View all</button></a>
   </div>
 
   <div id="noproducts">
@@ -87,7 +87,7 @@ function dashboard() {
     30
   </p><br>
   <a href="admin/products/out-of-stock.html">
-    <button>View all</button>
+    <button id='viewAll'>View all</button>
   </a>
   </div>
 
@@ -97,7 +97,7 @@ function dashboard() {
     ${categoryCount}
   </p><br>
   <a href="admin/categories/index.html">
-    <button>View all</button>
+    <button id='viewAll'>View all</button>
   </a>
   <!-- </div> -->
   </div>`;
@@ -107,7 +107,7 @@ function dashboard() {
   <p class="label">
     93
   </p>
-  <button onclick="window.location='admin/audit/index.html'">View all</button>
+  <button id='viewAll' onclick="window.location='admin/audit/index.html'">View all</button>
   </a>
   </div >
 
@@ -116,10 +116,9 @@ function dashboard() {
     <p class="label">
       ${userCount}
   </p>
-    <p class="desc">Registered Attendants</p>
 
     <a href="admin/users/index.html">
-      <button>View all</button>
+      <button id='viewAll'>View all</button>
     </a>
   </div>
 
@@ -128,10 +127,9 @@ function dashboard() {
     <p class="label">
       15
   </p>
-    <p class="desc">Incidents reported</p>
 
     <a href="admin/incidence/index.html">
-      <button>View all</button>
+      <button id='viewAll'>View all</button>
     </a>
   </div>
   `;

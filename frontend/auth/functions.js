@@ -1,5 +1,6 @@
-// import config from '../config';
-const portPath = 'http://localhost:3000/api/v1';
+import config from '../config.js';
+
+const portPath = config.port;
 // const cartItems = [];
 function userLogin(e) {
   e.preventDefault();
@@ -27,6 +28,7 @@ function userLogin(e) {
         localStorage.setItem('userPriviledge', data.userPriviledge);
         localStorage.setItem('userName', data.userName);
         localStorage.setItem('cart', '');
+        localStorage.removeItem('cartItems');
         redirect: window.location.replace('../../UI/dashboard.html');
         console.log(localStorage);
       } else {
@@ -39,7 +41,6 @@ function userLogin(e) {
         }
         if (data.message) {
           errormsg.push(`<br>${data.message}`);
-
         }
 
         document.getElementById('errorDisplay').innerHTML = `${errormsg}`;

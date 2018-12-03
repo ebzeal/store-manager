@@ -49,10 +49,12 @@ CREATE TABLE IF NOT EXISTS
 CREATE TABLE IF NOT EXISTS
       sales(
         id SERIAL PRIMARY KEY,
+        invoice_num INTEGER,
         products_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
         users_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
         quantity INTEGER,
         amount NUMERIC(10,2),
+        totalAmount NUMERIC(10,2),
         salesTime DATE NOT NULL DEFAULT CURRENT_DATE,
         salesDate DATE NOT NULL DEFAULT CURRENT_DATE
       );
@@ -90,6 +92,5 @@ INSERT INTO categories(categoryName,categoryDetails)VALUES('Food','For Eating, O
 
 INSERT INTO products(categories_id,productName,productImage,productDetails,productSpec,productPrice, productQuantity, productLimit)VALUES(1,'Bath Soap','pack.jpg','For Fresh Bath','80mg per pack',300, 300, 50),(1,'Bread','bread.jpg','Wheat Flavored Bread','200g per pack',450,200,20),(2,'Vanilla Fruity','vanilla.jpg','For Parties','200g per pack',1550,150,10);
 
-INSERT INTO sales(products_id,users_id,quantity,amount)VALUES(1,2,5,20000.20),(1,2,7,20000.18),(2,2,8, 20000);
 
 INSERT INTO incidents(users_id,incidentTime,incidentImage,incidentDetails)VALUES(2,'8am','disagreement.jpg','An angry client'),(2,'5.30pm','broken.jpg','Broken Panes');

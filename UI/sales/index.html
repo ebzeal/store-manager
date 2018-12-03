@@ -27,59 +27,62 @@
 
   <div class="container" id="container">
 
-    <h2>Shopping Cart</h2>
-
+    <h2>All Sales Record</h2>
+    <h3>As at 11th October 2018 - Total (N3,800,000)</h3>
     <div class="content">
       <div class="left">
-        <h3>Add Products to cart</h3>
+
+        <button onclick="window.location='new.html'">Add New attendant</button>
+        <h3>Filter</h3>
         <div class="filter">
+          <form action="" method="post">
+            <input type="date" name="search" id="" class="search" placeholder="Search by Date">
+            <button type="submit">Filter By Date</button>
+          </form>
+
           <form action="">
             <select>
-              <option value="" disabled selected>Add Product</option>
+              <option value="" disabled selected>Filter by Attendant</option>
+              <option value="groceries">Ade Kola</option>
+              <option value="mshoes">John Doe</option>
+              <option value="wshoes">Jane Doe</option>
+              <option value="electronics">Billy Jean</option>
+            </select>
+            <button type="submit">Filter</button>
+          </form>
+
+          <form action="">
+            <select>
+              <option value="" disabled selected>Filter by Product</option>
               <option value="groceries">Vegetables</option>
               <option value="mshoes">Bread</option>
               <option value="wshoes">Phone Case</option>
               <option value="electronics">Head Phones</option>
             </select>
-            <button type="submit">Add</button>
-          </form>
-          <h3>Customer Details</h3>
-          <form action="">
-            <input type="text" name="customername" id="" placeholder="Customer Name">
-
-            <input type="tel" name="cstomerphone" id="" placeholder="Customer Phone Number">
-            <button type="submit">Add</button>
+            <button type="submit">Filter</button>
           </form>
         </div>
       </div>
-      <div class="right">
+      <div class="right white-bg">
 
-        <table class="noborder" id="cartTable">
+
+        <table id="salesTable">
           <tr id="itemsheader">
+            <th>Attendant</th>
             <th>Product</th>
-            <th>Price (N)</th>
+            <th>Picture</th>
             <th>Quantity</th>
-            <th>Subtotal (N)</th>
-            <th></th>
+            <th>Amount (N)</th>
+            <th>Time</th>
+            <th>Date</th>
           </tr>
-          <tr>
-            <td>
-              <h4>Total (N) :</h4>
-            <td></td>
-            <td></td>
-            </td>
-            <td><br><br>
-              <h3 id="totalPrice"></h3>
-              <button type="submit" id="checkout">Checkout</button>
-            </td>
-
-          </tr>
+          <!-- content goes here -->
         </table>
       </div>
     </div>
 
   </div>
-  <script type="module" src="../../frontend/cart/cart.js"></script>
+  <script type="module" src="../../../frontend/sales/sales.js"></script>
 </body>
 
 </html>

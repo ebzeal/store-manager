@@ -82,6 +82,13 @@ button:hover {
   color: #000;
 }
 
+.btnsmall {
+  width: 60%;
+  font-size: 12px;
+  height: auto;
+  padding: 2px;
+  text-align: center;
+}
 .left {
   width: 25%;
   float: left;
@@ -96,6 +103,17 @@ button:hover {
   margin-bottom: 120px;
 }
 
+.midleft {
+  width: 50%;
+  float: left;
+  left: 0;
+}
+
+.midright {
+  width: 50%;
+  float: left;
+  text-align: center
+}
 
 #container {
   margin: 80px 70px 200px 70px;
@@ -109,6 +127,10 @@ button:hover {
 
 .white-bg * h3 {
   color: #000 ;
+}
+
+.white{
+  color: #fff;
 }
 
 p { text-align: center; }
@@ -130,11 +152,11 @@ nav {
 
 #logo {
   display: block;
-  padding: 0 30px;
+  padding: 0 10px 0 20px;
   float: left;
   font-size: 20px;
   line-height: 60px;
-  margin-right: 70px;
+  margin-right: 50px;
 }
 #logo * img {
   max-width: 150px;
@@ -147,6 +169,9 @@ nav {
 #logo * p > span{
   color: rgb(248, 2, 2);
   font-size: 20px
+}
+.menu {
+  float: right;
 }
 
 nav:after {
@@ -222,7 +247,7 @@ li > a:only-child:after { content: ''; }
 
 .profile {
   float: right;
-  margin-left: 250px;
+  margin-left: 150px;
 }
 
 
@@ -261,6 +286,10 @@ li > a:only-child:after { content: ''; }
   box-shadow: rgba(0, 0, 0, 0.45);
   text-align: center;
   margin-top: 40px;
+}
+
+#viewAll {
+  margin-top : 50px;
 }
 
 #notifications {
@@ -534,7 +563,7 @@ input,
   margin-bottom: 80px;
 }
 .paytype {
-  max-width: 30%;
+  width: 50%;
   text-align: left
 }
 
@@ -562,7 +591,7 @@ input,
 @media (min-width: 768px) and (max-width: 1230px) {
 
   #logo {
-    margin-right: 15%;
+    margin-right: 8%;
   }
   nav ul li {
     margin-top: 0px

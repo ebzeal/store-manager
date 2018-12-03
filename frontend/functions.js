@@ -48,7 +48,6 @@ export function searchCatgProd() {
 
 export function deleteItem(item) {
   confirm(`Are you sure you want to delete this ${item}?`);
-
 }
 
 export async function categoryDropdown() {
@@ -67,7 +66,7 @@ export async function categoryDropdown() {
   for (const val of catgVals) {
     catgies += `
     <option value="${val.id}">${val.categoryname}</option>
-    `
+    `;
     catgid = `${val.id}`;
   }
 
@@ -108,7 +107,7 @@ export async function userPageAccess() {
     if (newAuth.userPriviledge) {
       access = newAuth.userPriviledge;
       userName = newAuth.userName;
-      userId = newAuth.userId;
+      userId = newAuth.id;
       topMenu();
     } else {
       window.stop();
@@ -125,17 +124,17 @@ export function topMenu() {
 
     <li><a href="/UI/products.html">Products</a></li>
     <li><a href="/UI/report-incidence.html">Incidence</a></li>
-    <li><a href="/UI/cart/index.html">Shopping Cart</a></li>
+    <li><a href="/UI/cart/index.html"><i class="fas fa-cart-arrow-down white"></i>1</a></li>
 
     <li class="profile">
       <!-- First Tier Drop Down -->
       <label for="drop-1" class="toggle"> <img src="images/john-doe.jpg" alt=""> +</label>
-      <a href="/UI/#" class="dropbtn"><img src="images/john-doe.jpg" alt=""></a>
+      <a href="/UI/#" class="dropbtn"><img src="/UI/images/john-doe.jpg" alt=""></a>
       <input type="checkbox" id="drop-1" />
       <ul>
         <li><a href="/UI/#">Hi ${userName}</a></li>
         <li><a href="/UI/users/john-doe.html">Profile</a></li>
-        <li><a href="/UI/audit/john-doe.html">Sales Orders</a></li>
+        <li><a href="/UI/sales/index.html">View Sales</a></li>
         <li><a href="/UI/index.html">Logout</a></li>
       </ul>
     </li>
@@ -158,15 +157,11 @@ export function topMenu() {
       </ul>
     </li>
     <li><a href="/UI/report-incidence.html">Incidence</a></li>
-    <li><a href="/UI/admin/audit/index.html">View Sales</a></li>
-    <li>
-
-    
+    <li><a href="/UI/sales/index.html">View Sales</a></li>
     <li><a href="/UI/admin/users/index.html">Users</a></li>
-  </li>
+    <li><a href="/UI/cart/index.html"><i class="fas fa-cart-arrow-down white"></i>1</a></li>
 
     <li class="profile">
-    <li><a href="/UI/cart/index.html">Cart</a></li>
       <!-- First Tier Drop Down -->
       <label for="drop-1" class="toggle"> <img src="images/john-doe.jpg" alt=""> +</label>
       <a href="/UI/#" class="dropbtn"><img src="/UI/images/john-doe.jpg" alt=""></a>

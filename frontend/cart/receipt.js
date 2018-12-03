@@ -1,134 +1,67 @@
 import config from '../config.js';
 import {
-  token, access, userPageAccess, topMenu, getimage, categoryDropdown,
+  token, userPageAccess, userName, userId,
 } from '../functions.js';
-// import modalTab from '../modal.js';
 
 const portPath = config.port;
 
-function addQuantity() {
-  const qty = parseInt(document.getElementById('productQty').value);
-  const prc = document.getElementById('price').innerText;
-  const subTotal = qty * prc;
-  document.getElementById('subtotal').innerHTML = subTotal;
-  // document.getElementById('totalPrice').innerHTML = subTotal;
-  console.log(`qty = ${qty}`);
-  console.log(`prc = ${prc}`);
-  console.log(`subtotal = ${subTotal}`);
-}
-
-function viewCart() {
-  const items = localStorage.getItem('cart');
+function viewReceipt() {
+  const items = localStorage.getItem('cartItems');
   console.log(items);
   const itemsObject = JSON.parse(items);
-  const cartTable = document.querySelector('#cartTable');
-  const cartDisplay = document.querySelector('#itemsheader');
-  // let amount = [];
-  // let subTotalVal = 0;
+  const checkoutDisplay = document.querySelector('#itemsheader');
   if (itemsObject.length > 0) {
     itemsObject.forEach((item) => {
       if (item.productId !== 'undefined') {
-        cartDisplay.insertAdjacentHTML('afterend', `
-      <tr id='itemRow'>
-      <td id="prodItem">
-      <input type='hidden' value='${item.productId}' id="productId"></input>
-      <h3 id="productName">${item.productName}</h3>
-      <p></p>
-    </td>
-    <td id="price">
-    ${item.productPrice}
-    </td>
-    <td>
-      <input type="number" name="" class="input" id="productQty" value = '1'>
-    </td>
-    <td id="subtotal">
-
-    ${item.productPrice}
-    </td>
-    <td>
-      <i class="fas fa-trash-alt" id="deleteItem"></i>
-    </td>
-</tr>
+        checkoutDisplay.insertAdjacentHTML('afterend', `
+        <tr id='cartList'>
+        <td>
+          <div class="productdetails" id='productdetails'>
+          <input type='hidden' value='${item.productId}' id="productId"></input>
+            <p>${item.productName}</p>
+          </div>
+        </td>
+        <td id='productPrice'>${item.productPrice}</td>
+        <td id='productQty'>
+        ${item.productQty}
+        </td>
+        <td id='productSubTotal'>${item.prodSubTotal}</td>
+      </tr>
       `);
       }
-      //SubTotal Display
-      const cartItems = document.querySelectorAll('#itemRow');
-      cartItems.forEach((eachItem) => {
-        const itemQuantity = eachItem.querySelector('#productQty');
-        itemQuantity.addEventListener('input', () => {
-          const qty = parseInt(eachItem.querySelector('#productQty').value);
-          const prc = eachItem.querySelector('#price').innerText;
-          const subTotal = qty * prc;
-          // eslint-disable-next-line no-param-reassign
-          eachItem.querySelector('#subtotal').innerText = subTotal;
-          // // amount.push(subTotal);
-          // console.log(`amount = ${amount}`);
-        });
-
-
-        // Default Total Amount display
-        const itemqty = document.querySelectorAll('#productQty');
-        itemqty.forEach((eachqty) => {
-          const allSubTotalArr = [];
-          const allSubTotal = document.querySelectorAll('#subtotal');
-          allSubTotal.forEach((subTotal) => {
-            allSubTotalArr.push(parseFloat(subTotal.innerText) || 0);
-            document.querySelector('#totalPrice').innerText = allSubTotalArr.reduce((total, num) => total + num);
-          });
-        });
-
-        // Total Amount display on Quantity Change
-        itemqty.forEach((eachqty) => {
-          eachqty.addEventListener('input', () => {
-            const allSubTotalArr = [];
-            const allSubTotal = document.querySelectorAll('#subtotal');
-            allSubTotal.forEach((subTotal) => {
-              allSubTotalArr.push(parseFloat(subTotal.innerText) || 0);
-              // console.log(allSubTotalArr);
-              document.querySelector('#totalPrice').innerText = allSubTotalArr.reduce((total, num) => total + num);
-            });
-          });
-        });
-
-        const deleteItem = eachItem.querySelector('#deleteItem');
-        deleteItem.addEventListener('click', () => { // returns a bug if deleted row is not first row
-          const Itemlist = deleteItem.parentNode.parentNode;
-          const itemTotal = Itemlist.querySelector('#subtotal').innerText;
-          const allTotal = document.querySelector('#totalPrice').innerText;
-          document.querySelector('#totalPrice').innerText = allTotal - itemTotal;
-
-          eachItem.remove();
-        });
-      });
+      document.querySelector('#cartTotal').innerText = `${itemsObject[0].cartTotal}`;
+      document.querySelector('#attendant').innerText = userName;
+      document.querySelector('#attendantId').value = userId;
+      const salesdate = new Date();
+      document.querySelector('#salesDate').innerText = `Date : ${salesdate.getDate()} - ${salesdate.getMonth() + 1} - ${salesdate.getFullYear()}`;
+      document.querySelector('#salesInvoice').innerText = `${salesdate.getFullYear()}${salesdate.getMonth() + 1}${salesdate.getDate()}${Math.floor(Math.random() * 100) + 1}`;
     });
   }
 }
 
-function checkOut() {
-  const allCartItems = [];
-  const cart = [];
-  const itemRows = document.querySelectorAll('#itemRow');
+function payCart() {
+  const itemRows = document.querySelectorAll('#cartList');
   itemRows.forEach((itemRow) => {
-    const rowObj = {
-      productId: itemRow.querySelector('#productId').value,
-      productName: itemRow.querySelector('#productName').innerText,
-      productPrice: itemRow.querySelector('#price').innerText,
-      productQty: itemRow.querySelector('#productQty').value,
-      prodSubTotal: itemRow.querySelector('#subtotal').innerText,
-      cartTotal: document.querySelector('#totalPrice').innerText,
+    const bodyVal = {
+      invoice_num: parseInt(document.querySelector('#salesInvoice').innerText, 10),
+      products_id: itemRow.querySelector('#productId').value,
+      users_id: document.querySelector('#attendantId').value,
+      quantity: itemRow.querySelector('#productQty').innerText,
+      amount: itemRow.querySelector('#productSubTotal').innerText,
+      totalAmount: document.querySelector('#cartTotal').innerText,
     };
-    allCartItems.push(rowObj);
-    cart.push(rowObj);
-
-    localStorage.setItem('cartItems', JSON.stringify(allCartItems));
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    window.location.replace('/UI/cart/receipt.html');
+    console.log(bodyVal);
+    fetch(`${portPath}/sales`, {
+      method: 'POST',
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyVal),
+    })
+      .then(res => res.json());
   });
-
 }
 window.addEventListener('DOMContentLoaded', userPageAccess);
-window.addEventListener('load', topMenu);
-window.addEventListener('load', viewCart);
-// document.getElementById('productQty').addEventListener('input', addQuantity);
-document.querySelector('#checkout').addEventListener('click', checkOut);
+window.addEventListener('load', viewReceipt);
+document.querySelector('#payButton').addEventListener('click', payCart);
