@@ -5,7 +5,6 @@ import validateRegister from '../validation/register';
 import validateLogin from '../validation/login';
 import keys from '../config/keys';
 
-
 const User = {
   /**
    * Register A User
@@ -20,41 +19,35 @@ const User = {
   async signUp(req, res) {
     const { errors, isValid } = validateRegister(req.body);
     // Check Validation
-    if (!isValid) { return res.json(errors); }
+    if (!isValid) {
+      return res.json(errors);
+    }
 
     const checkUser = 'SELECT * FROM users WHERE userEmail=$1';
-    const emailVal = [
-      req.body.userEmail,
-    ];
+    const emailVal = [req.body.userEmail];
     const hashed = bcrypt.hashSync(req.body.password, 8);
     const text = `INSERT INTO
     users(userName, userEmail, userPriviledge, password)
     VALUES($1, $2, $3, $4)
     returning *`;
-    const values = [
-      req.body.userName,
-      req.body.userEmail,
-      req.body.userPriviledge,
-      hashed,
-    ];
+    const values = [req.body.userName, req.body.userEmail, req.body.userPriviledge, hashed];
 
     try {
       const { rows } = await db.query(checkUser, emailVal);
       if (rows[0]) return res.status(400).json({ message: 'This user already exists' });
-      const newUser = await db.query(text, values);// this returns an object
+      const newUser = await db.query(text, values); // this returns an object
       return res.status(201).json(newUser.rows[0]);
     } catch (err) {
       return res.status(400).json({ message: err });
     }
   },
 
-
   /**
-  * Login a user
-  * @param {object} req
-  * @param {object} res
-  * @returns {object} user object
-  */
+   * Login a user
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} user object
+   */
   async logIn(req, res) {
     const { errors, isValid } = validateLogin(req.body);
 
@@ -62,9 +55,7 @@ const User = {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    const values = [
-      req.body.userEmail,
-    ];
+    const values = [req.body.userEmail];
     const findUser = 'SELECT * FROM users WHERE userEmail=$1';
     try {
       const { rows } = await db.query(findUser, values);
@@ -72,7 +63,11 @@ const User = {
       if (!rows[0]) return res.status(404).json({ message: 'user not found' });
 
       const passwordTrue = bcrypt.compareSync(req.body.password, rows[0].password);
-      if (!passwordTrue) return res.status(401).json({ auth: false, token: null, message: 'Password is wrong' });
+      if (!passwordTrue) {
+        return res
+          .status(401)
+          .json({ auth: false, token: null, message: 'Wrong email/password combination' });
+      }
 
       const payload = {
         id: rows[0].id,
@@ -81,19 +76,14 @@ const User = {
       };
       // Create JWT Payload
       // Sign Token
-      jwt.sign(
-        payload,
-        keys.JWT_SECRET,
-        { expiresIn: 10800 },
-        (err, token) => {
-          res.json({
-            token: `${token}`,
-            userName: `${rows[0].username}`,
-            userId: `${rows[0].id}`,
-            userPriviledge: `${rows[0].userpriviledge}`,
-          });
-        },
-      );
+      jwt.sign(payload, keys.JWT_SECRET, { expiresIn: 10800 }, (err, token) => {
+        res.json({
+          token: `${token}`,
+          userName: `${rows[0].username}`,
+          userId: `${rows[0].id}`,
+          userPriviledge: `${rows[0].userpriviledge}`,
+        });
+      });
     } catch (error) {
       return res.status(400).json(error);
     }
@@ -134,20 +124,17 @@ const User = {
     }
   },
 
-
   /**
-     * Get Own profile
-     * @param {object} req
-     * @param {object} res
-     * @returns {object} user object
-     */
+   * Get Own profile
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} user object
+   */
   async getOwn(req, res) {
     const tokenId = req.decoded.id;
     const userId = req.params.id;
     if (userId == tokenId) {
-      const values = [
-        userId,
-      ];
+      const values = [userId];
       const text = 'SELECT * FROM users WHERE id = $1';
       try {
         const { rows } = await db.query(text, values);
@@ -162,7 +149,6 @@ const User = {
       return res.status(404).json({ message: 'You can only access your profile' });
     }
   },
-
 
   /**
    * Update A user
@@ -238,12 +224,12 @@ const User = {
     if (!token) {
       return res.status(401).send({ auth: false, message: 'No token provided.' });
     }
-    jwt.verify(token, keys.JWT_SECRET, (err,
-      decoded) => {
+    jwt.verify(token, keys.JWT_SECRET, (err, decoded) => {
       if (err) {
         res.status(500).send({
           // auth: false, message: err.message, //Give me a readable message
-          auth: false, message: 'Sorry, you do not have access to this page. Contact Admin',
+          auth: false,
+          message: 'Sorry, you do not have access to this page. Contact Admin',
         });
       }
       res.json(decoded);

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS users, usersProfile, categories, products, sales, incidents, notifications, feedback;
 
    CREATE TABLE IF NOT EXISTS
         users(

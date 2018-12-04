@@ -16,7 +16,6 @@ import incidents from './api/routes/incidents';
 import notifications from './api/routes/notifications';
 import search from './api/routes/search';
 
-
 // dotenv.config();
 
 const app = express();
@@ -35,6 +34,7 @@ app.use(cors());
 //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 //   next();
 // });
+
 app.get('/api/v1/', (req, res) => res.status(200).json('Welcome'));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -48,7 +48,6 @@ app.use('/api/v1/users', users);
 app.use('/api/v1/incidents', incidents);
 app.use('/api/v1/notifications', notifications);
 app.use('/api/v1/search', search);
-
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on Port ${port}`));

@@ -2,6 +2,8 @@ import config from './config.js';
 
 export const token = localStorage.getItem('token');
 export const accessed = localStorage.getItem('userPriviledge');
+const cartCount = localStorage.getItem('cart') > 0 ? localStorage.getItem('cart').Object.rows.length : '';
+console.log(cartCount);
 export let userName;
 export let userId;
 export let access;
@@ -159,7 +161,7 @@ export function topMenu() {
     <li><a href="/UI/report-incidence.html">Incidence</a></li>
     <li><a href="/UI/sales/index.html">View Sales</a></li>
     <li><a href="/UI/admin/users/index.html">Users</a></li>
-    <li><a href="/UI/cart/index.html"><i class="fas fa-cart-arrow-down white"></i>1</a></li>
+    <li><a href="/UI/cart/index.html"><i class="fas fa-cart-arrow-down white"></i>${cartCount}</a></li>
 
     <li class="profile">
       <!-- First Tier Drop Down -->
