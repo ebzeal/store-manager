@@ -4,18 +4,18 @@ import checkEmpty from './checkEmpty';
 /* eslint-disable no-param-reassign */
 export default function validateSales(input) {
   const errors = {};
-  input.attendant = !checkEmpty(input.attendant) ? input.attendant : errors.attendant = 'Name of attendant is required';
-  input.productName = !checkEmpty(input.productName) ? input.productName : errors.productName = 'Product Name field is required';
+  input.users_id = !checkEmpty(input.users_id) ? input.users_id : errors.users_id = 'Users_id is required';
+  input.products_id = !checkEmpty(input.products_id) ? input.products_id : errors.products_id = 'Product id field is required';
   input.quantity = !checkEmpty(input.quantity) ? input.quantity : errors.quantity = 'Please enter quantity purchased';
   input.amount = !checkEmpty(input.amount) ? input.amount : errors.amount = 'Please enter amount purchased';
 
-  if (!Validator.isLength(input.attendant, { min: 1, max: 30 })) {
-    errors.attendant = 'Attendant Name must be added to record';
+  if (!Validator.isLength(input.users_id, { min: 1, max: 30 })) {
+    errors.users_id = 'users_id must be added to record';
   }
 
 
-  if (!Validator.isLength(input.productName, { min: 1, max: 30 })) {
-    errors.attendant = 'Enter Valid Product Name';
+  if (!Validator.isLength(input.products_id, { min: 1, max: 30 })) {
+    errors.users_id = 'Enter Valid Product Name';
   }
 
   if (!Validator.isLength(input.amount, { min: 2, max: 30 })) {

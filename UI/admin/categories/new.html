@@ -16,42 +16,15 @@
 
 <body>
   <nav>
-    <div id="logo"><a href="../../dashboard.html"> <img src="../../images/logo.png" alt="Ilupeju Stores logo">
+    <div id="logo"><a href="/UI/dashboard.html">
+        <p>ILUPEJU <span>STORES </span> </p>
       </a></div>
     <label for="drop" class="toggle">Menu</label>
     <input type="checkbox" id="drop" />
-    <ul class="menu">
-      <li><a href="../../dashboard.html">Dashboard</a></li>
+    <ul class="menu" id="menu">
 
-      <li>
-
-        <!-- First Tier Drop Down -->
-        <label for="drop-2" class="toggle">Portfolio +</label>
-        <a href="../../#">Products</a>
-        <input type="checkbox" id="drop-2" />
-        <ul>
-          <li><a href="../../products.html">View All Products</a></li>
-          <li><a href="../../admin/products/new.html">Add Product</a></li>
-        </ul>
-      </li>
-      <li><a href="../../report-incidence.html">Incidence</a></li>
-      <li><a href="../../cart/index.html">Shopping Cart</a></li>
-
-      <li class="profile">
-        <!-- First Tier Drop Down -->
-        <label for="drop-1" class="toggle"> <img src="../../images/john-doe.jpg" alt=""> +</label>
-        <a href="../../#" class="dropbtn"><img src="../../images/john-doe.jpg" alt=""></a>
-        <input type="checkbox" id="drop-1" />
-        <ul>
-          <li><a href="../#">Hi John</a></li>
-          <li><a href="../../users/john-doe.html">Profile</a></li>
-          <li><a href="../../audit/john-doe.html">Sales Orders</a></li>
-          <li><a href="../../index.html">Logout</a></li>
-        </ul>
-      </li>
     </ul>
   </nav>
-
 
   <div class="container" id="container">
 
@@ -64,11 +37,13 @@
         <button onclick="window.location='index.html'">Back to All Categories</button>
       </div>
       <div class="right white-bg">
-        <form action="">
+        <p class="errors" id="errorDisplay"></p>
+        <p class="successmsg" id="successMsg"></p>
+        <form action="" id="addcategory">
 
-          <input type="text" name="categoryname" id="" placeholder="category Name">
+          <input type="text" name="categoryName" id="categoryName" placeholder="category Name">
 
-          <textarea name="categorydetails" id="" cols="30" rows="5">Category Details</textarea>
+          <textarea name="categoryDetails" id="categoryDetails" cols="30" rows="5">Category Details</textarea>
 
           <button type="submit">Add category</button>
         </form>
@@ -76,6 +51,7 @@
     </div>
 
   </div>
+  <script type="module" src="../../../frontend/categories/addCategory.js"></script>
 </body>
 
 </html>

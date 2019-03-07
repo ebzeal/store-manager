@@ -26,14 +26,19 @@
     </div>
 
     <div id="right">
-        <form action="dashboard.html" class="form">
+        <p class="errors" id="errorDisplay"></p>
+        <p class="errors" id="errorDisplay2"></p>
+        <form class="form" id="userLogin">
             <h2><i class="fas fa-unlock-alt"></i></i> &nbsp;&nbsp; LOGIN</h2>
-            <input type="text" name="username" id="" placeholder="Username" class="input">
-            <input type="password" name="password" id="" placeholder="Password" class="input">
+            <input type="text" name="userEmail" id="userEmail" placeholder="User Email" class="input">
+            <input type="password" name="password" id="password" placeholder="Password" class="input">
             <input type="submit" value="Login" class="btn">
         </form>
     </div>
     <!-- </div> -->
+    <script type="module" src="../frontend/auth/functions.js">
+
+    </script>
 </body>
 
 </html>

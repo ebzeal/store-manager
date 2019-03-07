@@ -4,7 +4,7 @@ import keys from '../config/keys';
 export function adminAccess(req, res, next) {
   const access = true;
   if (access) {
-    const token = req.headers['x-access-token'];
+    const token = req.headers.authorization;
     if (!token) {
       return res.status(401).send({ auth: false, message: 'No token provided.' });
     }
@@ -22,14 +22,19 @@ export function adminAccess(req, res, next) {
 export function userAccess(req, res, next) {
   const access = true;
   if (access) {
-    const token = req.headers['x-access-token'];
+    const token = req.headers.authorization;
     if (!token) {
       return res.status(401).send({ auth: false, message: 'No token provided.' });
     }
-    jwt.verify(token, keys.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, keys.JWT_SECRET, (err,
+      decoded) => {
       if (err) {
-        return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+        return res.status(500).send({
+          // auth: false, message: err.message, //Give me a readable message
+          auth: false, message: 'Sorry, you do not have access to this page. Contact Admin',
+        });
       } else {
+        req.decoded = decoded;
         return next();
       }
     });

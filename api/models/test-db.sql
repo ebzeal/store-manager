@@ -61,6 +61,6 @@ INSERT INTO products(productCategory,productName,productImage,productDetails,pro
 
 INSERT INTO sales(salesid,attendant,productName,quantity,amount)VALUES('1','2','3','5', 'N20,000'),('1','1','3','7', 'N20,000'),('1','2','1','8', 'N20,000');
 
-INSERT INTO categories(id,categoryName,categoryDetails)VALUES('Food','For Eating, Obviously'),('Drinks','For Drinking'),('Toiletries','For toilets');
+INSERT INTO categories(categoryName,categoryDetails)VALUES('Food','For Eating, Obviously'),('Drinks','For Drinking'),('Toiletries','For toilets');
 
 INSERT INTO incidents(incidentTime,incidentImage,incidentDetails)VALUES('8am','disagreement.jpg','An angry client'),('5.30pm','broken.jpg','Broken Panes');

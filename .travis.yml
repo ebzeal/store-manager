@@ -1,16 +1,19 @@
+sudo: required
 language: node_js
 node_js:
- - "8.11.1"
+  - 'stable'
 cache:
 directories:
- - "node_modules"
+  - node_modules
+addons:
+  postgresql: '9.6'
 services:
- - postgresql
+  - postgresql
 before_script:
- - psql -c 'create database "store-manager-test";' -U postgres
- - npm run postdeploy
+  - psql -c 'create user ebzeal with superuser createdb createrole;' -U postgres
+  - psql -c 'create database storeManager_test;' -U postgres
+  - psql -c 'GRANT ALL PRIVILEGES ON DATABASE storeManager_test TO ebzeal;' -U postgres
 script:
- - npm test
-travis_wait after_success:
-  - npm run coveralls
- - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - npm test
+after_success:
+  - npm run coverage

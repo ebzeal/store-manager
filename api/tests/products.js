@@ -50,7 +50,8 @@ describe('Test all product routes', () => {
     it('should create a new product', (done) => {
       chai.request(app)
         .post('/api/v1/products')
-        .set('x-access-token', admin.token)
+        .set('content-Type', 'application/json')
+        .set('authorization', admin.token)
         .send(newProduct)
         .end((err, res) => {
           res.should.have.status(201);
@@ -63,7 +64,8 @@ describe('Test all product routes', () => {
     it('it should GET all the products', (done) => {
       chai.request(app)
         .get('/api/v1/products/')
-        .set('x-access-token', attendant.token)
+        .set('content-Type', 'application/json')
+        .set('authorization', attendant.token)
         .end((err, res) => {
           // should.exist(res.body);
           res.body.should.be.a('object');
@@ -79,7 +81,8 @@ describe('Test all product routes', () => {
     it('it should GET a single product', (done) => {
       chai.request(app)
         .get('/api/v1/products/2')
-        .set('x-access-token', attendant.token)
+        .set('content-Type', 'application/json')
+        .set('authorization', attendant.token)
         .end((err, res) => {
           res.body.should.be.a('object');
           res.should.have.status(200);
@@ -97,7 +100,7 @@ describe('Test all product routes', () => {
   //   it.only('it should update a user', (done) => {
   //     chai.request(app)
   //       .put('/api/v1/products/2')
-  //       .set('x-access-token', admin.token)
+  //       .set('authorization', admin.token)
   //       .send({ attendant })
   //       .end((err, res) => {
   //         res.should.have.status(200);
@@ -111,7 +114,7 @@ describe('Test all product routes', () => {
   //   it('it should DELETE a product given the id', (done) => {
   //     chai.request(app)
   //       .delete('/api/v1/products/5')
-  //       .set('x-access-token', admin.token)
+  //       .set('authorization', admin.token)
   //       .end((err, res) => {
   //         res.should.have.status(200);
   //         done();

@@ -82,6 +82,13 @@ button:hover {
   color: #000;
 }
 
+.btnsmall {
+  width: 60%;
+  font-size: 12px;
+  height: auto;
+  padding: 2px;
+  text-align: center;
+}
 .left {
   width: 25%;
   float: left;
@@ -96,6 +103,17 @@ button:hover {
   margin-bottom: 120px;
 }
 
+.midleft {
+  width: 50%;
+  float: left;
+  left: 0;
+}
+
+.midright {
+  width: 50%;
+  float: left;
+  text-align: center
+}
 
 #container {
   margin: 80px 70px 200px 70px;
@@ -109,6 +127,10 @@ button:hover {
 
 .white-bg * h3 {
   color: #000 ;
+}
+
+.white{
+  color: #fff;
 }
 
 p { text-align: center; }
@@ -130,15 +152,26 @@ nav {
 
 #logo {
   display: block;
-  padding: 0 30px;
+  padding: 0 10px 0 20px;
   float: left;
   font-size: 20px;
   line-height: 60px;
-  margin-right: 70px;
-  background-color: #3b3a3a;
+  margin-right: 50px;
 }
 #logo * img {
   max-width: 150px;
+}
+
+#logo * p {
+  color: #fff;
+  font-size: 20px
+}
+#logo * p > span{
+  color: rgb(248, 2, 2);
+  font-size: 20px
+}
+.menu {
+  float: right;
 }
 
 nav:after {
@@ -153,6 +186,7 @@ nav ul {
   margin: 0;
   list-style: none;
   position: relative;
+  padding-top: 25px;
 }
 
 nav ul li {
@@ -181,7 +215,7 @@ nav a:hover { color: #fa9292; }
 nav ul ul {
   display: none;
   position: absolute;
-  top: 60px;
+  top: 70px;
   background-color: rgba(46, 45, 45, 0.98);
   border-radius: 5px;
 }
@@ -213,7 +247,7 @@ li > a:only-child:after { content: ''; }
 
 .profile {
   float: right;
-  margin-left: 250px;
+  margin-left: 150px;
 }
 
 
@@ -254,6 +288,10 @@ li > a:only-child:after { content: ''; }
   margin-top: 40px;
 }
 
+#viewAll {
+  margin-top : 50px;
+}
+
 #notifications {
   width: 25%;
   background: rgba(129, 211, 146, 0.7);
@@ -264,63 +302,80 @@ li > a:only-child:after { content: ''; }
 
 #products {
   width: 15%;
-  background: rgba(146, 43, 59, 0.6);
+  background: rgba(107, 100, 101, 0.6);
   left: 25%;
   margin: 0 1% 10px 5%;
   float: left;
   padding: 5px;
+  height: 250px;
+  max-height: 250px;
+  max-width: 300px;
 }
 
 #noproducts {
   width: 15%;
-  background: rgba(138, 243, 135, 0.6);
+  background: rgba(195, 206, 195, 0.6);
   left: 50%;
   margin: 0 1% 10px 1%;
   float: left;
   padding: 5px;
+  height: 250px;
+  max-height: 250px;
+  max-width: 300px;
 }
 
 #categories {
   width: 15%;
-  background: rgba(4, 224, 206, 0.6);
+  background: rgba(168, 170, 170, 0.6);
   left: 73%;
   margin: 0 1% 10px 1%;
   float: left;
   padding: 5px;
+  height: 250px;
+  max-height: 250px;
+  max-width: 300px;
 }
 
 #audit {
   width: 15%;
-  background: rgba(169, 153, 187, 0.6);
+  background: rgba(147, 146, 148, 0.6);
   left: 25%;
   margin: 40px 1% 10px 5%;
   float: left;
-  padding: 5px;
+  padding:5px;
+  height: 250px;
+  max-height: 250px;
+  max-width: 300px;
 }
 
 #attendants {
   width: 15%;
-  background: rgba(91, 110, 82, 0.8);
+  background: rgba(151, 151, 151, 0.8);
   left: 50%;
   margin: 40px 1% 10px 1%;
   float: left;
   padding: 5px;
+  height: 250px;
+  max-height: 250px;
+  max-width: 300px;
 }
 
 #incidents {
   width: 15%;
-  background: rgba(224, 66, 4, 0.4);
+  background: rgba(141, 139, 139, 0.4);
   left: 73%;
   margin: 40px 1% 100px 1%;
   float: left;
   padding: 5px;
+  height: 250px;
+  max-height: 250px;
+  max-width: 300px;
 }
 
 .label {
   font-size: 45px;
-  float: left;
   font-weight: bold;
-  margin: 0px 0px 0px 15px;
+  margin: 0px 0px 0px 0px;
   color: #000;
 }
 
@@ -342,9 +397,9 @@ table {
   color: #000;
 }
 
-tr {
+/* tr {
   cursor: pointer;
-}
+} */
 
 tr:hover {
   background: linear-gradient(rgba(224, 66, 4, 0.3), rgba(224, 66, 4, 0.3));
@@ -449,18 +504,31 @@ input,
   border: 1px #dddddd;
 }
 
+.showproduct {
+  min-height: 350px;
+}
+
 .productimage {
   float: left;
   left: 0;
   margin: 10px;
   padding: 5px;
+  max-width: 400px;
+}
+
+.productimage > img {
+  max-width: 400px;
+  max-height: 330px;
 }
 
 .productdetails {
   padding: 10px;
   margin: 10px;
+  color: #000;
 }
-
+.productreviews  {
+  margin-top: 0px;
+}
 .receipt {
   margin: 0px auto;
   max-width: 60%;
@@ -495,7 +563,7 @@ input,
   margin-bottom: 80px;
 }
 .paytype {
-  max-width: 30%;
+  width: 50%;
   text-align: left
 }
 
@@ -505,13 +573,25 @@ input,
   padding:5px
 }
 
+#errorDisplay, #errorDisplay2, #successMsg {
+  color: red;
+  font-family: aFont;
+  padding: 4px;
+  background: none;
+  font-size: 14px;
+}
+
+#successMsg {  
+  color: rgb(119, 151, 93);
+}
+
 /* Media Queries
 --------------------------------------------- */
 
 @media (min-width: 768px) and (max-width: 1230px) {
 
   #logo {
-    margin-right: 15%;
+    margin-right: 8%;
   }
   nav ul li {
     margin-top: 0px
@@ -520,7 +600,7 @@ input,
   nav a {
     display: block;
     padding: 0 10px;
-    color: #000;
+    color: #fff;
     font-size: 14px;
     line-height: 60px;
     text-decoration: none;
@@ -536,7 +616,13 @@ input,
     margin-bottom:100px;
   }
 
-
+  /* #categories, #attendants {
+    padding: 2px;
+    line-height: 15px;
+  }
+#audit {
+  left:5%;
+} */
 
   
 }
@@ -630,8 +716,7 @@ p {
 }
 
 .label {
-  font-size: 25px;
-  float: left;
+  font-size: 35px;
   font-weight: bold;
   margin: 0px 0px 0px 15px;
 }

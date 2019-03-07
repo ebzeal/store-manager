@@ -11,39 +11,13 @@
 
 <body>
   <nav>
-    <div id="logo"><a href="../../dashboard.html"> <img src="../../images/logo.png" alt="Ilupeju Stores logo">
+    <div id="logo"><a href="/UI/dashboard.html">
+        <p>ILUPEJU <span>STORES </span> </p>
       </a></div>
     <label for="drop" class="toggle">Menu</label>
     <input type="checkbox" id="drop" />
-    <ul class="menu">
-      <li><a href="../../dashboard.html">Dashboard</a></li>
+    <ul class="menu" id="menu">
 
-      <li>
-
-        <!-- First Tier Drop Down -->
-        <label for="drop-2" class="toggle">Portfolio +</label>
-        <a href="../../#">Products</a>
-        <input type="checkbox" id="drop-2" />
-        <ul>
-          <li><a href="../../products.html">View All Products</a></li>
-          <li><a href="../../admin/products/new.html">Add Product</a></li>
-        </ul>
-      </li>
-      <li><a href="../../report-incidence.html">Incidence</a></li>
-      <li><a href="../../cart/index.html">Shopping Cart</a></li>
-
-      <li class="profile">
-        <!-- First Tier Drop Down -->
-        <label for="drop-1" class="toggle"> <img src="../../images/john-doe.jpg" alt=""> +</label>
-        <a href="../../#" class="dropbtn"><img src="../../images/john-doe.jpg" alt=""></a>
-        <input type="checkbox" id="drop-1" />
-        <ul>
-          <li><a href="../#">Hi John</a></li>
-          <li><a href="../../users/john-doe.html">Profile</a></li>
-          <li><a href="../../audit/john-doe.html">Sales Orders</a></li>
-          <li><a href="../../index.html">Logout</a></li>
-        </ul>
-      </li>
     </ul>
   </nav>
 
@@ -54,32 +28,33 @@
     <h2>Add New Product</h2>
     <div class="content">
       <div class="left">
-        <button onclick="window.location='index.html'">Back to All Products</button>
+        <button onclick="window.location='../../products.html'">Back to All Products</button>
 
       </div>
       <div class="right white-bg">
+        <p class="errors" id="errorDisplay"></p>
+        <p class="successmsg" id="successMsg"></p>
 
-        <form action="">
+        <form id="addProduct" enctype="multipart/form-data">
+          <select name="categories_id" id="prodCatgSearch">
 
-          <input type="text" name="productname" id="" placeholder="Product Name">
-          <select>
-            <option value="" disabled selected>Product Category</option>
-            <option value="groceries">Groceries</option>
-            <option value="mshoes">Men Shoes</option>
-            <option value="wshoes">Women Shoes</option>
-            <option value="electronics">Electronics</option>
           </select>
+          <input type="text" name="productName" id="productName" placeholder="Product Name">
+
           <p>Upload Product Image</p>
-          <input type="file" name="productimage" id="">
-          <textarea name="productdetails" id="" cols="30" rows="5">Product Details</textarea>
-          <input type="text" name="productspecification" id="" placeholder="product specification">
-          <input type="number" name="productprice" id="" placeholder="Price(N)">
-          <button type="submit">Add Product</button>
+          <input type="file" name="productImage" id="productImage">
+          <textarea name="productDetails" id="productDetails" cols="30" rows="5">Product Details</textarea>
+          <input type="text" name="productSpec" id="productSpec" placeholder="product specification">
+          <input type="number" name="productPrice" id="productPrice" placeholder="Price(N)">
+          <input type="number" name="productQuantity" id="productQuantity" placeholder="Quantity of products">
+          <input type="number" name="productLimit" id="productLimit" placeholder="Least Quantity allowed for this product">
+          <button type="submit" id="submitForm">Add Product</button>
         </form>
       </div>
     </div>
 
   </div>
+  <script type="module" src="../../../frontend/products/addProduct.js"></script>
 </body>
 
 </html>
