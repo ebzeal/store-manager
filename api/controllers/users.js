@@ -76,7 +76,7 @@ const User = {
       };
       // Create JWT Payload
       // Sign Token
-      jwt.sign(payload, keys.JWT_SECRET, { expiresIn: 10800 }, (err, token) => {
+      jwt.sign(payload, keys.JWT_SECRET, { expiresIn: '48h' }, (err, token) => {
         res.json({
           token: `${token}`,
           userName: `${rows[0].username}`,
