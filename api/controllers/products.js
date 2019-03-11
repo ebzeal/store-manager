@@ -113,11 +113,12 @@ const Product = {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    let file;
-    if (req.file === undefined || req.file === null) {
-      file = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ImagePlaceholder_icon.svg/2000px-ImagePlaceholder_icon.svg.png';
-    } else {
-      file = req.file.path;
+    if (
+      req.body.productImage === undefined
+      || req.body.productImage === null
+      || req.body.productImage === ''
+    ) {
+      req.body.productImage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/ImagePlaceholder_icon.svg/2000px-ImagePlaceholder_icon.svg.png';
     }
 
     const findOneQuery = 'SELECT * FROM products WHERE id=$1';
